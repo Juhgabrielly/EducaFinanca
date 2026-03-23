@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Carômetro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- pagina inicial -->
+  <section class="pagina-inicial" id="inicio">
+     <img src="educa.png.png" width="250" height="200">
+     <h1> Bem vindo(a)!</h1>
+    <a href="#login">Fazer Login</a>
+    <a href="#cadastro">Fazer Cadastro</a>
+    
+  </section>
+
+  <!-- login -->
+  <section class="form-page" id="login">
+    <div class="box">
+      <h2>Login</h2>
+      <form>
+        <input type="email" placeholder="E-mail" required><br>
+        <input type="password" placeholder="Senha" required><br>
+        <button type="submit"><a href="#painel" class="entrar">Entrar</a></button>
+      </form>
+      <a href="#cadastro" class="link">Não tem conta? Cadastre-se</a>
+      <a href="#inicio" class="link">⬅ Voltar à página inicial</a>
+    </div>
+  </section>
+
+  <!-- cadastro -->
+  <section class="form-page" id="cadastro">
+    <div class="box">
+      <h2>Cadastro</h2>
+      <form>
+        <input type="text" placeholder="Nome completo" required><br>
+        <input type="email" placeholder="E-mail" required><br>
+        <input type="password" placeholder="Senha" required><br>
+        <button type="submit"><a href="#painel" class="button">Cadastre-se</a></button>
+      </form>
+      <a href="#login" class="link">Já tem conta? Faça login</a>
+      <a href="#inicio" class="link">Voltar à página inicial</a>
+    </div>
+  </section>
+
+  <!-- Painel do Usuario -->
+  <section class="container" id="painel">
+    <div class="sidebar">
+      <a href="usuario.html">👤 Perfil do Usuário</a>
+      <a href="#">Tela</a>
+      <a href="#">Cursos</a>
+      <a href="simulador.html">Simulador Financeiro</a>
+      <a href="ranking1.html">Ranking</a>
+      <a href="#">Desafios Diarios</a>
+      
+    </div>
+
+    <div class="main">
+      <div>
+        <h2>Cursos</h2>
+        <div class="salas">
+          <button><a href="curso1.html" class="botao">Planejamento e Organização Financeira</a></button>
+          <button><a href="curso2.html" class="botao">Gestão de Dividas e Credito</a></button>
+          <button><a href="curso3.html" class="botao">Investimentos</a></button>
+          <button><a href="curso4.html" class="botao">Matematica Financeira</a></button>
+          <button><a href="curso5.html" class="botao">Educação Financeira Empresarial</a></button>
+          <button><a href="curso6.html" class="botao">Piscologia Economica</a></button>
+      </div>
+    </div>
+    </div>
+  </section>
+  <script src="script.js"></script>
+
+</body>
+</html>

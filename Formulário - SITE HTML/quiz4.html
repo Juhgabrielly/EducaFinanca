@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Quiz de Conhecimento</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h1>Quiz de Matemática Financeira</h1>
+
+<p class="pergunta">
+1. Qual método é destacado no vídeo para aprender matemática financeira de forma fácil e rápida?
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: Método de Gauss.</button>
+<button onclick="certo()">B: Método de Curió.</button>
+<button onclick="errado()">C: Método de Fibonacci.</button>
+<button onclick="errado()">D: Método de Euler.</button>
+
+</div>
+
+<p class="pergunta">
+2. O vídeo foca em quais conceitos fundamentais da matemática financeira?
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: Juros compostos e inflação.</button>
+<button onclick="certo()">B: Porcentagem e juros simples.</button>
+<button onclick="errado()">C: Análise de investimentos e fluxo de caixa.</button>
+<button onclick="errado()">D: Derivadas e integrais aplicadas a finanças.</button>
+
+</div>
+
+<p class="pergunta">
+3. Qual o principal objetivo do "CURIÓ METHOD" mencionado no vídeo?
+</p>
+
+<div class="opcoes">
+
+<button onclick="certo()">A: Tornar a matemática complexa mais acessível e de fácil absorção.</button>
+<button onclick="errado()">B: Ensinar apenas fórmulas avançadas de matemática financeira.</button>
+<button onclick="errado()">C: Focar em aplicações práticas de matemática em engenharia.</button>
+<button onclick="errado()">D: Preparar estudantes para competições olímpicas de matemática.</button>
+
+</div>
+
+<p id="resultado"></p>
+
+</div>
+
+<script>
+
+function certo(){
+    document.getElementById("resultado").innerHTML = "✅ Resposta correta!";
+}
+
+function errado(){
+    document.getElementById("resultado").innerHTML = "❌ Resposta errada!";
+}
+
+</script>
+
+</body>
+</html>

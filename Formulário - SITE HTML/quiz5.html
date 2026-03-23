@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Quiz de Conhecimento</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h1>Quiz de Educação Financeira Empresarial</h1>
+
+<p class="pergunta">
+1. O vídeo sugere que oferecer educação financeira para os colaboradores é:
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: Apenas um benefício opcional para as empresas.</button>
+
+<button onclick="certo()">B: Uma oportunidade para as empresas consolidarem boas práticas de gestão.</button>
+
+<button onclick="errado()">C: Uma estratégia arriscada que pode levar a mais dívidas.</button>
+
+<button onclick="errado()">D: Irrelevante para o sucesso de uma empresa.</button>
+
+</div>
+
+<p class="pergunta">
+2. Qual é o tema central do vídeo?
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: Como investir em ações de empresas.</button>
+
+<button onclick="certo()">B: A importância da educação financeira como um benefício e necessidade para as empresas.</button>
+
+<button onclick="errado()">C: Estratégias para quitar dívidas pessoais.</button>
+
+<button onclick="errado()">D: Métodos para aprender matemática financeira do zero.</button>
+
+</div>
+
+<p class="pergunta">
+3. Qual o tema principal abordado no vídeo, além da educação financeira corporativa?
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: Investimentos em renda fixa.</button>
+
+<button onclick="errado()">B: Matemática financeira básica.</button>
+
+<button onclick="errado()">C: Como quitar dívidas pessoais.</button>
+
+<button onclick="certo()">D: O vídeo foca exclusivamente na perspectiva empresarial da educação financeira.</button>
+
+</div>
+
+<p id="resultado"></p>
+
+</div>
+
+<script>
+
+function certo(){
+    document.getElementById("resultado").innerHTML = "✅ Resposta correta!";
+}
+
+function errado(){
+    document.getElementById("resultado").innerHTML = "❌ Resposta errada!";
+}
+
+</script>
+
+</body>
+</html>

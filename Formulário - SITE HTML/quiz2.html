@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Quiz de Conhecimento</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h1>Quiz de Gestão de Dívidas e de Crédito</h1>
+
+<p class="pergunta">
+1. Qual técnica principal é mencionada no vídeo para quitar dívidas, adaptada à realidade brasileira?
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: A bola de neve de dívidas.</button>
+<button onclick="certo()">B: O método de Dave Ramsey.</button>
+<button onclick="errado()">C: O sistema de orçamento de envelope.</button>
+<button onclick="errado()">D: A consolidação de dívidas.</button>
+
+</div>
+
+<p class="pergunta">
+2. Além de quitar as dívidas, qual é o próximo passo importante abordado no vídeo para a saúde financeira?
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: Investir em ações de alto risco.</button>
+<button onclick="errado()">B: Buscar um empréstimo maior.</button>
+<button onclick="certo()">C: Alcançar o equilíbrio financeiro.</button>
+<button onclick="errado()">D: Aumentar o limite do cartão de crédito.</button>
+
+</div>
+
+<p class="pergunta">
+3. O vídeo sugere que, para quem está bastante endividado, quitar as dívidas implica em:
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: Ignorar as despesas menores.</button>
+<button onclick="certo()">B: Mudar a forma como se lida com as finanças pessoais.</button>
+<button onclick="errado()">C: Aumentar o número de fontes de renda imediatamente.</button>
+<button onclick="errado()">D: Focar apenas em ganhar mais dinheiro.</button>
+
+</div>
+
+<p id="resultado"></p>
+
+</div>
+
+<script>
+
+function certo(){
+    document.getElementById("resultado").innerHTML = "✅ Resposta correta!";
+}
+
+function errado(){
+    document.getElementById("resultado").innerHTML = "❌ Resposta errada!";
+}
+
+</script>
+
+</body>
+</html>

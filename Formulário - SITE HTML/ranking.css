@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: rgba(110, 49, 125, 0.247);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Card */
+.card {
+    width: 300px;
+    background: #9457b9;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Progresso */
+.progresso {
+    text-align: center;
+}
+
+/* Círculo */
+.circulo {
+    width: 150px;
+    height: 150px;
+    margin: 15px auto;
+    border-radius: 50%;
+    background: conic-gradient(#8713a7 17%, #e1e1e2 0%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.interno {
+    width: 120px;
+    height: 120px;
+    background: #6a1b9a;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Info boxes */
+.info {
+    margin-top: 15px;
+}
+
+.box {
+    background: #ede7f6;
+    color: #4a148c;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.botao{
+display:inline-block;
+margin-top:10px;
+padding:10px 20px;
+background: white;
+color:rgb(0, 0, 0);
+text-decoration:none;
+border-radius:8px;
+}

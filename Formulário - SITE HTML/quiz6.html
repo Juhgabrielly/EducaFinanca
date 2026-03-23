@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Quiz de Conhecimento</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h1>Quiz sobre Psicologia Economica</h1>
+
+<p class="pergunta">
+1. Qual é a principal ideia central do vídeo sobre o comportamento financeiro?
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: O sucesso financeiro depende apenas da renda mensal.</button>
+
+<button onclick="certo()">B: O comportamento e a mentalidade influenciam diretamente as decisões financeiras.</button>
+
+<button onclick="errado()">C: Investimentos são mais importantes que hábitos financeiros.</button>
+
+<button onclick="errado()">D: O dinheiro não depende de planejamento.</button>
+
+</div>
+
+<p class="pergunta">
+2. O vídeo sugere que a mentalidade financeira impacta principalmente:
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: Apenas o quanto a pessoa ganha.</button>
+
+<button onclick="errado()">B: Apenas os investimentos de longo prazo.</button>
+
+<button onclick="certo()">C: A forma como a pessoa decide gastar, poupar e investir.</button>
+
+<button onclick="errado()">D: Exclusivamente o acesso ao crédito.</button>
+
+</div>
+
+<p class="pergunta">
+3. Qual é o papel da mudança de mentalidade no contexto financeiro?
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: Aumentar o consumo imediato</button>
+
+<button onclick="errado()">B: Eliminar a necessidade de planejamento.</button>
+
+<button onclick="certo()">C: Melhorar a qualidade das decisões financeiras ao longo do tempo.</button>
+
+<button onclick="errado()">D: Garantir aumento automático de renda.</button>
+
+</div>
+
+<p id="resultado"></p>
+
+</div>
+
+<script>
+
+function certo(){
+    document.getElementById("resultado").innerHTML = "✅ Resposta correta!";
+}
+
+function errado(){
+    document.getElementById("resultado").innerHTML = "❌ Resposta errada!";
+}
+
+</script>
+
+</body>
+</html>

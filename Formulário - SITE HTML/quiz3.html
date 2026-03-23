@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Quiz de Conhecimento</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h1>Quiz sobre Investimentos</h1>
+
+<p class="pergunta">
+1. O que o vídeo explica sobre a renda fixa?
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: É um tipo de investimento com alta volatilidade e risco.</button>
+<button onclick="certo()">B: Representa empréstimos, sendo um investimento mais conservador comparado à renda variável.</button>
+<button onclick="errado()">C: O rendimento é totalmente imprevisível e varia muito a cada mês.</button>
+<button onclick="errado()">D: É mais adequado para quem busca retornos rápidos e especulativos.</button>
+
+</div>
+
+<p class="pergunta">
+2. Quais são os tipos de investimentos em renda fixa mencionados no vídeo?
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: Ações, Fundos Imobiliários e Bitcoin.</button>
+<button onclick="certo()">B: CDI, CDB, SELIC, LCI e LCA.</button>
+<button onclick="errado()">C: Debêntures, CRI e CRA.</button>
+<button onclick="errado()">D: Criptomoedas e NFTs.</button>
+
+</div>
+
+<p class="pergunta">
+3. De acordo com o vídeo, qual o rendimento aproximado da renda fixa em 2024 (no momento da postagem)?
+</p>
+
+<div class="opcoes">
+
+<button onclick="errado()">A: Cerca de 5% ao ano.</button>
+<button onclick="certo()">B: Cerca de 10% ao ano.</button>
+<button onclick="errado()">C: Cerca de 15% ao ano.</button>
+<button onclick="errado()">D: Cerca de 20% ao ano.</button>
+
+</div>
+
+<p id="resultado"></p>
+
+</div>
+
+<script>
+
+function certo(){
+    document.getElementById("resultado").innerHTML = "✅ Resposta correta!";
+}
+
+function errado(){
+    document.getElementById("resultado").innerHTML = "❌ Resposta errada!";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #5f2c82, #9b59b6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    width: 300px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+h2 {
+    color: #5f2c82;
+}
+
+h3 {
+    color: #7d3c98;
+}
+
+.item {
+    margin: 15px 0;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+    color: #5f2c82;
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: #8e44ad;
+}
+
+.resultado {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#saldo {
+    color: green;
+    font-weight: bold;
+}
+
+.btn {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #8e44ad, #5f2c82);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}

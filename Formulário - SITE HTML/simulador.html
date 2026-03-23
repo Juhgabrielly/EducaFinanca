@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Simulador Financeiro</title>
+<link rel="stylesheet" href="simulador.css">
+</head>
+<body>
+
+<div class="card">
+
+    <h2>Simulador Financeiro</h2>
+    <h3>Divida R$ <span id="divida">500</span></h3>
+
+    <div class="item">
+        <label>Transporte: R$ <span id="transporteValor">150</span></label>
+        <input type="range" min="0" max="500" value="150" id="transporte">
+    </div>
+
+    <div class="item">
+        <label>Lazer: R$ <span id="lazerValor">100</span></label>
+        <input type="range" min="0" max="500" value="100" id="lazer">
+    </div>
+
+    <div class="item">
+        <label>Guardar: R$ <span id="guardarValor">150</span></label>
+        <input type="range" min="0" max="500" value="150" id="guardar">
+    </div>
+
+    <div class="resultado">
+        <p>Total: R$ <span id="total">400</span></p>
+        <p>Saldo: R$ <span id="saldo">100</span></p>
+    </div>
+
+    <button class="btn">Continuar</button>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
