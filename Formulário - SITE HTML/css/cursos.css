@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial;
+    margin: 0;
+    background: linear-gradient(135deg, #e8d2e8, #593eb4);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* ===========MENU LATERAL=========== */
+.menu-btn {
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    left: 20px;
+    top: 20px;
+}
+.menu-btn i{
+    color: #000000;
+}
+.menu-lateral {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(135deg, #e8d2e8, #593eb4);
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 60px;
+    z-index: 1000;
+
+}
+.menu-lateral a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px;
+    font-size: 20px;
+}
+.menu-lateral a:hover {
+    background-color: #e8d2e8;
+}
+
+
+/* ===========CONTAINERS=========== */
+main{
+    padding: 40px 80px;
+}
+main h2{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.informacoes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.boneco {
+    width: 250px;
+    position: fixed;
+    left: 10%;
+    top: 100px;
+}
+.explicacao p {
+    width: 320px;
+    background: #eaeaea;
+    padding: 20px;
+    border-radius: 20px;
+}
+.video {
+    text-align: center;
+    background: #3c3aa6;
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+}
+.video iframe {
+    width: 350px;
+    height: 200px;
+    border: 6px solid #3c3aa6;
+    border-radius: 10px;
+    background: white;
+}
+.video h2 {
+    margin-bottom: 10px;
+}
+
+
+.quiz {
+    text-align: center;
+    margin-top: 30px;
+}
+.botao {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #2e4f9e;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
