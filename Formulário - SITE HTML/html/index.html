@@ -1,73 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Educa Finança</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  <header>
+    <div class="logo">Educa Finança</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="cursos.html">Cursos</a></li>
+        <li><a href="#">Relatórios</a></li>
+        <li><a href="#">Metas Financeiras</a></li>
+        <li><a href="#">Investimentos</a></li>
+        <li><a href="usuario.html">Perfil do Usuario</a></li>
+        <li><a href="#" class="contact-btn">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- pagina inicial -->
-  <section class="pagina-inicial" id="inicio">
-     <img src="educa.png" width="250" height="200">
-     <h1> Bem vindo(a)!</h1>
-    <a href="#login">Fazer Login</a>
-    <a href="#cadastro">Fazer Cadastro</a>
-  </section>
-
-  <!-- login -->
-  <section class="form-page" id="login">
-    <div class="box">
-      <h2>Login</h2>
-      <form>
-        <input type="email" placeholder="E-mail" required><br>
-        <input type="password" placeholder="Senha" required><br>
-        <button type="submit"><a href="#painel" class="entrar">Entrar</a></button>
-      </form>
-      <a href="#cadastro" class="link">Não tem conta? Cadastre-se</a>
-      <a href="#inicio" class="link">⬅ Voltar à página inicial</a>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Educação Financeira para Você e Sua Empresa</h1>
+      <p>
+        A Educa Finança ajuda você a organizar suas finanças, planejar investimentos e alcançar suas metas com segurança e clareza.
+      </p>
+    </div>
+    <li><a href="#" class="contact-btn">Fazer Login</a></li>
+    <li><a href="#" class="contact-btn">Fazer cadastro</a></li>
+    <div class="hero-image">
+      <img src="../assets/educa.png" alt="Equipe Financeira">
     </div>
   </section>
-
-  <!-- cadastro -->
-  <section class="form-page" id="cadastro">
-    <div class="box">
-      <h2>Cadastro</h2>
-      <form>
-        <input type="text" placeholder="Nome completo" required><br>
-        <input type="email" placeholder="E-mail" required><br>
-        <input type="password" placeholder="Senha" required><br>
-        <button type="submit"><a href="#painel" class="button">Cadastre-se</a></button>
-      </form>
-      <a href="#login" class="link">Já tem conta? Faça login</a>
-      <a href="#inicio" class="link">Voltar à página inicial</a>
-    </div>
-  </section>
-
-  <!-- Painel do Usuario -->
-  <section class="container" id="painel">
-    <div class="sidebar">
-      <a href="usuario.html">Perfil do Usuário</a>
-      <a href="simulador.html">Simulador Financeiro</a>
-      <a href="ranking1.html">Ranking</a>
-      <a href="#">Desafios Diarios</a>
-      <a href="#">Voltar</a>
-    </div>
-
-    <div class="main">
-      <div>
-        <h2>Cursos</h2>
-        <div class="salas">
-          <button><a href="curso1.html" class="botao">Planejamento e Organização Financeira</a></button>
-          <button><a href="curso2.html" class="botao">Gestão de Dividas e Credito</a></button>
-          <button><a href="curso3.html" class="botao">Investimentos</a></button>
-          <button><a href="curso4.html" class="botao">Matematica Financeira</a></button>
-          <button><a href="curso5.html" class="botao">Educação Financeira Empresarial</a></button>
-          <button><a href="curso6.html" class="botao">Piscologia Economica</a></button>
-      </div>
-    </div>
-    </div>
-  </section>
-  <script src="../script.js"></script>
 </body>
 </html>

@@ -1,36 +1,54 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Perfil do Usuário</title>
-<link rel="stylesheet" href="../css/usuario.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User</title>
+  <link rel="stylesheet" href="../css/usuario.css">
 </head>
 <body>
+  <header>
+    <h1>Bem vinda, Sayury</h1>
+    <button class="voltar">Voltar a pagina inicial</button>
+  </header>
 
-<div class="container">
-
-    <div class="header">
-        <img src="perfil.png" alt="Foto de perfil">
-        <h1> 👤Nome do Usuário</h1>
-        <p>@usuario</p>
+  <main>
+    <div class="profile-card">
+      <div class="profile-info">
+        <img src="../assets/perfil.png" alt="Foto de Perfil">
+        <div>
+          <h2>Sayury Araujo</h2>
+          <p>sayuryaraujo@gmail.com</p>
+        </div>
+      </div>
     </div>
 
-    <div class="content">
-        <div class="info">
-            <h2>Informações</h2>
-            <p><strong>Email:</strong> usuario@email.com</p>
-            <p><strong>Cidade:</strong> Campinas - SP</p>
-        </div>
-
-        <div class="info">
-            <h2>Sobre</h2>
-            <p>Uma breve descrição sobre o usuário. Pode falar interesses, hobbies, etc.</p>
-        </div>
-
-       <a href="educa.html#painel" class="button">Voltar ao Menu Inicial</a>
+    <div class="form-section">
+      <h3>Informações do Usuário</h3>
+      <label>Nome Completo</label>
+      <input type="text" value="Sayury Araujo">
+      <label>Apelido</label>
+      <input type="text" value="Say">
+      <label>Telefone</label>
+      <input type="text" value="(19) 99885547102">
     </div>
 
-</div>
+    <div class="finance-section">
+      <h3>Resumo Financeiro</h3>
+      <p><strong>Saldo Atual:</strong> R$ 12.450,00</p>
+      <p><strong>Metas de Economia:</strong> R$ 20.000,00 até Dez/2026</p>
+      <p><strong>Investimentos:</strong> R$ 8.300,00 em fundos</p>
+      <p><strong>Última Análise:</strong> 15 dias atrás</p>
+    </div>
 
+    <div class="reports-section">
+      <h3>Relatórios Recentes</h3>
+      <ul>
+        <li>📊 Relatório de Gastos - Fevereiro 2026</li>
+        <li>💰 Análise de Investimentos - Janeiro 2026</li>
+        <li>📈 Projeção de Metas - Dezembro 2025</li>
+      </ul>
+    </div>
+  </main>
 </body>
 </html>
