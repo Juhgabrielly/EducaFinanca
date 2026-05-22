@@ -1,54 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User</title>
-  <link rel="stylesheet" href="../css/usuario.css">
+
+  <title>Perfil do Usuário - Educa Finança</title>
+
+      <link rel="stylesheet" href="../css/usuario.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
+  <!-- HEADER -->
   <header>
-    <h1>Bem vinda, Sayury</h1>
-    <button class="voltar">Voltar a pagina inicial</button>
+
+    <div class="logo">
+      <img src="../html/educa.png" class="logo-img">
+      <h2>Educa Finança</h2>
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">
+      ☰
+    </div>
+
+    <!-- MENU -->
+    <nav class="menu" id="menu">
+
+      <a href="home.html">Home</a>
+
+      <a href="cursos.html">Cursos</a>
+
+      <a href="relatorios.html">Relatórios</a>
+
+      <a href="investimentos.html">Investimentos</a>
+
+      <a href="perfil.html">Perfil</a>
+
+      <a href="contato.html">Contato</a>
+
+    </nav>
+
   </header>
 
-  <main>
-    <div class="profile-card">
-      <div class="profile-info">
-        <img src="../assets/perfil.png" alt="Foto de Perfil">
-        <div>
-          <h2>Sayury Araujo</h2>
-          <p>sayuryaraujo@gmail.com</p>
+  //perfil
+  <main class="perfil-page">
+
+    <!-- CARD PERFIL -->
+    <section class="perfil-card">
+
+      <div class="perfil-top">
+
+        <div class="perfil-avatar">
+          👤
         </div>
+
+        <div class="perfil-info">
+
+          <h2>Sayury de Moraes Araujo</h2>
+
+        </div>
+
       </div>
-    </div>
 
-    <div class="form-section">
-      <h3>Informações do Usuário</h3>
-      <label>Nome Completo</label>
-      <input type="text" value="Sayury Araujo">
-      <label>Apelido</label>
-      <input type="text" value="Say">
-      <label>Telefone</label>
-      <input type="text" value="(19) 99885547102">
-    </div>
+      <!-- FORM -->
+      <form class="perfil-form">
 
-    <div class="finance-section">
-      <h3>Resumo Financeiro</h3>
-      <p><strong>Saldo Atual:</strong> R$ 12.450,00</p>
-      <p><strong>Metas de Economia:</strong> R$ 20.000,00 até Dez/2026</p>
-      <p><strong>Investimentos:</strong> R$ 8.300,00 em fundos</p>
-      <p><strong>Última Análise:</strong> 15 dias atrás</p>
-    </div>
+        <div class="input-grid">
 
-    <div class="reports-section">
-      <h3>Relatórios Recentes</h3>
-      <ul>
-        <li>📊 Relatório de Gastos - Fevereiro 2026</li>
-        <li>💰 Análise de Investimentos - Janeiro 2026</li>
-        <li>📈 Projeção de Metas - Dezembro 2025</li>
-      </ul>
-    </div>
+          <div class="input-box">
+            <label>Nome Completo</label>
+            <input type="text" placeholder="Sayury de Moraes Araujo 
+            ">
+          </div>
+
+          <div class="input-box">
+            <label>E-mail</label>
+            <input type="email" placeholder="sayury@email.com">
+          </div>
+
+          <div class="input-box">
+            <label>Telefone</label>
+            <input type="text" placeholder="(19) 99999-0000">
+          </div>
+
+          <div class="input-box">
+            <label>Cidade</label>
+            <input type="text" placeholder="Amparo, SP">
+          </div>
+
+          <div class="input-box">
+            <label>Meta Financeira</label>
+            <input type="text" placeholder="Guardar R$ 50 mil">
+          </div>
+
+          <div class="input-box">
+            <label>Área de Interesse</label>
+            <input type="text" placeholder="Investimentos">
+          </div>
+
+        </div>
+
+        <button class="save-btn">
+           Salvar Alterações
+        </button>
+
+      </form>
+
+    </section>
+
+    <!-- STATUS -->
+    <section class="status-grid">
+
+      <div class="status-card">
+
+        <h3>Cursos Concluídos</h3>
+
+        <p>2 Cursos</p>
+
+      </div>
+
+      <div class="status-card">
+
+        <h3>Saldo Total</h3>
+
+        <p>R$ 100.000</p>
+
+      </div>
+
+      <div class="status-card">
+
+        <h3>Investimentos</h3>
+
+        <p>20%</p>
+
+      </div>
+
+    </section>
+
   </main>
+
+  <!-- SCRIPT MENU -->
+  <script>
+
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
+
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
+
+  </script>
+
 </body>
 </html>

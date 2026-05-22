@@ -1,41 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Educa Finança</title>
   <link rel="stylesheet" href="../css/style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <header>
-    <div class="logo">Educa Finança</div>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="cursos.html">Cursos</a></li>
-        <li><a href="#">Relatórios</a></li>
-        <li><a href="#">Metas Financeiras</a></li>
-        <li><a href="#">Investimentos</a></li>
-        <li><a href="usuario.html">Perfil do Usuario</a></li>
-        <li><a href="#" class="contact-btn">Contato</a></li>
-      </ul>
+    <div class="logo">
+      <img src="../html/educa.png" class="logo-img">
+      <h2>Educa Finança</h2>
+    </div>
+    <div class="menu-hamburguer" id="menu-hamburguer"> ☰
+    </div>
+
+    <nav class="menu" id="menu">
+      <a href="../html/home.html">Home</a>
+      <a href="../html/cursos.html">Cursos</a>
+      <a href="../html/relatório.html">Relatórios</a>
+      <a href="../html/investimento.html">Investimentos</a>
+      <a href="../html/usuario.html">Perfil</a>
     </nav>
   </header>
 
   <section class="hero">
-    <div class="hero-text">
-      <h1>Educação Financeira para Você e Sua Empresa</h1>
-      <p>
-        A Educa Finança ajuda você a organizar suas finanças, planejar investimentos e alcançar suas metas com segurança e clareza.
-      </p>
-    
-    <br>
-    <a href="#" class="contact-btn">Fazer Login</a>
-    <a href="#" class="contact-btn">Fazer cadastro</a>
-    </div>
-    <div class="hero-image">
-      <img src="../assets/educa.png" alt="Equipe Financeira">
+    <div class="estilo"></div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <span class="subtitulo">
+          EDUCAÇÃO FINANCEIRA
+        </span>
+        <h1>Organização Financeira</h1>
+        <p>Liberdade financeira é ter o controle do seu tempo!</p>
+        <div class="buttons">
+          <a href="login.html" class="login-btn">Fazer Login </a>
+          <a href="../html/cadastro.html" class="cadastro-btn">Fazer Cadastro</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="../html/educa.png" alt="Educa Finança">
+      </div>
     </div>
   </section>
+
+  <script>
+    const toggle = document.getElementById("menu-hamburguer");
+    const menu = document.getElementById("menu");
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
+  </script>
+
 </body>
 </html>

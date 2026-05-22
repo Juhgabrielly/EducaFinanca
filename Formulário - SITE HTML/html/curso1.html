@@ -3,51 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Planejamento e Organização Financeira - Educa Finança</title>
-  <link rel="stylesheet" href="../css/style.css">
+
+  <title>Planejamento Financeiro - Educa Finança</title>
+
+  <link rel="stylesheet" href="../css/cursos.css">
+
+  <!-- FONTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
+  <!-- HEADER -->
   <header>
-    <div class="logo">Educa Finança</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="cursos.html">Cursos</a></li>
-        <li><a href="#">Relatórios</a></li>
-        <li><a href="#">Metas Financeiras</a></li>
-        <li><a href="#">Investimentos</a></li>
-        <li><a href="#">Perfil do Usuário</a></li>
-        <li><a href="#" class="contact-btn">Contato</a></li>
-      </ul>
+
+    <div class="logo">
+      <img src="../html/educa.png" class="logo-img">
+      <h2>Educa Finança</h2>
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">
+      ☰
+    </div>
+
+    <!-- MENU -->
+    <nav class="menu" id="menu">
+
+      <a href="home.html">Home</a>
+
+      <a href="cursos.html">Cursos</a>
+
+      <a href="../html/relatório.html">Relatórios</a>
+
+      <a href="../html/investimento.html">Investimentos</a>
+
+      <a href="../html/usuario.html">Perfil</a>
+
+      <a href="#">Contato</a>
+
     </nav>
+
   </header>
 
+  <!-- CURSO -->
   <main class="course-page">
-    <h1>Planejamento e Organização Financeira</h1>
-    <p>
+
+    <h1>
+      Planejamento e
+      <span>Organização Financeira</span>
+    </h1>
+
+    <p class="description">
       Neste curso você aprenderá a estruturar suas finanças pessoais e familiares,
-      criando um plano sólido para alcançar estabilidade e segurança.
+      criando um plano sólido para alcançar estabilidade, segurança e liberdade financeira.
     </p>
 
-    <section class="video">
-      <h2>Aula introdutória</h2>
-      <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+    <!-- VIDEO -->
+    <section class="video-card">
+
+      <h2>Aula Introdutória</h2>
+
+      <div class="video-container">
+
+        <iframe 
+          src="https://www.youtube.com/embed/SEU_VIDEO_ID"
+          title="YouTube video player"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
     </section>
 
-    <section class="conteudo">
+    <!-- CONTEÚDO -->
+    <section class="content-card">
+
       <h2>Conteúdo do Curso</h2>
+
       <ul>
+
         <li>Definição de objetivos financeiros</li>
+
         <li>Controle de gastos e orçamento</li>
+
         <li>Planejamento de curto, médio e longo prazo</li>
+
         <li>Ferramentas digitais para organização</li>
+
+        <li>Estratégias para economizar dinheiro</li>
+
+        <li>Como criar sua reserva de emergência</li>
+
       </ul>
+
     </section>
 
-    <section class="quiz">
+    <!-- QUIZ -->
+    <section class="quiz-card">
+
       <h2>Teste seus conhecimentos</h2>
-      <a href="quiz-planejamento.html" class="botao">Iniciar Quiz</a>
+
+      <p>
+        Finalize o módulo realizando o quiz interativo do curso.
+      </p>
+
+      <a href="../html/quiz1.html" class="quiz-btn">
+        Iniciar Quiz 
+      </a>
+
     </section>
+
   </main>
+
+  <!-- SCRIPT MENU -->
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
+
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
+  </script>
+
 </body>
 </html>

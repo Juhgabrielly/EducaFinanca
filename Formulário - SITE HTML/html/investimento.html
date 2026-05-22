@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Investimentos - Educa Finança</title>
+
+  <link rel="stylesheet" href="../css/investimento.css">
+
+  <!-- FONTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+
+    <div class="logo">
+      <img src="../html/educa.png" class="logo-img">
+      <h2>Educa Finança</h2>
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">
+      ☰
+    </div>
+
+    <!-- MENU -->
+    <nav class="menu" id="menu">
+
+      <a href="home.html">Home</a>
+
+      <a href="cursos.html">Cursos</a>
+
+      <a href="../html/relatório.html">Relatórios</a>
+
+      <a href="../html/investimento.html">Investimentos</a>
+
+      <a href="../html/usuario.html">Perfil</a>
+    </nav>
+
+  </header>
+
+  <!-- PAGE -->
+  <main class="invest-page">
+
+    <h1>
+      <span>Investimentos</span>
+    </h1>
+
+    <p class="description">
+    </p>
+
+    <!-- RESUMO -->
+    <section class="resume-grid">
+
+      <div class="resume-card">
+
+        <h2>Saldo total</h2>
+
+        <h3>R$ 100.000</h3>
+
+        <p>Atualizado hoje</p>
+
+      </div>
+
+      <div class="resume-card">
+
+        <h2>Lucro</h2>
+
+        <h3>40%</h3>
+
+        <p>Últimos 12 meses</p>
+
+      </div>
+
+      <div class="resume-card">
+
+        <h2>Reserva emergencial</h2>
+
+        <h3>R$ 20.000</h3>
+
+        <p>total</p>
+
+      </div>
+
+    </section>
+
+    <!-- INVESTIMENTOS -->
+    <section class="invest-section">
+
+      <div class="invest-grid">
+
+        <!-- ITEM -->
+        <div class="invest-card">
+
+          <div class="top-invest">
+
+          </div>
+
+          <h3> Investimento em renda variavel</h3>
+
+          <p>
+            Investimentos em empresas com potencial
+            de valorização.
+          </p>
+
+          <div class="invest-info">
+
+            <span>Saldo</span>
+
+            <strong>R$ 20.000</strong>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="invest-card">
+
+          <div class="top-invest">
+
+          </div>
+
+          <h3>Investimentos futuros</h3>
+
+          <p>
+            Faculdade de Medicina
+          </p>
+
+          <div class="invest-info">
+
+            <span>Saldo</span>
+
+            <strong>R$ 5.000</strong>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="invest-card">
+
+          <div class="top-invest">
+
+          </div>
+
+          <h3>Investimento em renda fixa</h3>
+
+          <p>
+            uma modalidade de investimento segura e previsível, ideal para objetivos de curto/médio prazo.
+          </p>
+
+          <div class="invest-info">
+
+            <span>Saldo</span>
+
+            <strong>R$ 20.000</strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- METAS -->
+    <section class="goal-section">
+
+      <div class="section-title">
+        <h2>Metas Financeiras</h2>
+      </div>
+
+      <div class="new-goal-area">
+
+</div>
+
+     <div class="goal-card">
+
+        <div class="goal-top">
+
+          <div>
+            <h3>Comprar um Carro</h3>
+            <p>Meta: R$ 40.000</p>
+          </div>
+
+          <span class="percent">80%</span>
+
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress progress1"></div>
+        </div>
+
+      </div>
+
+      <!-- META -->
+      <div class="goal-card">
+
+        <div class="goal-top">
+
+          <div>
+            <h3>Viagem Internacional</h3>
+            <p>Meta: R$ 15.000</p>
+          </div>
+
+          <span class="percent">67%</span>
+
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress progress2"></div>
+        </div>
+
+      </div>
+
+      <!-- META -->
+      <div class="goal-card">
+
+        <div class="goal-top">
+
+          <div>
+            <h3>Independência Financeira</h3>
+            <p>Meta: R$ 500.000</p>
+          </div>
+
+          <span class="percent">24%</span>
+
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress progress3"></div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+<script>
+
+/* MENU */
+
+const toggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu");
+
+toggle.addEventListener("click", () => {
+  menu.classList.toggle("active");
+});
+
+/* METAS */
+
+function pegarMetas() {
+  return JSON.parse(localStorage.getItem("metas")) || [];
+}
+
+function salvarMetas(metas) {
+  localStorage.setItem("metas", JSON.stringify(metas));
+}
+
+/* MOSTRAR METAS */
+
+function mostrarMetas() {
+
+  const container = document.getElementById("goals-container");
+
+  const metas = pegarMetas();
+
+  container.innerHTML = "";
+
+  metas.forEach((meta) => {
+
+    container.innerHTML += `
+
+      <div class="goal-card">
+
+        <div class="goal-top">
+
+          <div>
+            <h3>${meta.nome}</h3>
+            <p>Meta: R$ ${meta.valor}</p>
+          </div>
+
+          <span class="percent">${meta.percentual}%</span>
+
+        </div>
+
+        <div class="progress-bar">
+
+          <div 
+            class="progress-dynamic"
+            style="width:${meta.percentual}%">
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+/* CADASTRAR */
+
+function cadastrarMeta() {
+
+  const nome = prompt("Digite o nome da meta:");
+
+  if (!nome) return;
+
+  const valor = prompt("Digite o valor da meta:");
+
+  if (!valor) return;
+
+  const percentual = prompt("Digite a porcentagem atual:");
+
+  if (!percentual) return;
+
+  const metas = pegarMetas();
+
+  metas.push({
+    nome: nome,
+    valor: valor,
+    percentual: percentual
+  });
+
+  salvarMetas(metas);
+
+  mostrarMetas();
+
+  alert("Meta cadastrada com sucesso!");
+
+}
+
+/* INICIAR */
+
+mostrarMetas();
+
+</script>
+
+</body>
+</html>

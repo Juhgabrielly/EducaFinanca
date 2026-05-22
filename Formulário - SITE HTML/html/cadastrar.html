@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cadastrar Meta - Educa Finança</title>
+
+  <link rel="stylesheet" href="../css/cadastrar.css">
+
+  <!-- FONTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="meta-container">
+
+    <div class="meta-card">
+
+      <h1>Nova Meta Financeira</h1>
+
+      <p>
+        Cadastre uma nova meta e acompanhe sua evolução financeira.
+      </p>
+
+      <!-- FORM -->
+      <div class="form-area">
+
+        <div class="input-box">
+          <label>Nome da Meta</label>
+          <input type="text" id="nomeMeta" placeholder="Ex: Comprar um carro">
+        </div>
+
+        <div class="input-box">
+          <label>Valor da Meta</label>
+          <input type="number" id="valorMeta" placeholder="Ex: 40000">
+        </div>
+
+        <div class="input-box">
+          <label>Porcentagem Atual</label>
+          <input type="number" id="percentualMeta" placeholder="Ex: 45">
+        </div>
+
+        <button onclick="salvarMeta()" class="save-btn">
+          Cadastrar Meta
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function pegarMetas(){
+      return JSON.parse(localStorage.getItem("metas")) || [];
+    }
+
+    function salvarBanco(metas){
+      localStorage.setItem("metas", JSON.stringify(metas));
+    }
+
+    function salvarMeta(){
+
+      const nome = document.getElementById("nomeMeta").value;
+
+      const valor = document.getElementById("valorMeta").value;
+
+      const percentual = document.getElementById("percentualMeta").value;
+
+      if(!nome || !valor || !percentual){
+        alert("Preencha todos os campos!");
+        return;
+      }
+
+      const metas = pegarMetas();
+
+      metas.push({
+        nome,
+        valor,
+        percentual
+      });
+
+      salvarBanco(metas);
+
+      alert("Meta cadastrada com sucesso!");
+
+      window.location.href = "investimento.html";
+
+    }
+
+  </script>
+
+</body>
+</html>

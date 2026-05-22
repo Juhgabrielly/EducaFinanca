@@ -1,46 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matemática Financeira</title>
-    <link rel="stylesheet" href="../css/cursos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Matematica Financeira- Educa Finança</title>
+
+  <link rel="stylesheet" href="../css/cursos.css">
+
+  <!-- FONTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="body">
 
-    <span class="menu-btn" onclick="abrirMenu()"><i class="fa-solid fa-bars"></i></span>
+<body>
 
-    <div id="menu" class="menu-lateral">
-        <span class="menu-btn" onclick="abrirMenu()"><i class="fa-solid fa-bars"></i></span>
-        <a href="index.html#painel">Início</a>
-        <a href="usuario.html">Perfil</a>
+  <!-- HEADER -->
+  <header>
+
+    <div class="logo">
+      <img src="../html/educa.png" class="logo-img">
+      <h2>Educa Finança</h2>
     </div>
 
-    <main>
-        <h2>Matemática Financeira</h2>
-        <div class="informacoes">
-            <div class="explicacao">
-                <img class="boneco" src="../assets/homem.png" alt="boneco">
-                <p>Matemática financeira é a área da matemática que estuda o valor do dinheiro ao longo do tempo, ajudando a entender como ele cresce ou diminui em diferentes situações. Ela é usada para calcular juros, descontos, parcelas e investimentos, sendo muito importante no dia a dia, especialmente em compras a prazo, empréstimos e aplicações financeiras. Um dos conceitos principais é que o dinheiro de hoje vale mais do que o mesmo valor no futuro, por causa da possibilidade de rendimento. Entre os principais elementos estão os juros simples e os juros compostos, sendo este último o mais utilizado, pois considera o acúmulo de juros sobre juros ao longo do tempo. A matemática financeira também auxilia na comparação de opções de pagamento e na tomada de decisões mais conscientes, permitindo planejar melhor gastos, evitar dívidas e aproveitar oportunidades de investimento de forma mais inteligente.</p>
-            </div>
-            <div class="video">
-                <h2>Vídeo Explicativo</h2>
-                <iframe src="https://www.youtube.com/embed/7lst6IGbmEc?si=S5bHGongELkF1hV5" title="YouTube video player" frameborder="0" allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-    </main>
-
-    <div class="quiz">
-        <p>Após assistir a aula, clique abaixo para realizar o quiz:</p>
-        <a class="botao" href="./quiz/quiz4.html">Realizar Quiz</a>
-        <br>
-        <br>
-        <p>Após concluir o quiz, clique em finalizar</p>
-        <a class="botao" href="ranking1.html">Finalizar Quiz</a>
+    <div class="menu-toggle" id="menu-toggle">
+      ☰
     </div>
-    <script src="../script.js"></script>
+
+    <!-- MENU -->
+    <nav class="menu" id="menu">
+
+      <a href="home.html">Home</a>
+
+      <a href="cursos.html">Cursos</a>
+
+      <a href="../html/relatório.html">Relatórios</a>
+
+      <a href="../html/investimento.html">Investimentos</a>
+
+      <a href="../html/usuario.html">Perfil</a>
+
+      <a href="#">Contato</a>
+''
+    </nav>
+
+  </header>
+
+  <!-- CURSO -->
+  <main class="course-page">
+
+
+    <h1>
+      Matemática Financeira
+    </h1>
+
+    <p class="description">
+      Neste curso você aprenderá a estruturar suas finanças pessoais e familiares,
+      criando um plano sólido para alcançar estabilidade, segurança e liberdade financeira.
+    </p>
+
+    <!-- VIDEO -->
+    <section class="video-card">
+
+      <h2>Aula Introdutória</h2>
+
+      <div class="video-container">
+
+        <iframe 
+          src="https://www.youtube.com/embed/SEU_VIDEO_ID"
+          title="YouTube video player"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+    </section>
+
+    <!-- CONTEÚDO -->
+    <section class="content-card">
+
+      <h2>Conteúdo do Curso</h2>
+
+      <ul>
+
+        <li>Conceitos Fundamentais</li>
+
+        <li>Fluxo de Caixa e Equivalência</li>
+
+        <li>Regimes de Capitalização</li>
+
+        <li>Séries de Pagamento </li>
+
+        <li>Sistemas de Amortização</li>
+
+      </ul>
+
+    </section>
+
+    <!-- QUIZ -->
+    <section class="quiz-card">
+
+      <h2>Teste seus conhecimentos</h2>
+
+      <p>
+        Finalize o módulo realizando o quiz interativo do curso.
+      </p>
+
+      <a href="../html/quiz4.html" class="quiz-btn">
+        Iniciar Quiz 
+      </a>
+
+    </section>
+
+  </main>
+
+  <!-- SCRIPT MENU -->
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
+
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
+  </script>
+
 </body>
-
 </html>
