@@ -1,0 +1,1111 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-06-15T18:55:17.850Z",
+  "__export_source": "backend-aula",
+  "resources": [
+    {
+      "_id": "wrk_backend",
+      "_type": "workspace",
+      "name": "Backend Aula"
+    },
+    {
+      "_id": "fld_educa",
+      "_type": "request_group",
+      "parentId": "wrk_backend",
+      "name": "educa"
+    },
+    {
+      "_id": "fld_Usuarios",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "Usuarios"
+    },
+    {
+      "_id": "req_Usuarios_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_Usuarios",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/usuarios/listar"
+    },
+    {
+      "_id": "req_Usuarios_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Usuarios",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/usuarios/buscar/:id"
+    },
+    {
+      "_id": "req_Usuarios_POST",
+      "_type": "request",
+      "parentId": "fld_Usuarios",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/usuarios/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"string\",\n  \"email\": \"string\",\n  \"senha\": \"string\",\n  \"telefone\": \"string\",\n  \"cidade\": \"string\",\n  \"area_interesse\": \"string\",\n  \"foto_perfil\": \"string\",\n  \"criado_em\": \"2026-06-15T18:55:17.835Z\"\n}"
+      }
+    },
+    {
+      "_id": "req_Usuarios_PUT",
+      "_type": "request",
+      "parentId": "fld_Usuarios",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/usuarios/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"string\",\n  \"email\": \"string\",\n  \"senha\": \"string\",\n  \"telefone\": \"string\",\n  \"cidade\": \"string\",\n  \"area_interesse\": \"string\",\n  \"foto_perfil\": \"string\",\n  \"criado_em\": \"2026-06-15T18:55:17.835Z\"\n}"
+      }
+    },
+    {
+      "_id": "req_Usuarios_DELETE",
+      "_type": "request",
+      "parentId": "fld_Usuarios",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/usuarios/excluir/:id"
+    },
+    {
+      "_id": "fld_Meta",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "Meta"
+    },
+    {
+      "_id": "req_Meta_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_Meta",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/meta/listar"
+    },
+    {
+      "_id": "req_Meta_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Meta",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/meta/buscar/:id"
+    },
+    {
+      "_id": "req_Meta_POST",
+      "_type": "request",
+      "parentId": "fld_Meta",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/meta/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"titulo\": \"string\",\n  \"descricao\": \"string\",\n  \"valor_objetivo\": null,\n  \"valor_atual\": null,\n  \"prazo\": \"2026-06-15T18:55:17.850Z\",\n  \"usuario_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Meta_PUT",
+      "_type": "request",
+      "parentId": "fld_Meta",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/meta/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"titulo\": \"string\",\n  \"descricao\": \"string\",\n  \"valor_objetivo\": null,\n  \"valor_atual\": null,\n  \"prazo\": \"2026-06-15T18:55:17.850Z\",\n  \"usuario_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Meta_DELETE",
+      "_type": "request",
+      "parentId": "fld_Meta",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/meta/excluir/:id"
+    },
+    {
+      "_id": "fld_DashboardFinanceiro",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "DashboardFinanceiro"
+    },
+    {
+      "_id": "req_DashboardFinanceiro_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_DashboardFinanceiro",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/dashboardfinanceiro/listar"
+    },
+    {
+      "_id": "req_DashboardFinanceiro_GET_ID",
+      "_type": "request",
+      "parentId": "fld_DashboardFinanceiro",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/dashboardfinanceiro/buscar/:id"
+    },
+    {
+      "_id": "req_DashboardFinanceiro_POST",
+      "_type": "request",
+      "parentId": "fld_DashboardFinanceiro",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/dashboardfinanceiro/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"saldo_total\": null,\n  \"lucro_total\": null,\n  \"percentual_investido\": null,\n  \"usuario_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_DashboardFinanceiro_PUT",
+      "_type": "request",
+      "parentId": "fld_DashboardFinanceiro",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/dashboardfinanceiro/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"saldo_total\": null,\n  \"lucro_total\": null,\n  \"percentual_investido\": null,\n  \"usuario_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_DashboardFinanceiro_DELETE",
+      "_type": "request",
+      "parentId": "fld_DashboardFinanceiro",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/dashboardfinanceiro/excluir/:id"
+    },
+    {
+      "_id": "fld_Investimento",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "Investimento"
+    },
+    {
+      "_id": "req_Investimento_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_Investimento",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/investimento/listar"
+    },
+    {
+      "_id": "req_Investimento_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Investimento",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/investimento/buscar/:id"
+    },
+    {
+      "_id": "req_Investimento_POST",
+      "_type": "request",
+      "parentId": "fld_Investimento",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/investimento/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"string\",\n  \"valor_aplicado\": null,\n  \"lucro\": null,\n  \"data_investimento\": \"2026-06-15T18:55:17.850Z\",\n  \"usuario_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Investimento_PUT",
+      "_type": "request",
+      "parentId": "fld_Investimento",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/investimento/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"string\",\n  \"valor_aplicado\": null,\n  \"lucro\": null,\n  \"data_investimento\": \"2026-06-15T18:55:17.850Z\",\n  \"usuario_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Investimento_DELETE",
+      "_type": "request",
+      "parentId": "fld_Investimento",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/investimento/excluir/:id"
+    },
+    {
+      "_id": "fld_Relatorio",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "Relatorio"
+    },
+    {
+      "_id": "req_Relatorio_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_Relatorio",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/relatorio/listar"
+    },
+    {
+      "_id": "req_Relatorio_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Relatorio",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/relatorio/buscar/:id"
+    },
+    {
+      "_id": "req_Relatorio_POST",
+      "_type": "request",
+      "parentId": "fld_Relatorio",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/relatorio/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"mes\": 0,\n  \"ano\": 0,\n  \"receita\": null,\n  \"despesas\": null,\n  \"resultado\": null,\n  \"usuario_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Relatorio_PUT",
+      "_type": "request",
+      "parentId": "fld_Relatorio",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/relatorio/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"mes\": 0,\n  \"ano\": 0,\n  \"receita\": null,\n  \"despesas\": null,\n  \"resultado\": null,\n  \"usuario_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Relatorio_DELETE",
+      "_type": "request",
+      "parentId": "fld_Relatorio",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/relatorio/excluir/:id"
+    },
+    {
+      "_id": "fld_HistoricoFinanceiro",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "HistoricoFinanceiro"
+    },
+    {
+      "_id": "req_HistoricoFinanceiro_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_HistoricoFinanceiro",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/historicofinanceiro/listar"
+    },
+    {
+      "_id": "req_HistoricoFinanceiro_GET_ID",
+      "_type": "request",
+      "parentId": "fld_HistoricoFinanceiro",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/historicofinanceiro/buscar/:id"
+    },
+    {
+      "_id": "req_HistoricoFinanceiro_POST",
+      "_type": "request",
+      "parentId": "fld_HistoricoFinanceiro",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/historicofinanceiro/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"descricao\": \"string\",\n  \"valor\": null,\n  \"data_movimentacao\": \"2026-06-15T18:55:17.850Z\",\n  \"usuario_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_HistoricoFinanceiro_PUT",
+      "_type": "request",
+      "parentId": "fld_HistoricoFinanceiro",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/historicofinanceiro/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"descricao\": \"string\",\n  \"valor\": null,\n  \"data_movimentacao\": \"2026-06-15T18:55:17.850Z\",\n  \"usuario_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_HistoricoFinanceiro_DELETE",
+      "_type": "request",
+      "parentId": "fld_HistoricoFinanceiro",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/historicofinanceiro/excluir/:id"
+    },
+    {
+      "_id": "fld_Materia",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "Materia"
+    },
+    {
+      "_id": "req_Materia_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_Materia",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/materia/listar"
+    },
+    {
+      "_id": "req_Materia_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Materia",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/materia/buscar/:id"
+    },
+    {
+      "_id": "req_Materia_POST",
+      "_type": "request",
+      "parentId": "fld_Materia",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/materia/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"string\",\n  \"descricao\": \"string\"\n}"
+      }
+    },
+    {
+      "_id": "req_Materia_PUT",
+      "_type": "request",
+      "parentId": "fld_Materia",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/materia/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"string\",\n  \"descricao\": \"string\"\n}"
+      }
+    },
+    {
+      "_id": "req_Materia_DELETE",
+      "_type": "request",
+      "parentId": "fld_Materia",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/materia/excluir/:id"
+    },
+    {
+      "_id": "fld_Curso",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "Curso"
+    },
+    {
+      "_id": "req_Curso_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_Curso",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/curso/listar"
+    },
+    {
+      "_id": "req_Curso_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Curso",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/curso/buscar/:id"
+    },
+    {
+      "_id": "req_Curso_POST",
+      "_type": "request",
+      "parentId": "fld_Curso",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/curso/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"titulo\": \"string\",\n  \"descricao\": \"string\",\n  \"conteudo\": \"string\",\n  \"video_url\": \"string\",\n  \"materia_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Curso_PUT",
+      "_type": "request",
+      "parentId": "fld_Curso",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/curso/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"titulo\": \"string\",\n  \"descricao\": \"string\",\n  \"conteudo\": \"string\",\n  \"video_url\": \"string\",\n  \"materia_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Curso_DELETE",
+      "_type": "request",
+      "parentId": "fld_Curso",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/curso/excluir/:id"
+    },
+    {
+      "_id": "fld_ProgressoCurso",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "ProgressoCurso"
+    },
+    {
+      "_id": "req_ProgressoCurso_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_ProgressoCurso",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/progressocurso/listar"
+    },
+    {
+      "_id": "req_ProgressoCurso_GET_ID",
+      "_type": "request",
+      "parentId": "fld_ProgressoCurso",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/progressocurso/buscar/:id"
+    },
+    {
+      "_id": "req_ProgressoCurso_POST",
+      "_type": "request",
+      "parentId": "fld_ProgressoCurso",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/progressocurso/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"porcentagem\": null,\n  \"concluido\": true,\n  \"data_conclusao\": \"2026-06-15T18:55:17.850Z\",\n  \"usuario_id\": 0,\n  \"curso_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_ProgressoCurso_PUT",
+      "_type": "request",
+      "parentId": "fld_ProgressoCurso",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/progressocurso/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"porcentagem\": null,\n  \"concluido\": true,\n  \"data_conclusao\": \"2026-06-15T18:55:17.850Z\",\n  \"usuario_id\": 0,\n  \"curso_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_ProgressoCurso_DELETE",
+      "_type": "request",
+      "parentId": "fld_ProgressoCurso",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/progressocurso/excluir/:id"
+    },
+    {
+      "_id": "fld_Quiz",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "Quiz"
+    },
+    {
+      "_id": "req_Quiz_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_Quiz",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/quiz/listar"
+    },
+    {
+      "_id": "req_Quiz_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Quiz",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/quiz/buscar/:id"
+    },
+    {
+      "_id": "req_Quiz_POST",
+      "_type": "request",
+      "parentId": "fld_Quiz",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/quiz/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"titulo\": \"string\",\n  \"descricao\": \"string\",\n  \"curso_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Quiz_PUT",
+      "_type": "request",
+      "parentId": "fld_Quiz",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/quiz/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"titulo\": \"string\",\n  \"descricao\": \"string\",\n  \"curso_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Quiz_DELETE",
+      "_type": "request",
+      "parentId": "fld_Quiz",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/quiz/excluir/:id"
+    },
+    {
+      "_id": "fld_Pergunta",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "Pergunta"
+    },
+    {
+      "_id": "req_Pergunta_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_Pergunta",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/pergunta/listar"
+    },
+    {
+      "_id": "req_Pergunta_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Pergunta",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/pergunta/buscar/:id"
+    },
+    {
+      "_id": "req_Pergunta_POST",
+      "_type": "request",
+      "parentId": "fld_Pergunta",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/pergunta/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"pergunta\": \"string\",\n  \"quiz_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Pergunta_PUT",
+      "_type": "request",
+      "parentId": "fld_Pergunta",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/pergunta/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"pergunta\": \"string\",\n  \"quiz_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Pergunta_DELETE",
+      "_type": "request",
+      "parentId": "fld_Pergunta",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/pergunta/excluir/:id"
+    },
+    {
+      "_id": "fld_Alternativa",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "Alternativa"
+    },
+    {
+      "_id": "req_Alternativa_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_Alternativa",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/alternativa/listar"
+    },
+    {
+      "_id": "req_Alternativa_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Alternativa",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/alternativa/buscar/:id"
+    },
+    {
+      "_id": "req_Alternativa_POST",
+      "_type": "request",
+      "parentId": "fld_Alternativa",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/alternativa/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"resposta\": \"string\",\n  \"correta\": true,\n  \"pergunta_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Alternativa_PUT",
+      "_type": "request",
+      "parentId": "fld_Alternativa",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/alternativa/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"resposta\": \"string\",\n  \"correta\": true,\n  \"pergunta_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Alternativa_DELETE",
+      "_type": "request",
+      "parentId": "fld_Alternativa",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/alternativa/excluir/:id"
+    },
+    {
+      "_id": "fld_ResultadoQuiz",
+      "_type": "request_group",
+      "parentId": "fld_educa",
+      "name": "ResultadoQuiz"
+    },
+    {
+      "_id": "req_ResultadoQuiz_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_ResultadoQuiz",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/resultadoquiz/listar"
+    },
+    {
+      "_id": "req_ResultadoQuiz_GET_ID",
+      "_type": "request",
+      "parentId": "fld_ResultadoQuiz",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/resultadoquiz/buscar/:id"
+    },
+    {
+      "_id": "req_ResultadoQuiz_POST",
+      "_type": "request",
+      "parentId": "fld_ResultadoQuiz",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/resultadoquiz/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"acertos\": 0,\n  \"erros\": 0,\n  \"nota\": null,\n  \"data_realizacao\": \"2026-06-15T18:55:17.850Z\",\n  \"usuario_id\": 0,\n  \"quiz_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_ResultadoQuiz_PUT",
+      "_type": "request",
+      "parentId": "fld_ResultadoQuiz",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/resultadoquiz/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"acertos\": 0,\n  \"erros\": 0,\n  \"nota\": null,\n  \"data_realizacao\": \"2026-06-15T18:55:17.850Z\",\n  \"usuario_id\": 0,\n  \"quiz_id\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_ResultadoQuiz_DELETE",
+      "_type": "request",
+      "parentId": "fld_ResultadoQuiz",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/resultadoquiz/excluir/:id"
+    }
+  ]
+}

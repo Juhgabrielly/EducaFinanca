@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Educa Finança</title>
+
+  <link rel="stylesheet" href="../css/cadastro.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="login-container">
+
+    <div class="login-card">
+
+      <div class="title-area">
+        <span class="icon"></span>
+        <h1>Cadastro da Conta</h1>
+      </div>
+
+      <form>
+
+        <div class="input-grid">
+
+          <div class="input-box">
+            <label>Nome de usuário</label>
+            <input id="nome" type="text" placeholder="Digite seu username">
+          </div>
+
+          <div class="input-box">
+            <label>E-mail</label>
+            <input id="email" type="email" placeholder="Digite seu e-mail">
+          </div>
+
+          <div class="input-box">
+            <label>Telefone</label>
+            <input id="telefone" type="text" placeholder="Digite seu telefone">
+          </div>
+
+          <div class="input-box">
+            <label>Senha</label>
+            <input id="senha" type="password" placeholder="Digite sua senha">
+          </div>
+
+        </div>
+
+        <a href="#" class="login-btn" onclick="cadastrarUsuario()">
+          Cadastrar
+        </a>
+
+        <p class="register-text">
+          Possui conta?
+          <a href="../html/login.html">Fazer Login</a>
+        </p>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    async function cadastrarUsuario() {
+
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const telefone = document.getElementById("telefone").value;
+      const senha = document.getElementById("senha").value;
+
+      if (!nome || !email || !senha) {
+        alert("Preencha todos os campos obrigatórios!");
+        return;
+      }
+
+      try {
+
+        const resposta = await fetch(
+          "http://localhost:3000/usuarios/cadastrar",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              nome,
+              email,
+              telefone,
+              senha
+            })
+          }
+        );
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+          console.log(dados);
+          alert("Erro ao cadastrar usuário.");
+          return;
+        }
+
+        alert("Cadastro realizado com sucesso!");
+
+        window.location.href = "login.html";
+
+      } catch (erro) {
+
+        console.error(erro);
+
+        alert("Erro ao conectar com o servidor.");
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>

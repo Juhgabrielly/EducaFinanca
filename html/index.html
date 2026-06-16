@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Educa Finança</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header>
+
+    <div class="logo">
+      <img src="../html/educa.png" class="logo-img">
+      <h2>Educa Finança</h2>
+    </div>
+
+    <div class="menu-hamburguer" id="menu-hamburguer">
+      ☰
+    </div>
+
+    <nav class="menu" id="menu">
+      <a href="../html/home.html">Home</a>
+      <a href="../html/cursos.html">Cursos</a>
+      <a href="../html/relatório.html">Relatórios</a>
+      <a href="../html/investimento.html">Investimentos</a>
+      <a href="../html/usuario.html">Perfil</a>
+    </nav>
+
+  </header>
+
+  <section class="hero">
+
+    <div class="estilo"></div>
+
+    <div class="hero-container">
+
+      <div class="hero-content">
+
+        <span class="subtitulo">
+          EDUCAÇÃO FINANCEIRA
+        </span>
+
+        <h1>Organização Financeira</h1>
+
+        <p>
+          Liberdade financeira é ter o controle do seu tempo!
+        </p>
+
+        <div class="buttons" id="buttons">
+
+          <a href="../html/login.html" class="login-btn">
+            Fazer Login
+          </a>
+
+          <a href="../html/cadastro.html" class="cadastro-btn">
+            Fazer Cadastro
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="hero-image">
+        <img src="../html/educa.png" alt="Educa Finança">
+      </div>
+
+    </div>
+
+  </section>
+
+  <script>
+
+    const toggle = document.getElementById("menu-hamburguer");
+    const menu = document.getElementById("menu");
+
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
+
+    const usuarioLogado = JSON.parse(
+      localStorage.getItem("usuarioLogado")
+    );
+
+    if (usuarioLogado) {
+
+      document.getElementById("buttons").innerHTML = `
+        <a href="../html/home.html" class="login-btn">
+          Login
+        </a>
+      `;
+
+    }
+
+  </script>
+
+</body>
+</html>

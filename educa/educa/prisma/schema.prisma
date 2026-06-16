@@ -1,0 +1,177 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+
+}
+
+model Usuarios {
+  id             Int      @id @default(autoincrement())
+  nome           String
+  email          String   @unique
+  senha          String
+  telefone       String?
+  cidade         String?
+  area_interesse String?
+  foto_perfil    String?
+  criado_em      DateTime @default(now())
+
+  metas           Meta[]
+  dashboard       DashboardFinanceiro[]
+  investimentos   Investimento[]
+  relatorios      Relatorio[]
+  historicos      HistoricoFinanceiro[]
+  progressoCursos ProgressoCurso[]
+  resultadosQuiz  ResultadoQuiz[]
+}
+
+model Meta {
+  id             Int      @id @default(autoincrement())
+  titulo         String
+  descricao      String?
+  valor_objetivo Decimal  @db.Decimal(10,2)
+  valor_atual    Decimal  @default(0) @db.Decimal(10,2)
+  prazo          DateTime?
+
+  usuario_id Int
+  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
+}
+
+model DashboardFinanceiro {
+  id                   Int     @id @default(autoincrement())
+  saldo_total          Decimal @default(0) @db.Decimal(10,2)
+  lucro_total          Decimal @default(0) @db.Decimal(10,2)
+  percentual_investido Decimal @default(0) @db.Decimal(5,2)
+
+  usuario_id Int
+  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
+}
+
+model Investimento {
+  id                Int               @id @default(autoincrement())
+  tipo              TipoInvestimento
+  nome              String?
+  valor_aplicado    Decimal           @db.Decimal(10,2)
+  lucro             Decimal           @default(0) @db.Decimal(10,2)
+  data_investimento DateTime?
+
+  usuario_id Int
+  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
+}
+
+model Relatorio {
+  id        Int     @id @default(autoincrement())
+  mes       Int
+  ano       Int
+  receita   Decimal @default(0) @db.Decimal(10,2)
+  despesas  Decimal @default(0) @db.Decimal(10,2)
+  resultado Decimal @default(0) @db.Decimal(10,2)
+
+  usuario_id Int
+  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
+}
+
+model HistoricoFinanceiro {
+  id                Int              @id @default(autoincrement())
+  tipo              TipoMovimentacao
+  descricao         String?
+  valor             Decimal          @db.Decimal(10,2)
+  data_movimentacao DateTime?
+
+  usuario_id Int
+  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
+}
+
+model Materia {
+  id        Int     @id @default(autoincrement())
+  nome      String
+  descricao String?
+
+  cursos Curso[]
+}
+
+model Curso {
+  id        Int     @id @default(autoincrement())
+  titulo    String
+  descricao String?
+  conteudo  String? @db.LongText
+  video_url String?
+
+  materia_id Int
+  materia    Materia @relation(fields: [materia_id], references: [id])
+
+  quizzes   Quiz[]
+  progresso ProgressoCurso[]
+}
+
+model ProgressoCurso {
+  id             Int      @id @default(autoincrement())
+  porcentagem    Decimal  @default(0) @db.Decimal(5,2)
+  concluido      Boolean  @default(false)
+  data_conclusao DateTime?
+
+  usuario_id Int
+  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
+
+  curso_id Int
+  curso    Curso @relation(fields: [curso_id], references: [id])
+}
+
+model Quiz {
+  id        Int     @id @default(autoincrement())
+  titulo    String?
+  descricao String?
+
+  curso_id Int
+  curso    Curso @relation(fields: [curso_id], references: [id])
+
+  perguntas  Pergunta[]
+  resultados ResultadoQuiz[]
+}
+
+model Pergunta {
+  id       Int    @id @default(autoincrement())
+  pergunta String @db.Text
+
+  quiz_id Int
+  quiz    Quiz @relation(fields: [quiz_id], references: [id])
+
+  alternativas Alternativa[]
+}
+
+model Alternativa {
+  id       Int     @id @default(autoincrement())
+  resposta String
+  correta  Boolean @default(false)
+
+  pergunta_id Int
+  pergunta    Pergunta @relation(fields: [pergunta_id], references: [id])
+}
+
+model ResultadoQuiz {
+  id              Int      @id @default(autoincrement())
+  acertos         Int?
+  erros           Int?
+  nota            Decimal? @db.Decimal(5,2)
+  data_realizacao DateTime @default(now())
+
+  usuario_id Int
+  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
+
+  quiz_id Int
+  quiz    Quiz @relation(fields: [quiz_id], references: [id])
+}
+
+enum TipoInvestimento {
+  renda_fixa
+  renda_variavel
+  reserva_emergencia
+  investimento_futuro
+}
+
+enum TipoMovimentacao {
+  receita
+  despesa
+}

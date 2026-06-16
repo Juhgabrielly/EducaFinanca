@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Relatórios - Educa Finança</title>
+
+  <link rel="stylesheet" href="../css/relatorio.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header>
+
+    <div class="logo">
+      <img src="../html/educa.png" class="logo-img">
+      <h2>Educa Finança</h2>
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">
+      ☰
+    </div>
+
+    <nav class="menu" id="menu">
+
+      <a href="home.html">Home</a>
+
+      <a href="cursos.html">Cursos</a>
+
+      <a href="relatorio.html">Relatórios</a>
+
+      <a href="investimento.html">Investimentos</a>
+
+      <a href="usuario.html">Perfil</a>
+
+    </nav>
+
+  </header>
+
+  <main class="reports-page">
+
+    <h1>
+      <span>Resultados Financeiros</span>
+    </h1>
+
+    <p class="description"></p>
+
+    <section class="stats-grid">
+
+      <div class="stat-card">
+        <h2>Saldo Atual</h2>
+        <h3 id="saldoAtual">R$ 0,00</h3>
+        <p>Atualizado este mês</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>Despesas</h2>
+        <h3 id="despesasTotal">R$ 0,00</h3>
+        <p>Gastos registrados</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>Investimentos</h2>
+        <h3 id="investimentosTotal">R$ 0,00</h3>
+        <p>Total investido</p>
+      </div>
+
+    </section>
+
+    <section class="table-card">
+
+      <div class="table-title">
+        <h2>Histórico Financeiro</h2>
+      </div>
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Mês</th>
+            <th>Receita</th>
+            <th>Despesas</th>
+            <th>Resultado</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="tabelaRelatorios">
+
+        </tbody>
+
+      </table>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    const usuario = JSON.parse(
+      localStorage.getItem("usuarioLogado")
+    );
+
+    if(!usuario){
+      alert("Faça login para acessar o sistema.");
+      window.location.href = "login.html";
+    }
+
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
+
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
+
+    async function carregarRelatorios(){
+
+      try{
+
+        const respostaRelatorios =
+          await fetch("http://localhost:3000/relatorio/listar");
+
+        const relatorios =
+          await respostaRelatorios.json();
+
+        const respostaInvestimentos =
+          await fetch("http://localhost:3000/investimento/listar");
+
+        const investimentos =
+          await respostaInvestimentos.json();
+
+        const relatoriosUsuario = relatorios.filter(
+          r => r.usuario_id === usuario.id
+        );
+
+        const investimentosUsuario = investimentos.filter(
+          i => i.usuario_id === usuario.id
+        );
+
+        let totalReceita = 0;
+        let totalDespesa = 0;
+        let totalResultado = 0;
+        let totalInvestido = 0;
+
+        relatoriosUsuario.forEach(relatorio => {
+
+          totalReceita += Number(relatorio.receita);
+          totalDespesa += Number(relatorio.despesas);
+          totalResultado += Number(relatorio.resultado);
+
+        });
+
+        investimentosUsuario.forEach(investimento => {
+
+          totalInvestido += Number(
+            investimento.valor_aplicado
+          );
+
+        });
+
+        document.getElementById("saldoAtual").innerHTML =
+          `R$ ${totalResultado.toFixed(2)}`;
+
+        document.getElementById("despesasTotal").innerHTML =
+          `R$ ${totalDespesa.toFixed(2)}`;
+
+        document.getElementById("investimentosTotal").innerHTML =
+          `R$ ${totalInvestido.toFixed(2)}`;
+
+        const tabela =
+          document.getElementById("tabelaRelatorios");
+
+        tabela.innerHTML = "";
+
+        relatoriosUsuario.forEach(relatorio => {
+
+          tabela.innerHTML += `
+            <tr>
+              <td>${relatorio.mes}/${relatorio.ano}</td>
+              <td>R$ ${Number(relatorio.receita).toFixed(2)}</td>
+              <td>R$ ${Number(relatorio.despesas).toFixed(2)}</td>
+              <td class="positive">
+                R$ ${Number(relatorio.resultado).toFixed(2)}
+              </td>
+            </tr>
+          `;
+
+        });
+
+      }catch(erro){
+
+        console.error(erro);
+
+        alert(
+          "Erro ao carregar os dados financeiros."
+        );
+
+      }
+
+    }
+
+    carregarRelatorios();
+
+  </script>
+
+</body>
+</html>

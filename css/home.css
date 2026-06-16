@@ -1,0 +1,315 @@
+/* FUNDO DA PÁGINA */
+body{
+    background: linear-gradient(
+      135deg,
+      #f7f2ff 0%,
+      #eee4ff 45%,
+      #dcc8ff 100%
+    );
+  
+    min-height: 100vh;
+  
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* HOME CARDS */
+  .home-cards{
+    padding: 80px 40px;
+  
+    /* FUNDO SUAVE */
+    background: rgba(255,255,255,0.28);
+
+  }
+  
+  /* MINI TITULO */
+  .mini-title{
+    letter-spacing: 4px;
+    font-weight: 600;
+  
+    color: #8b5cf6;
+  }
+  
+  /* TITULO */
+  .home-cards h2{
+    font-size: 64px;
+    line-height: 1.1;
+    color: #2d1457;
+  
+    margin-top: 15px;
+    margin-bottom: 50px;
+  
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .home-cards h2 span{
+    color: #8b5cf6;
+  }
+  
+  /* CARD */
+  .home-card{
+  
+    min-height: 105px;
+  
+    background: rgba(255,255,255,0.72);
+  
+    border: 1px solid #e2d5ff;
+  
+    border-radius: 22px;
+  
+    padding: 25px 30px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    margin-bottom: 18px;
+  
+    text-decoration: none;
+  
+    transition: 0.3s;
+  
+    backdrop-filter: blur(10px);
+  
+    box-shadow: 0 5px 18px rgba(109,40,217,0.05);
+  }
+  
+  .home-card:hover{
+    transform: translateY(-4px);
+  
+    background: rgba(255,255,255,0.92);
+  
+    box-shadow: 0 10px 30px rgba(109,40,217,0.12);
+  }
+  
+  /* LADO ESQUERDO */
+  .left-card{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  /* ICON */
+  .fa-solid fa-book{
+    width: 50px;
+    height: 50px;
+  
+    border-radius: 16px;
+  
+    background: rgba(139,92,246,0.12);
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    font-size: 22px;
+  }
+  
+  /* TITULO CARD */
+  .home-card h3{
+    color: #2d1457;
+    font-size: 35px;
+    margin-bottom: 4px;
+  }
+  
+  /* TEXTO */
+  .home-card p{
+    color: #6b5a8e;
+    font-size: 20px;
+  }
+  
+  /* SETA */
+  .arrow{
+    font-size: 38px;
+    color: #8b5cf6;
+    transition: 0.3s;
+  }
+  
+  .home-card:hover .arrow{
+    transform: translateX(5px);
+  }
+  
+  /* RESPONSIVO */
+  @media(max-width: 700px){
+  
+    .home-cards{
+      padding: 60px 20px;
+      margin: 20px;
+    }
+  
+    .home-cards h2{
+      font-size: 42px;
+    }
+  
+    .home-card{
+      padding: 22px 18px;
+    }
+  
+    .home-card h3{
+      font-size: 19px;
+    }
+  
+    .home-card p{
+      font-size: 13px;
+    }
+  
+    .card-icon{
+      width: 42px;
+      height: 42px;
+      font-size: 18px;
+    }
+  
+    .arrow{
+      font-size: 30px;
+    }
+  
+  }
+
+  /* HEADER */
+header{
+    width: 98%;
+    height: 72px;
+  
+    background: rgba(255,255,255,0.80);
+  
+    backdrop-filter: blur(12px);
+  
+    position: fixed;
+  
+    top: 10px;
+    left: 50%;
+  
+    transform: translateX(-50%);
+  
+    border-radius: 20px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 0 24px;
+  
+    box-shadow: 0 8px 24px rgba(109,40,217,0.10);
+  
+    z-index: 1000;
+  }
+  
+  /* LOGO */
+  .logo{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .logo-img{
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+  
+  .logo h2{
+    font-size: 22px;
+    color: #34126d;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  /* MENU HAMBURGUER */
+  .menu-toggle{
+    font-size: 32px;
+    color: #6d28d9;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .menu-toggle:hover{
+    transform: scale(1.1);
+  }
+  
+  /* MENU BOX */
+  .menu{
+    position: absolute;
+  
+    top: 85px;
+    right: 15px;
+  
+    width: 280px;
+  
+    background: rgba(255,255,255,0.92);
+  
+    backdrop-filter: blur(18px);
+  
+    border-radius: 22px;
+  
+    padding: 20px;
+  
+    display: none;
+  
+    flex-direction: column;
+    gap: 12px;
+  
+    box-shadow: 0 15px 35px rgba(109,40,217,0.15);
+  
+    border: 1px solid rgba(255,255,255,0.45);
+  }
+  
+  .menu.active{
+    display: flex;
+  
+    animation: aparecer 0.3s ease;
+  }
+  
+  /* LINKS MENU */
+  .menu a{
+    text-decoration: none;
+  
+    color: #4c1d95;
+  
+    padding: 14px;
+  
+    border-radius: 14px;
+  
+    transition: 0.3s;
+  
+    font-weight: 500;
+  }
+  
+  .menu a:hover{
+    background: rgba(139,92,246,0.12);
+  
+    color: #7c3aed;
+  
+    transform: translateX(4px);
+  }
+  
+  /* ANIMAÇÃO */
+  @keyframes aparecer{
+  
+    from{
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  
+    to{
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+  }
+  
+  /* RESPONSIVO */
+  @media(max-width: 500px){
+  
+    .logo h2{
+      font-size: 18px;
+    }
+  
+    .logo-img{
+      width: 40px;
+      height: 40px;
+    }
+  
+    .menu{
+      width: 92%;
+      right: 4%;
+    }
+  
+  }

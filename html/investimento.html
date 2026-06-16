@@ -1,0 +1,288 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Investimentos - Educa Finança</title>
+
+  <link rel="stylesheet" href="../css/investimento.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    <img src="../html/educa.png" class="logo-img">
+    <h2>Educa Finança</h2>
+  </div>
+
+  <div class="menu-toggle" id="menu-toggle">
+    ☰
+  </div>
+
+  <nav class="menu" id="menu">
+
+    <a href="home.html">Home</a>
+
+    <a href="cursos.html">Cursos</a>
+
+    <a href="../html/relatório.html">Relatórios</a>
+
+    <a href="../html/investimento.html">Investimentos</a>
+
+    <a href="../html/usuario.html">Perfil</a>
+
+  </nav>
+
+</header>
+
+<main class="invest-page">
+
+  <h1>
+    <span>Investimentos</span>
+  </h1>
+
+  <p class="description"></p>
+
+  <section class="resume-grid">
+
+    <div class="resume-card">
+
+      <h2>Saldo total</h2>
+
+      <h3 id="saldoTotal">R$ 0,00</h3>
+
+      <p>Atualizado hoje</p>
+
+    </div>
+
+    <div class="resume-card">
+
+      <h2>Lucro</h2>
+
+      <h3 id="lucroTotal">0%</h3>
+
+      <p>Últimos 12 meses</p>
+
+    </div>
+
+    <div class="resume-card">
+
+      <h2>Reserva emergencial</h2>
+
+      <h3 id="reservaTotal">R$ 0,00</h3>
+
+      <p>Total</p>
+
+    </div>
+
+  </section>
+
+  <section class="invest-section">
+
+    <div class="invest-grid" id="investGrid">
+
+    </div>
+
+  </section>
+
+  <section class="goal-section">
+
+    <div class="section-title">
+      <h2>Metas Financeiras</h2>
+    </div>
+
+    <div id="goals-container"></div>
+
+  </section>
+
+</main>
+
+<script>
+
+  const usuarioId = 15;
+
+const API_METAS = "http://localhost:3000/meta";
+const API_INVESTIMENTOS = "http://localhost:3000/investimento";
+const API_DASHBOARD = "http://localhost:3000/dashboardfinanceiro";
+
+const toggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu");
+
+toggle.addEventListener("click", () => {
+  menu.classList.toggle("active");
+});
+
+async function carregarDashboard() {
+
+  try {
+
+    const resposta = await fetch(`${API_DASHBOARD}/listar`);
+    const dashboards = await resposta.json();
+
+    const dashboard = dashboards.find(
+      d => d.usuario_id == usuarioId
+    );
+
+    if (!dashboard) {
+      console.log("Dashboard não encontrado");
+      return;
+    }
+
+    document.getElementById("saldoTotal").innerText =
+      `R$ ${dashboard.saldo_total}`;
+
+    document.getElementById("lucroTotal").innerText =
+      `${dashboard.lucro_total}%`;
+
+  } catch (erro) {
+
+    console.log(erro);
+
+  }
+
+}
+
+async function carregarInvestimentos() {
+
+  try {
+
+    const resposta = await fetch(`${API_INVESTIMENTOS}/listar`);
+    const investimentos = await resposta.json();
+
+    const investGrid = document.getElementById("investGrid");
+
+    investGrid.innerHTML = "";
+
+    let reserva = 0;
+
+    const investimentosUsuario = investimentos.filter(
+      inv => inv.usuario_id == usuarioId
+    );
+
+    investimentosUsuario.forEach(inv => {
+
+      if (inv.tipo === "reserva_emergencia") {
+        reserva += Number(inv.valor_aplicado);
+      }
+
+      investGrid.innerHTML += `
+
+      <div class="invest-card">
+
+        <div class="top-invest"></div>
+
+        <h3>${inv.nome || "Investimento"}</h3>
+
+        <p>${inv.tipo}</p>
+
+        <div class="invest-info">
+
+          <span>Saldo</span>
+
+          <strong>R$ ${inv.valor_aplicado}</strong>
+
+        </div>
+
+      </div>
+
+      `;
+
+    });
+
+    document.getElementById("reservaTotal").innerText =
+      `R$ ${reserva}`;
+
+  } catch (erro) {
+
+    console.log(erro);
+
+  }
+
+}
+
+async function carregarMetas() {
+
+  try {
+
+    const resposta = await fetch(`${API_METAS}/listar`);
+    const metas = await resposta.json();
+
+    const container = document.getElementById("goals-container");
+
+    container.innerHTML = "";
+
+    const metasUsuario = metas.filter(
+      meta => meta.usuario_id == usuarioId
+    );
+
+    metasUsuario.forEach(meta => {
+
+      const percentual =
+      (Number(meta.valor_atual) /
+      Number(meta.valor_objetivo)) * 100;
+
+      container.innerHTML += `
+
+      <div class="goal-card">
+
+        <div class="goal-top">
+
+          <div>
+
+            <h3>${meta.titulo}</h3>
+
+            <p>Meta: R$ ${meta.valor_objetivo}</p>
+
+          </div>
+
+          <span class="percent">
+            ${percentual.toFixed(0)}%
+          </span>
+
+        </div>
+
+        <div class="progress-bar">
+
+          <div
+            style="
+              width:${percentual}%;
+              height:100%;
+              background:#2ecc71;
+              border-radius:20px;
+            ">
+          </div>
+
+        </div>
+
+      </div>
+
+      `;
+
+    });
+
+  } catch (erro) {
+
+    console.log(erro);
+
+  }
+
+}
+
+carregarDashboard();
+carregarInvestimentos();
+carregarMetas();
+
+</script>
+
+</body>
+</html>
+
