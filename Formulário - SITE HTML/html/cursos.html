@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Cursos - Educa Finança</title>
-
   <link rel="stylesheet" href="../css/cursosht.css">
-
-  <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- FONT AWESOME -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+  >
 </head>
 
 <body>
@@ -21,187 +25,305 @@
   <header>
 
     <div class="logo">
-      <img src="../html/educa.png" class="logo-img">
+      <img
+        src="educa.png"
+        alt="Logo do Educa Finança"
+        class="logo-img"
+      >
+
       <h2>Educa Finança</h2>
     </div>
 
-    <div class="menu-toggle" id="menu-toggle">
-      ☰
-    </div>
+    <button
+      type="button"
+      class="menu-toggle"
+      id="menu-toggle"
+      aria-label="Abrir menu"
+    >
+      <i class="fa-solid fa-bars"></i>
+    </button>
 
     <nav class="menu" id="menu">
 
       <a href="home.html">Home</a>
 
-      <a href="cursos.html">Cursos</a>
+      <a href="cursos.html" class="ativo">Cursos</a>
 
-      <a href="../html/relatório.html">Relatórios</a>
+      <a href="relatório.html">Relatórios</a>
 
-      <a href="../html/investimento.html">Investimentos</a>
+      <a href="investimento.html">Investimentos</a>
 
-      <a href="../html/usuario.html">Perfil</a>
+      <a href="usuario.html">Perfil</a>
 
     </nav>
 
   </header>
 
-  <!-- CURSOS -->
-  <section class="courses">
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
 
-    <h1>
-    <span>Cursos</span>
-    </h1>
-    <br>
+    <section class="cursos-container">
 
-    <div class="course-grid">
+      <div class="cabecalho-cursos">
 
-      <!-- CARD 01 -->
-      <div class="course-card">
+        <span class="mini-titulo">APRENDIZADO FINANCEIRO</span>
 
-        <div class="info">
+        <h1>Cursos</h1>
 
-          <span>⏱ 2 semanas</span>
-
-          <span>📖 1 video-aula</span>
-
-        </div>
-
-        <h2>Planejamento e Organização Financeira</h2>
-        <p>O planejamento e a organização financeira consistem em gerenciar receitas e despesas de forma estratégica para alcançar metas, evitar dívidas e criar estabilidade.</p>
-
-        <div class="info">
-
-        </div>
-
-        <a href="curso1.html" class="course-btn">
-          Acessar Curso
-        </a>
+        <p>
+          Aprenda a cuidar melhor do seu dinheiro com conteúdos simples,
+          práticos e organizados.
+        </p>
 
       </div>
 
-      <!-- CARD 02 -->
-      <div class="course-card">
+      <div class="grade-cursos">
 
-        <div class="info">
+        <!-- CURSO 01 -->
+        <article class="card-curso">
 
-          <span>⏱ 2 semanas</span>
+          <div class="icone-curso">
+            <i class="fa-brands fa-jxl"></i>
+          </div>
 
-          <span>📖 1 video-aula</span>
+          <div class="conteudo-curso">
 
-        </div>
+            <span class="nivel-curso">Iniciante</span>
 
-         <h2>Gestão de Dívidas e de Crédito</h2>
-        <p>A gestão de dívidas e crédito engloba estratégias para organizar, monitorar e otimizar as obrigações financeiras, visando a saúde financeira de pessoas ou empresas.</p>
+            <h2>Planejamento e Organização Financeira</h2>
 
-        <div class="info">
+            <p>
+              Aprenda a controlar receitas e despesas, organizar o orçamento
+              e criar metas para alcançar estabilidade financeira.
+            </p>
 
-        </div>
+            <div class="info-curso">
 
-        <a href="curso2.html" class="course-btn">
-          Acessar Curso
-        </a>
+              <span>
+                <i class="fa-regular fa-clock"></i>
+                2 semanas
+              </span>
+
+              <span>
+                <i class="fa-solid fa-video"></i>
+                1 videoaula
+              </span>
+
+            </div>
+
+            <a href="curso1.html" class="btn-curso">
+              Acessar curso
+            </a>
+
+          </div>
+
+        </article>
+
+        <!-- CURSO 02 -->
+        <article class="card-curso">
+
+          <div class="icone-curso">
+            <i class="fa-solid fa-credit-card"></i>
+          </div>
+
+          <div class="conteudo-curso">
+
+            <span class="nivel-curso">Intermediário</span>
+
+            <h2>Gestão de Dívidas e Crédito</h2>
+
+            <p>
+              Conheça estratégias para organizar dívidas, utilizar o crédito
+              com consciência e melhorar sua saúde financeira.
+            </p>
+
+            <div class="info-curso">
+
+              <span>
+                <i class="fa-regular fa-clock"></i>
+                2 semanas
+              </span>
+
+              <span>
+                <i class="fa-solid fa-video"></i>
+                1 videoaula
+              </span>
+
+            </div>
+
+            <a href="curso2.html" class="btn-curso">
+              Acessar curso
+            </a>
+
+          </div>
+
+        </article>
+
+        <!-- CURSO 03 -->
+        <article class="card-curso">
+
+          <div class="icone-curso">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+
+          <div class="conteudo-curso">
+
+            <span class="nivel-curso">Iniciante</span>
+
+            <h2>Investimentos</h2>
+
+            <p>
+              Entenda como investir seu dinheiro e conheça modalidades que
+              podem ajudar na realização dos seus objetivos.
+            </p>
+
+            <div class="info-curso">
+
+              <span>
+                <i class="fa-regular fa-clock"></i>
+                2 semanas
+              </span>
+
+              <span>
+                <i class="fa-solid fa-video"></i>
+                1 videoaula
+              </span>
+
+            </div>
+
+            <a href="curso3.html" class="btn-curso">
+              Acessar curso
+            </a>
+
+          </div>
+
+        </article>
+
+        <!-- CURSO 04 -->
+        <article class="card-curso">
+
+          <div class="icone-curso">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+
+          <div class="conteudo-curso">
+
+            <span class="nivel-curso">Intermediário</span>
+
+            <h2>Matemática Financeira</h2>
+
+            <p>
+              Aprenda sobre juros simples e compostos, rendimentos,
+              financiamentos e o valor do dinheiro ao longo do tempo.
+            </p>
+
+            <div class="info-curso">
+
+              <span>
+                <i class="fa-regular fa-clock"></i>
+                2 semanas
+              </span>
+
+              <span>
+                <i class="fa-solid fa-video"></i>
+                1 videoaula
+              </span>
+
+            </div>
+
+            <a href="curso4.html" class="btn-curso">
+              Acessar curso
+            </a>
+
+          </div>
+
+        </article>
+
+        <!-- CURSO 05 -->
+        <article class="card-curso">
+
+          <div class="icone-curso">
+            <i class="fa-solid fa-building"></i>
+          </div>
+
+          <div class="conteudo-curso">
+
+            <span class="nivel-curso">Avançado</span>
+
+            <h2>Educação Financeira Empresarial</h2>
+
+            <p>
+              Aprenda a gerenciar os recursos financeiros de um negócio e
+              tomar decisões mais organizadas e responsáveis.
+            </p>
+
+            <div class="info-curso">
+
+              <span>
+                <i class="fa-regular fa-clock"></i>
+                2 semanas
+              </span>
+
+              <span>
+                <i class="fa-solid fa-video"></i>
+                1 videoaula
+              </span>
+
+            </div>
+
+            <a href="curso5.html" class="btn-curso">
+              Acessar curso
+            </a>
+
+          </div>
+
+        </article>
+
+        <!-- CURSO 06 -->
+        <article class="card-curso">
+
+          <div class="icone-curso">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+
+          <div class="conteudo-curso">
+
+            <span class="nivel-curso">Avançado</span>
+
+            <h2>Psicologia Econômica</h2>
+
+            <p>
+              Entenda como emoções, hábitos e fatores sociais influenciam
+              decisões de consumo, economia e investimento.
+            </p>
+
+            <div class="info-curso">
+
+              <span>
+                <i class="fa-regular fa-clock"></i>
+                2 semanas
+              </span>
+
+              <span>
+                <i class="fa-solid fa-video"></i>
+                1 videoaula
+              </span>
+
+            </div>
+
+            <a href="curso6.html" class="btn-curso">
+              Acessar curso
+            </a>
+
+          </div>
+
+        </article>
 
       </div>
 
-      <!-- CARD 03 -->
-      <div class="course-card">
+    </section>
 
-        <div class="info">
-
-          <span>⏱ 2 semanas</span>
-
-          <span>📖 1 video-aula</span>
-
-        </div>
-
-        <h2>Investimento</h2>
-        <p>Investimento é a aplicação de capital com o objetivo de obter um benefício futuro, fazendo o dinheiro render e crescer ao longo do tempo.</p>
-
-        <div class="info">
-
-        </div>
-
-        <a href="curso3.html" class="course-btn">
-          Acessar Curso 
-        </a>
-
-      </div>
-
-      <!-- CARD 04 -->
-      <div class="course-card">
-
-        <div class="info">
-
-          <span>⏱ 2 semanas</span>
-
-          <span>📖 1 video-aula</span>
-
-        </div>
-
-        <h2>Matemática Financeira</h2>
-        <p>Estuda a equivalência do valor do dinheiro ao longo do tempo, utilizando ferramentas como juros simples e compostos para calcular rendimentos, financiamentos e investimentos.</p>
-
-        <div class="info">
-
-        </div>
-
-        <a href="curso4.html" class="course-btn">
-          Acessar Curso 
-        </a>
-
-      </div>
-
-      <!-- CARD 05 -->
-      <div class="course-card">
-
-        <div class="info">
-
-          <span>⏱ 2 semanas</span>
-
-          <span>📖 1 video-aula</span>
-
-        </div>
-
-        <h2>Educação Financeira Empresarial</h2>
-        <p>Processo de adquirir conhecimento para gerenciar eficientemente os recursos financeiros de um negócio.</p>
-
-        <div class="info">
-
-        </div>
-
-        <a href="curso5.html" class="course-btn">
-          Acessar Curso
-        </a>
-
-      </div>
-
-      <!-- CARD 06 -->
-      <div class="course-card">
-
-        <div class="info">
-
-          <span>⏱ 2 semanas</span>
-
-          <span>📖 1 video-aula</span>
-
-        </div>
-
-        <h2>Psicologia Economica</h2>
-        <p>Campo interdisciplinar que estuda como fatores psicológicos, emocionais e sociais influenciam comportamentos econômicos e a tomada de decisão.</p>
-
-        <div class="info">
-
-        </div>
-
-        <a href="curso6.html" class="course-btn">
-          Acessar Curso
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
+  </main>
 
   <!-- SCRIPT MENU -->
   <script>
@@ -210,6 +332,15 @@
 
     toggle.addEventListener("click", () => {
       menu.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (event) => {
+      const clicouNoMenu = menu.contains(event.target);
+      const clicouNoBotao = toggle.contains(event.target);
+
+      if (!clicouNoMenu && !clicouNoBotao) {
+        menu.classList.remove("active");
+      }
     });
   </script>
 

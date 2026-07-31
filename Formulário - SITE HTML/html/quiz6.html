@@ -1,85 +1,258 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Quiz de Conhecimento</title>
-<link rel="stylesheet" href="../css/quiz.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz sobre Psicologia Econômica</title>
+
+    <link rel="stylesheet" href="../css/quiz.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
 </head>
 
 <body>
 
-<div class="quiz-container">
+    <div class="quiz-container">
 
-<h1>Quiz sobre Psicologia Economica</h1>
+        <h1>Quiz sobre Psicologia Econômica</h1>
 
-<p class="pergunta">
-1. Qual é a principal ideia central do vídeo sobre o comportamento financeiro?
-</p>
+        <!-- PROGRESSO -->
+        <div class="progresso-area">
 
-<div class="opcoes">
+            <div class="progresso-texto">
+                <span id="numeroPergunta">Pergunta 1 de 3</span>
+                <span id="porcentagem">33%</span>
+            </div>
 
-<button onclick="errado()">A: O sucesso financeiro depende apenas da renda mensal.</button>
+            <div class="barra-progresso">
+                <div id="progresso"></div>
+            </div>
 
-<button onclick="certo()">B: O comportamento e a mentalidade influenciam diretamente as decisões financeiras.</button>
+        </div>
 
-<button onclick="errado()">C: Investimentos são mais importantes que hábitos financeiros.</button>
+        <!-- PERGUNTA 1 -->
+        <div class="questao ativa">
 
-<button onclick="errado()">D: O dinheiro não depende de planejamento.</button>
+            <p class="pergunta">
+                1. Qual é a principal ideia central do vídeo sobre o comportamento financeiro?
+            </p>
 
-</div>
+            <div class="opcoes">
 
-<p class="pergunta">
-2. O vídeo sugere que a mentalidade financeira impacta principalmente:
-</p>
+                <button class="opcao" data-correta="false">
+                    A: O sucesso financeiro depende apenas da renda mensal.
+                </button>
 
-<div class="opcoes">
+                <button class="opcao correta" data-correta="true">
+                    B: O comportamento e a mentalidade influenciam diretamente as decisões financeiras.
+                </button>
 
-<button onclick="errado()">A: Apenas o quanto a pessoa ganha.</button>
+                <button class="opcao" data-correta="false">
+                    C: Investimentos são mais importantes que hábitos financeiros.
+                </button>
 
-<button onclick="errado()">B: Apenas os investimentos de longo prazo.</button>
+                <button class="opcao" data-correta="false">
+                    D: O dinheiro não depende de planejamento.
+                </button>
 
-<button onclick="certo()">C: A forma como a pessoa decide gastar, poupar e investir.</button>
+            </div>
 
-<button onclick="errado()">D: Exclusivamente o acesso ao crédito.</button>
+        </div>
 
-</div>
+        <!-- PERGUNTA 2 -->
+        <div class="questao">
 
-<p class="pergunta">
-3. Qual é o papel da mudança de mentalidade no contexto financeiro?
-</p>
+            <p class="pergunta">
+                2. O vídeo sugere que a mentalidade financeira impacta principalmente:
+            </p>
 
-<div class="opcoes">
+            <div class="opcoes">
 
-<button onclick="errado()">A: Aumentar o consumo imediato</button>
+                <button class="opcao" data-correta="false">
+                    A: Apenas o quanto a pessoa ganha.
+                </button>
 
-<button onclick="errado()">B: Eliminar a necessidade de planejamento.</button>
+                <button class="opcao" data-correta="false">
+                    B: Apenas os investimentos de longo prazo.
+                </button>
 
-<button onclick="certo()">C: Melhorar a qualidade das decisões financeiras ao longo do tempo.</button>
+                <button class="opcao correta" data-correta="true">
+                    C: A forma como a pessoa decide gastar, poupar e investir.
+                </button>
 
-<button onclick="errado()">D: Garantir aumento automático de renda.</button>
+                <button class="opcao" data-correta="false">
+                    D: Exclusivamente o acesso ao crédito.
+                </button>
 
-</div>
+            </div>
 
-<p id="resultado"></p>
-        <a href="../html/home.html" class="finish-btn">
-        Concluir Curso
-    </a>
+        </div>
 
-</div>
+        <!-- PERGUNTA 3 -->
+        <div class="questao">
 
-</div>
+            <p class="pergunta">
+                3. Qual é o papel da mudança de mentalidade no contexto financeiro?
+            </p>
 
-<script>
+            <div class="opcoes">
 
-function certo(){
-    document.getElementById("resultado").innerHTML = "✅ Resposta correta!";
-}
+                <button class="opcao" data-correta="false">
+                    A: Aumentar o consumo imediato.
+                </button>
 
-function errado(){
-    document.getElementById("resultado").innerHTML = "❌ Resposta errada!";
-}
+                <button class="opcao" data-correta="false">
+                    B: Eliminar a necessidade de planejamento.
+                </button>
 
-</script>
+                <button class="opcao correta" data-correta="true">
+                    C: Melhorar a qualidade das decisões financeiras ao longo do tempo.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    D: Garantir aumento automático de renda.
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- MENSAGEM -->
+        <p id="mensagem"></p>
+
+        <!-- BOTÕES -->
+        <div class="acoes-quiz">
+
+            <button id="proximaPergunta" class="proxima-btn" disabled>
+                Próxima pergunta
+            </button>
+
+            <a
+                href="../html/home.html"
+                id="concluirQuiz"
+                class="finish-btn"
+            >
+                Concluir curso
+            </a>
+
+        </div>
+
+    </div>
+
+    <script>
+        const questoes = document.querySelectorAll(".questao");
+        const numeroPergunta = document.getElementById("numeroPergunta");
+        const porcentagem = document.getElementById("porcentagem");
+        const progresso = document.getElementById("progresso");
+        const mensagem = document.getElementById("mensagem");
+        const botaoProxima = document.getElementById("proximaPergunta");
+        const botaoConcluir = document.getElementById("concluirQuiz");
+
+        let perguntaAtual = 0;
+        let acertos = 0;
+
+        questoes.forEach((questao) => {
+            const opcoes = questao.querySelectorAll(".opcao");
+
+            opcoes.forEach((opcao) => {
+                opcao.addEventListener("click", () => {
+                    responderQuestao(questao, opcao);
+                });
+            });
+        });
+
+        function responderQuestao(questao, opcaoSelecionada) {
+            const opcoes = questao.querySelectorAll(".opcao");
+            const acertou = opcaoSelecionada.dataset.correta === "true";
+
+            opcoes.forEach((opcao) => {
+                opcao.disabled = true;
+
+                if (opcao.dataset.correta === "true") {
+                    opcao.classList.add("acertou");
+                }
+            });
+
+            if (acertou) {
+                acertos++;
+
+                mensagem.textContent = "✅ Resposta correta!";
+                mensagem.className = "mensagem-correta";
+            } else {
+                opcaoSelecionada.classList.add("errou");
+
+                mensagem.textContent =
+                    "❌ Resposta errada. A alternativa correta está destacada.";
+
+                mensagem.className = "mensagem-errada";
+            }
+
+            botaoProxima.disabled = false;
+
+            if (perguntaAtual === questoes.length - 1) {
+                botaoProxima.textContent = "Ver resultado";
+            }
+        }
+
+        botaoProxima.addEventListener("click", () => {
+            questoes[perguntaAtual].classList.remove("ativa");
+
+            perguntaAtual++;
+
+            mensagem.textContent = "";
+            mensagem.className = "";
+
+            if (perguntaAtual < questoes.length) {
+                questoes[perguntaAtual].classList.add("ativa");
+
+                atualizarProgresso();
+
+                botaoProxima.disabled = true;
+
+                botaoProxima.textContent =
+                    perguntaAtual === questoes.length - 1
+                        ? "Ver resultado"
+                        : "Próxima pergunta";
+            } else {
+                mostrarResultado();
+            }
+        });
+
+        function atualizarProgresso() {
+            const numeroAtual = perguntaAtual + 1;
+
+            const percentual = Math.round(
+                (numeroAtual / questoes.length) * 100
+            );
+
+            numeroPergunta.textContent =
+                `Pergunta ${numeroAtual} de ${questoes.length}`;
+
+            porcentagem.textContent = `${percentual}%`;
+
+            progresso.style.width = `${percentual}%`;
+        }
+
+        function mostrarResultado() {
+            document.querySelector(".progresso-area").style.display = "none";
+
+            mensagem.innerHTML = `
+                <strong>Quiz finalizado!</strong><br>
+                Você acertou ${acertos} de ${questoes.length} perguntas.
+            `;
+
+            mensagem.className = "resultado-final";
+
+            botaoProxima.style.display = "none";
+            botaoConcluir.style.display = "inline-flex";
+        }
+
+        atualizarProgresso();
+    </script>
 
 </body>
 </html>

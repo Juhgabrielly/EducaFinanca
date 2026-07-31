@@ -1,76 +1,260 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Quiz de Conhecimento</title>
-<link rel="stylesheet" href="../css/quiz.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz sobre Investimentos</title>
+
+    <link rel="stylesheet" href="../css/quiz.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
 </head>
 
 <body>
 
-<div class="quiz-container">
+    <div class="quiz-container">
 
-<h1>Quiz sobre Investimentos</h1>
+        <h1>Quiz sobre Investimentos</h1>
 
-<p class="pergunta">
-1. O que o vídeo explica sobre a renda fixa?
-</p>
+        <!-- PROGRESSO -->
+        <div class="progresso-area">
 
-<div class="opcoes">
+            <div class="progresso-texto">
+                <span id="numeroPergunta">Pergunta 1 de 3</span>
+                <span id="porcentagem">33%</span>
+            </div>
 
-<button onclick="errado()">A: É um tipo de investimento com alta volatilidade e risco.</button>
-<button onclick="certo()">B: Representa empréstimos, sendo um investimento mais conservador comparado à renda variável.</button>
-<button onclick="errado()">C: O rendimento é totalmente imprevisível e varia muito a cada mês.</button>
-<button onclick="errado()">D: É mais adequado para quem busca retornos rápidos e especulativos.</button>
+            <div class="barra-progresso">
+                <div id="progresso"></div>
+            </div>
 
-</div>
+        </div>
 
-<p class="pergunta">
-2. Quais são os tipos de investimentos em renda fixa mencionados no vídeo?
-</p>
+        <!-- PERGUNTA 1 -->
+        <div class="questao ativa">
 
-<div class="opcoes">
+            <p class="pergunta">
+                1. O que o vídeo explica sobre a renda fixa?
+            </p>
 
-<button onclick="errado()">A: Ações, Fundos Imobiliários e Bitcoin.</button>
-<button onclick="certo()">B: CDI, CDB, SELIC, LCI e LCA.</button>
-<button onclick="errado()">C: Debêntures, CRI e CRA.</button>
-<button onclick="errado()">D: Criptomoedas e NFTs.</button>
+            <div class="opcoes">
 
-</div>
+                <button class="opcao" data-correta="false">
+                    A: É um tipo de investimento com alta volatilidade e risco.
+                </button>
 
-<p class="pergunta">
-3. De acordo com o vídeo, qual o rendimento aproximado da renda fixa em 2024 (no momento da postagem)?
-</p>
+                <button class="opcao correta" data-correta="true">
+                    B: Representa empréstimos, sendo um investimento mais conservador
+                    comparado à renda variável.
+                </button>
 
-<div class="opcoes">
+                <button class="opcao" data-correta="false">
+                    C: O rendimento é totalmente imprevisível e varia muito a cada mês.
+                </button>
 
-<button onclick="errado()">A: Cerca de 5% ao ano.</button>
-<button onclick="certo()">B: Cerca de 10% ao ano.</button>
-<button onclick="errado()">C: Cerca de 15% ao ano.</button>
-<button onclick="errado()">D: Cerca de 20% ao ano.</button>
+                <button class="opcao" data-correta="false">
+                    D: É mais adequado para quem busca retornos rápidos e especulativos.
+                </button>
 
-</div>
+            </div>
 
-<p id="resultado"></p>
-        <a href="../html/home.html" class="finish-btn">
-        Concluir Curso
-    </a>
+        </div>
 
-</div>
+        <!-- PERGUNTA 2 -->
+        <div class="questao">
 
-</div>
+            <p class="pergunta">
+                2. Quais são os tipos de investimentos em renda fixa mencionados no vídeo?
+            </p>
 
-<script>
+            <div class="opcoes">
 
-function certo(){
-    document.getElementById("resultado").innerHTML = "✅ Resposta correta!";
-}
+                <button class="opcao" data-correta="false">
+                    A: Ações, Fundos Imobiliários e Bitcoin.
+                </button>
 
-function errado(){
-    document.getElementById("resultado").innerHTML = "❌ Resposta errada!";
-}
+                <button class="opcao correta" data-correta="true">
+                    B: CDI, CDB, SELIC, LCI e LCA.
+                </button>
 
-</script>
+                <button class="opcao" data-correta="false">
+                    C: Debêntures, CRI e CRA.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    D: Criptomoedas e NFTs.
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- PERGUNTA 3 -->
+        <div class="questao">
+
+            <p class="pergunta">
+                3. De acordo com o vídeo, qual o rendimento aproximado da renda fixa
+                em 2024, no momento da postagem?
+            </p>
+
+            <div class="opcoes">
+
+                <button class="opcao" data-correta="false">
+                    A: Cerca de 5% ao ano.
+                </button>
+
+                <button class="opcao correta" data-correta="true">
+                    B: Cerca de 10% ao ano.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    C: Cerca de 15% ao ano.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    D: Cerca de 20% ao ano.
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- MENSAGEM -->
+        <p id="mensagem"></p>
+
+        <!-- BOTÕES -->
+        <div class="acoes-quiz">
+
+            <button id="proximaPergunta" class="proxima-btn" disabled>
+                Próxima pergunta
+            </button>
+
+            <a
+                href="../html/home.html"
+                id="concluirQuiz"
+                class="finish-btn"
+            >
+                Concluir curso
+            </a>
+
+        </div>
+
+    </div>
+
+    <script>
+        const questoes = document.querySelectorAll(".questao");
+        const numeroPergunta = document.getElementById("numeroPergunta");
+        const porcentagem = document.getElementById("porcentagem");
+        const progresso = document.getElementById("progresso");
+        const mensagem = document.getElementById("mensagem");
+        const botaoProxima = document.getElementById("proximaPergunta");
+        const botaoConcluir = document.getElementById("concluirQuiz");
+
+        let perguntaAtual = 0;
+        let acertos = 0;
+
+        questoes.forEach((questao) => {
+            const opcoes = questao.querySelectorAll(".opcao");
+
+            opcoes.forEach((opcao) => {
+                opcao.addEventListener("click", () => {
+                    responderQuestao(questao, opcao);
+                });
+            });
+        });
+
+        function responderQuestao(questao, opcaoSelecionada) {
+            const opcoes = questao.querySelectorAll(".opcao");
+            const acertou = opcaoSelecionada.dataset.correta === "true";
+
+            opcoes.forEach((opcao) => {
+                opcao.disabled = true;
+
+                if (opcao.dataset.correta === "true") {
+                    opcao.classList.add("acertou");
+                }
+            });
+
+            if (acertou) {
+                acertos++;
+
+                mensagem.textContent = "✅ Resposta correta!";
+                mensagem.className = "mensagem-correta";
+            } else {
+                opcaoSelecionada.classList.add("errou");
+
+                mensagem.textContent =
+                    "❌ Resposta errada. A alternativa correta está destacada.";
+
+                mensagem.className = "mensagem-errada";
+            }
+
+            botaoProxima.disabled = false;
+
+            if (perguntaAtual === questoes.length - 1) {
+                botaoProxima.textContent = "Ver resultado";
+            }
+        }
+
+        botaoProxima.addEventListener("click", () => {
+            questoes[perguntaAtual].classList.remove("ativa");
+
+            perguntaAtual++;
+
+            mensagem.textContent = "";
+            mensagem.className = "";
+
+            if (perguntaAtual < questoes.length) {
+                questoes[perguntaAtual].classList.add("ativa");
+
+                atualizarProgresso();
+
+                botaoProxima.disabled = true;
+
+                botaoProxima.textContent =
+                    perguntaAtual === questoes.length - 1
+                        ? "Ver resultado"
+                        : "Próxima pergunta";
+            } else {
+                mostrarResultado();
+            }
+        });
+
+        function atualizarProgresso() {
+            const numeroAtual = perguntaAtual + 1;
+
+            const percentual = Math.round(
+                (numeroAtual / questoes.length) * 100
+            );
+
+            numeroPergunta.textContent =
+                `Pergunta ${numeroAtual} de ${questoes.length}`;
+
+            porcentagem.textContent = `${percentual}%`;
+
+            progresso.style.width = `${percentual}%`;
+        }
+
+        function mostrarResultado() {
+            document.querySelector(".progresso-area").style.display = "none";
+
+            mensagem.innerHTML = `
+                <strong>Quiz finalizado!</strong><br>
+                Você acertou ${acertos} de ${questoes.length} perguntas.
+            `;
+
+            mensagem.className = "resultado-final";
+
+            botaoProxima.style.display = "none";
+            botaoConcluir.style.display = "inline-flex";
+        }
+
+        atualizarProgresso();
+    </script>
 
 </body>
 </html>

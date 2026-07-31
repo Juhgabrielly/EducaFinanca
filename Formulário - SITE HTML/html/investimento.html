@@ -12,7 +12,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- ÍCONES -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+  >
 </head>
 
 <body>
@@ -21,13 +30,25 @@
   <header>
 
     <div class="logo">
-      <img src="../html/educa.png" class="logo-img">
+
+      <img
+        src="educa.png"
+        alt="Logo do Educa Finança"
+        class="logo-img"
+      >
+
       <h2>Educa Finança</h2>
+
     </div>
 
-    <div class="menu-toggle" id="menu-toggle">
-      ☰
-    </div>
+    <button
+      type="button"
+      class="menu-toggle"
+      id="menu-toggle"
+      aria-label="Abrir menu"
+    >
+      <i class="fa-solid fa-bars"></i>
+    </button>
 
     <!-- MENU -->
     <nav class="menu" id="menu">
@@ -36,134 +57,273 @@
 
       <a href="cursos.html">Cursos</a>
 
-      <a href="../html/relatório.html">Relatórios</a>
+      <a href="relatorio.html">Relatórios</a>
 
-      <a href="../html/investimento.html">Investimentos</a>
+      <a href="investimento.html" class="ativo">
+        Investimentos
+      </a>
 
-      <a href="../html/usuario.html">Perfil</a>
+      <a href="usuario.html">Perfil</a>
+
     </nav>
 
   </header>
 
-  <!-- PAGE -->
+  <!-- CONTEÚDO -->
   <main class="invest-page">
 
-    <h1>
-      <span>Investimentos</span>
-    </h1>
+    <!-- CABEÇALHO -->
+    <section class="invest-header">
 
-    <p class="description">
-    </p>
+      <span class="mini-title">
+        ORGANIZAÇÃO FINANCEIRA
+      </span>
 
-    <!-- RESUMO -->
-    <section class="resume-grid">
+      <h1>
+        Seus
+        <span>Investimentos</span>
+      </h1>
 
-      <div class="resume-card">
+      <p class="description">
+        Acompanhe seu patrimônio, organize sua carteira e monitore o
+        progresso das suas metas financeiras.
+      </p>
 
-        <h2>Saldo total</h2>
+      <!-- BOTÕES -->
+      <div class="invest-actions">
 
-        <h3>R$ 100.000</h3>
+        <button
+          type="button"
+          class="action-btn investment-btn"
+          onclick="cadastrarInvestimento()"
+        >
+          <i class="fa-solid fa-plus"></i>
+          Adicionar investimento
+        </button>
 
-        <p>Atualizado hoje</p>
+        <button
+          type="button"
+          class="action-btn goal-btn"
+          onclick="cadastrarMeta()"
+        >
+          <i class="fa-solid fa-bullseye"></i>
+          Adicionar meta
+        </button>
 
-      </div>
-
-      <div class="resume-card">
-
-        <h2>Lucro</h2>
-
-        <h3>40%</h3>
-
-        <p>Últimos 12 meses</p>
-
-      </div>
-
-      <div class="resume-card">
-
-        <h2>Reserva emergencial</h2>
-
-        <h3>R$ 20.000</h3>
-
-        <p>total</p>
+        <button
+          type="button"
+          class="action-btn reserve-btn"
+        >
+          <i class="fa-solid fa-shield-halved"></i>
+          Atualizar reserva
+        </button>
 
       </div>
 
     </section>
 
-    <!-- INVESTIMENTOS -->
+    <!-- RESUMO -->
+    <section class="resume-grid">
+
+      <!-- PATRIMÔNIO -->
+      <article class="resume-card">
+
+        <div class="resume-icon patrimonio-icon">
+          <i class="fa-solid fa-wallet"></i>
+        </div>
+
+        <div class="resume-content">
+
+          <span>Patrimônio investido</span>
+
+          <h2 id="total-investido">
+            R$ 40.000,00
+          </h2>
+
+          <p>Valor atual da carteira</p>
+
+        </div>
+
+      </article>
+
+      <!-- RENTABILIDADE -->
+      <article class="resume-card">
+
+        <div class="resume-icon rentabilidade-icon">
+          <i class="fa-solid fa-arrow-trend-up"></i>
+        </div>
+
+        <div class="resume-content">
+
+          <span>Rentabilidade acumulada</span>
+
+          <h2 class="positive-value">
+            + 12,5%
+          </h2>
+
+          <p>Últimos 12 meses</p>
+
+        </div>
+
+      </article>
+
+      <!-- RESERVA -->
+      <article class="resume-card">
+
+        <div class="resume-icon reserva-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        <div class="resume-content">
+
+          <span>Reserva de emergência</span>
+
+          <h2>
+            R$ 20.000,00
+          </h2>
+
+          <p>Valor reservado</p>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <!-- CARTEIRA -->
     <section class="invest-section">
 
-      <div class="invest-grid">
+      <div class="section-header">
 
-        <!-- ITEM -->
-        <div class="invest-card">
+        <div>
 
-          <div class="top-invest">
+          <span class="section-label">
+            PATRIMÔNIO
+          </span>
 
-          </div>
-
-          <h3> Investimento em renda variavel</h3>
-
-          <p>
-            Investimentos em empresas com potencial
-            de valorização.
-          </p>
-
-          <div class="invest-info">
-
-            <span>Saldo</span>
-
-            <strong>R$ 20.000</strong>
-
-          </div>
+          <h2>Sua carteira</h2>
 
         </div>
 
-        <!-- ITEM -->
-        <div class="invest-card">
+        <p>
+          Investimentos cadastrados manualmente por você.
+        </p>
 
-          <div class="top-invest">
+      </div>
+
+      <div class="invest-grid" id="investments-container">
+
+        <!-- RENDA VARIÁVEL -->
+        <article class="invest-card">
+
+          <div class="invest-card-top">
+
+            <div class="invest-icon variable-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <span class="invest-type">
+              Renda variável
+            </span>
 
           </div>
 
-          <h3>Investimentos futuros</h3>
+          <h3>Investimento em ações</h3>
 
           <p>
-            Faculdade de Medicina
+            Investimentos em empresas com potencial de valorização.
           </p>
 
-          <div class="invest-info">
+          <div class="invest-values">
 
-            <span>Saldo</span>
+            <div>
+              <span>Valor aplicado</span>
+              <strong>R$ 20.000,00</strong>
+            </div>
 
-            <strong>R$ 5.000</strong>
-
-          </div>
-
-        </div>
-
-        <!-- ITEM -->
-        <div class="invest-card">
-
-          <div class="top-invest">
+            <div>
+              <span>Valor atual</span>
+              <strong>R$ 24.000,00</strong>
+            </div>
 
           </div>
 
-          <h3>Investimento em renda fixa</h3>
+          <div class="invest-return positive-return">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            +20% de rendimento
+          </div>
+
+          <div class="invest-card-actions">
+
+            <button type="button" class="edit-btn">
+              <i class="fa-solid fa-pen"></i>
+              Editar
+            </button>
+
+            <button type="button" class="delete-btn">
+              <i class="fa-solid fa-trash"></i>
+              Excluir
+            </button>
+
+          </div>
+
+        </article>
+
+        <!-- RENDA FIXA -->
+        <article class="invest-card">
+
+          <div class="invest-card-top">
+
+            <div class="invest-icon fixed-icon">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+
+            <span class="invest-type">
+              Renda fixa
+            </span>
+
+          </div>
+
+          <h3>Investimento em CDB</h3>
 
           <p>
-            uma modalidade de investimento segura e previsível, ideal para objetivos de curto/médio prazo.
+            Modalidade segura e previsível para objetivos de curto e médio prazo.
           </p>
 
-          <div class="invest-info">
+          <div class="invest-values">
 
-            <span>Saldo</span>
+            <div>
+              <span>Valor aplicado</span>
+              <strong>R$ 20.000,00</strong>
+            </div>
 
-            <strong>R$ 20.000</strong>
+            <div>
+              <span>Valor atual</span>
+              <strong>R$ 21.500,00</strong>
+            </div>
 
           </div>
 
-        </div>
+          <div class="invest-return positive-return">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            +7,5% de rendimento
+          </div>
+
+          <div class="invest-card-actions">
+
+            <button type="button" class="edit-btn">
+              <i class="fa-solid fa-pen"></i>
+              Editar
+            </button>
+
+            <button type="button" class="delete-btn">
+              <i class="fa-solid fa-trash"></i>
+              Excluir
+            </button>
+
+          </div>
+
+        </article>
 
       </div>
 
@@ -172,179 +332,350 @@
     <!-- METAS -->
     <section class="goal-section">
 
-      <div class="section-title">
-        <h2>Metas Financeiras</h2>
-      </div>
+      <div class="section-header">
 
-      <div class="new-goal-area">
+        <div>
 
-</div>
+          <span class="section-label">
+            OBJETIVOS
+          </span>
 
-     <div class="goal-card">
-
-        <div class="goal-top">
-
-          <div>
-            <h3>Comprar um Carro</h3>
-            <p>Meta: R$ 40.000</p>
-          </div>
-
-          <span class="percent">80%</span>
+          <h2>Metas Financeiras</h2>
 
         </div>
 
-        <div class="progress-bar">
-          <div class="progress progress1"></div>
-        </div>
+        <button
+          type="button"
+          class="new-goal-btn"
+          onclick="cadastrarMeta()"
+        >
+          <i class="fa-solid fa-plus"></i>
+          Nova meta
+        </button>
 
       </div>
 
-      <!-- META -->
-      <div class="goal-card">
-
-        <div class="goal-top">
-
-          <div>
-            <h3>Viagem Internacional</h3>
-            <p>Meta: R$ 15.000</p>
-          </div>
-
-          <span class="percent">67%</span>
-
-        </div>
-
-        <div class="progress-bar">
-          <div class="progress progress2"></div>
-        </div>
-
-      </div>
-
-      <!-- META -->
-      <div class="goal-card">
-
-        <div class="goal-top">
-
-          <div>
-            <h3>Independência Financeira</h3>
-            <p>Meta: R$ 500.000</p>
-          </div>
-
-          <span class="percent">24%</span>
-
-        </div>
-
-        <div class="progress-bar">
-          <div class="progress progress3"></div>
-        </div>
-
-      </div>
+      <!-- METAS INSERIDAS PELO JAVASCRIPT -->
+      <div id="goals-container"></div>
 
     </section>
 
   </main>
 
-<script>
+  <script>
+    /* =========================
+       MENU
+    ========================= */
 
-/* MENU */
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
 
-const toggle = document.getElementById("menu-toggle");
-const menu = document.getElementById("menu");
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
 
-toggle.addEventListener("click", () => {
-  menu.classList.toggle("active");
-});
+    document.addEventListener("click", (event) => {
+      const clicouNoMenu = menu.contains(event.target);
+      const clicouNoBotao = toggle.contains(event.target);
 
-/* METAS */
+      if (!clicouNoMenu && !clicouNoBotao) {
+        menu.classList.remove("active");
+      }
+    });
 
-function pegarMetas() {
-  return JSON.parse(localStorage.getItem("metas")) || [];
-}
+    /* =========================
+       FORMATAÇÃO DE DINHEIRO
+    ========================= */
 
-function salvarMetas(metas) {
-  localStorage.setItem("metas", JSON.stringify(metas));
-}
+    function formatarDinheiro(valor) {
+      return Number(valor).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
 
-/* MOSTRAR METAS */
+    /* =========================
+       METAS
+    ========================= */
 
-function mostrarMetas() {
+    function pegarMetas() {
+      const metasSalvas = JSON.parse(
+        localStorage.getItem("metas")
+      );
 
-  const container = document.getElementById("goals-container");
+      if (metasSalvas && metasSalvas.length > 0) {
+        return metasSalvas;
+      }
 
-  const metas = pegarMetas();
+      const metasIniciais = [
+        {
+          id: 1,
+          nome: "Comprar um Carro",
+          valorAtual: 32000,
+          valorMeta: 40000
+        },
+        {
+          id: 2,
+          nome: "Viagem Internacional",
+          valorAtual: 10050,
+          valorMeta: 15000
+        },
+        {
+          id: 3,
+          nome: "Independência Financeira",
+          valorAtual: 120000,
+          valorMeta: 500000
+        }
+      ];
 
-  container.innerHTML = "";
+      salvarMetas(metasIniciais);
 
-  metas.forEach((meta) => {
+      return metasIniciais;
+    }
 
-    container.innerHTML += `
+    function salvarMetas(metas) {
+      localStorage.setItem(
+        "metas",
+        JSON.stringify(metas)
+      );
+    }
 
-      <div class="goal-card">
+    function calcularPercentual(valorAtual, valorMeta) {
+      if (valorMeta <= 0) {
+        return 0;
+      }
 
-        <div class="goal-top">
+      const percentual = Math.round(
+        (valorAtual / valorMeta) * 100
+      );
 
-          <div>
-            <h3>${meta.nome}</h3>
-            <p>Meta: R$ ${meta.valor}</p>
-          </div>
+      return Math.min(percentual, 100);
+    }
 
-          <span class="percent">${meta.percentual}%</span>
+    function mostrarMetas() {
+      const container = document.getElementById(
+        "goals-container"
+      );
 
-        </div>
+      const metas = pegarMetas();
 
-        <div class="progress-bar">
+      container.innerHTML = "";
 
-          <div 
-            class="progress-dynamic"
-            style="width:${meta.percentual}%">
-          </div>
+      metas.forEach((meta) => {
+        const percentual = calcularPercentual(
+          meta.valorAtual,
+          meta.valorMeta
+        );
 
-        </div>
+        const valorFaltante = Math.max(
+          meta.valorMeta - meta.valorAtual,
+          0
+        );
 
-      </div>
+        container.innerHTML += `
+          <article class="goal-card">
 
-    `;
+            <div class="goal-top">
 
-  });
+              <div class="goal-title">
 
-}
+                <div class="goal-icon">
+                  <i class="fa-solid fa-bullseye"></i>
+                </div>
 
-/* CADASTRAR */
+                <div>
+                  <h3>${meta.nome}</h3>
 
-function cadastrarMeta() {
+                  <p>
+                    ${formatarDinheiro(meta.valorAtual)}
+                    de
+                    ${formatarDinheiro(meta.valorMeta)}
+                  </p>
+                </div>
 
-  const nome = prompt("Digite o nome da meta:");
+              </div>
 
-  if (!nome) return;
+              <span class="percent">
+                ${percentual}%
+              </span>
 
-  const valor = prompt("Digite o valor da meta:");
+            </div>
 
-  if (!valor) return;
+            <div class="progress-bar">
 
-  const percentual = prompt("Digite a porcentagem atual:");
+              <div
+                class="progress"
+                style="width: ${percentual}%"
+              ></div>
 
-  if (!percentual) return;
+            </div>
 
-  const metas = pegarMetas();
+            <div class="goal-footer">
 
-  metas.push({
-    nome: nome,
-    valor: valor,
-    percentual: percentual
-  });
+              <span>
+                Faltam ${formatarDinheiro(valorFaltante)}
+              </span>
 
-  salvarMetas(metas);
+              <div class="goal-actions">
 
-  mostrarMetas();
+                <button
+                  type="button"
+                  class="add-value-btn"
+                  onclick="adicionarValorMeta(${meta.id})"
+                >
+                  <i class="fa-solid fa-plus"></i>
+                  Adicionar valor
+                </button>
 
-  alert("Meta cadastrada com sucesso!");
+                <button
+                  type="button"
+                  class="goal-delete-btn"
+                  onclick="excluirMeta(${meta.id})"
+                  aria-label="Excluir meta"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </button>
 
-}
+              </div>
 
-/* INICIAR */
+            </div>
 
-mostrarMetas();
+          </article>
+        `;
+      });
+    }
 
-</script>
+    function cadastrarMeta() {
+      const nome = prompt(
+        "Digite o nome da meta:"
+      );
+
+      if (!nome || !nome.trim()) {
+        return;
+      }
+
+      const valorMeta = Number(
+        prompt("Digite o valor total da meta:")
+      );
+
+      if (!valorMeta || valorMeta <= 0) {
+        alert("Digite um valor válido para a meta.");
+        return;
+      }
+
+      const valorAtual = Number(
+        prompt("Quanto você já possui para essa meta?")
+      );
+
+      if (
+        Number.isNaN(valorAtual) ||
+        valorAtual < 0
+      ) {
+        alert("Digite um valor atual válido.");
+        return;
+      }
+
+      const metas = pegarMetas();
+
+      metas.push({
+        id: Date.now(),
+        nome: nome.trim(),
+        valorAtual,
+        valorMeta
+      });
+
+      salvarMetas(metas);
+      mostrarMetas();
+
+      alert("Meta cadastrada com sucesso!");
+    }
+
+    function adicionarValorMeta(id) {
+      const valor = Number(
+        prompt("Digite o valor que deseja adicionar:")
+      );
+
+      if (!valor || valor <= 0) {
+        alert("Digite um valor válido.");
+        return;
+      }
+
+      const metas = pegarMetas();
+
+      const meta = metas.find(
+        (item) => item.id === id
+      );
+
+      if (!meta) {
+        return;
+      }
+
+      meta.valorAtual += valor;
+
+      if (meta.valorAtual > meta.valorMeta) {
+        meta.valorAtual = meta.valorMeta;
+      }
+
+      salvarMetas(metas);
+      mostrarMetas();
+    }
+
+    function excluirMeta(id) {
+      const confirmou = confirm(
+        "Deseja realmente excluir esta meta?"
+      );
+
+      if (!confirmou) {
+        return;
+      }
+
+      const metas = pegarMetas().filter(
+        (meta) => meta.id !== id
+      );
+
+      salvarMetas(metas);
+      mostrarMetas();
+    }
+
+    /* =========================
+       INVESTIMENTOS
+    ========================= */
+
+    function cadastrarInvestimento() {
+      const nome = prompt(
+        "Digite o nome do investimento:"
+      );
+
+      if (!nome || !nome.trim()) {
+        return;
+      }
+
+      const tipo = prompt(
+        "Digite o tipo do investimento:"
+      );
+
+      const valorAplicado = Number(
+        prompt("Digite o valor aplicado:")
+      );
+
+      if (!valorAplicado || valorAplicado <= 0) {
+        alert("Digite um valor aplicado válido.");
+        return;
+      }
+
+      alert(
+        `Investimento "${nome}" cadastrado com sucesso!`
+      );
+
+      /*
+        Depois você pode salvar esses dados
+        no banco de dados ou no localStorage.
+      */
+    }
+
+    /* INICIALIZAÇÃO */
+    mostrarMetas();
+  </script>
 
 </body>
 </html>

@@ -8,6 +8,25 @@ body{
   background: #f6f0ff;
   overflow-x: hidden;
 }
+.menu-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    padding: 20px;
+}
+
+.menu-info a {
+    color: #2d174d;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.menu-info a:hover {
+    color: #7c3aed;
+}
 .hero{
   min-height: 100vh;
   background: linear-gradient(135deg,#f7f2ff 0%,#eee4ff 45%,#dcc8ff 100%);
@@ -222,4 +241,118 @@ object-fit: contain;
     height: 40px;
   }
 
+}
+.modal-login {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(31, 15, 61, 0.55);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+}
+
+.modal-login.ativo {
+    display: flex;
+}
+
+.modal-conteudo {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    padding: 40px 35px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(64, 27, 120, 0.25);
+    animation: aparecerModal 0.3s ease;
+}
+
+@keyframes aparecerModal {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: none;
+    background: transparent;
+    color: #6b5a80;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.icone-cadeado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #f0e7ff;
+    font-size: 34px;
+}
+
+.modal-conteudo h2 {
+    margin-bottom: 12px;
+    color: #32145f;
+    font-size: 26px;
+}
+
+.modal-conteudo p {
+    margin-bottom: 28px;
+    color: #706080;
+    line-height: 1.6;
+}
+
+.botoes-modal {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn-login,
+.btn-cadastro {
+    padding: 13px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-login {
+    background: #6f2de2;
+    color: #ffffff;
+}
+
+.btn-login:hover {
+    background: #5420b3;
+}
+
+.btn-cadastro {
+    border: 2px solid #6f2de2;
+    color: #6f2de2;
+    background: #ffffff;
+}
+
+.btn-cadastro:hover {
+    background: #f3ecff;
+}
+
+@media (max-width: 500px) {
+    .botoes-modal {
+        flex-direction: column;
+    }
 }

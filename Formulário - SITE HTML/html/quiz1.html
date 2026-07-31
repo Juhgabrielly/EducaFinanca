@@ -3,90 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Quiz de Conhecimento</title>
+
     <link rel="stylesheet" href="../css/quiz.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
 </head>
+
 <body>
 
     <div class="quiz-container">
 
         <h1>Quiz de Planejamento e Organização Financeira</h1>
 
-        <p class="pergunta">
-            1. Quais são os principais métodos de organização financeira apresentados no vídeo para quem tem uma renda
-            baixa?
-        </p>
+        <!-- PROGRESSO -->
+        <div class="progresso-area">
+            <div class="progresso-texto">
+                <span id="numeroPergunta">Pergunta 1 de 3</span>
+                <span id="porcentagem">33%</span>
+            </div>
 
-        <div class="opcoes">
+            <div class="barra-progresso">
+                <div id="progresso"></div>
+            </div>
+        </div>
 
-            <button onclick="errado()">A: Utilização de aplicativos de investimento complexos e análise de
-                ações.</button>
-            <button onclick="certo()">B: Métodos simplificados de organização e planejamento financeiro, focados na
-                renda e despesas mensais</button>
-            <button onclick="errado()">C: Consultoria financeira personalizada com especialistas em mercado de
-                ações.</button>
-            <button onclick="errado()">D: Investimento em criptomoedas e NFTs para alta rentabilidade</button>
+        <!-- PERGUNTA 1 -->
+        <div class="questao ativa">
+
+            <p class="pergunta">
+                1. Quais são os principais métodos de organização financeira
+                apresentados no vídeo para quem tem uma renda baixa?
+            </p>
+
+            <div class="opcoes">
+
+                <button class="opcao" data-correta="false">
+                    A: Utilização de aplicativos de investimento complexos e análise de ações.
+                </button>
+
+                <button class="opcao correta" data-correta="true">
+                    B: Métodos simplificados de organização e planejamento financeiro,
+                    focados na renda e despesas mensais.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    C: Consultoria financeira personalizada com especialistas em mercado de ações.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    D: Investimento em criptomoedas e NFTs para alta rentabilidade.
+                </button>
+
+            </div>
 
         </div>
 
-        <p class="pergunta">
-            2. Como o vídeo sugere a criação de um planejamento financeiro com base na renda e nas despesas mensais,
-            especialmente para quem ganha pouco?
-        </p>
+        <!-- PERGUNTA 2 -->
+        <div class="questao">
 
-        <div class="opcoes">
+            <p class="pergunta">
+                2. Como o vídeo sugere a criação de um planejamento financeiro
+                com base na renda e nas despesas mensais?
+            </p>
 
-            <button onclick="errado()">A: Através da análise detalhada de gráficos de mercado e projeções de longo
-                prazo.</button>
-            <button onclick="errado()">B: Focando em estratégias de endividamento para alavancar investimentos.</button>
-            <button onclick="certo()">C: Apresentando formas de organizar a renda e as despesas de maneira direta e
-                acessível.</button>
-            <button onclick="errado()">D: Sugerindo a criação de múltiplas fontes de renda passiva
-                imediatamente.</button>
+            <div class="opcoes">
 
-        </div>
+                <button class="opcao" data-correta="false">
+                    A: Através da análise detalhada de gráficos de mercado e projeções.
+                </button>
 
-        <p class="pergunta">
-            3. De que forma o vídeo simplifica o conceito de planejamento financeiro pessoal, evitando o uso de
-            planilhas complexas e porcentagens?
-        </p>
+                <button class="opcao" data-correta="false">
+                    B: Focando em estratégias de endividamento para investimentos.
+                </button>
 
-        <div class="opcoes">
+                <button class="opcao correta" data-correta="true">
+                    C: Apresentando formas de organizar a renda e as despesas
+                    de maneira direta e acessível.
+                </button>
 
-            <button onclick="errado()">A: Ao introduzir softwares avançados de análise financeira.</button>
-            <button onclick="certo()">B: Através de explicações visuais e métodos práticos que não exigem cálculos
-                complicados.</button>
-            <button onclick="errado()">C: Apresentando formas de organizar a renda e as despesas de maneira direta e
-                acessível.</button>
-            <button onclick="errado()">D: Sugerindo a criação de múltiplas fontes de renda passiva
-                imediatamente.</button>
+                <button class="opcao" data-correta="false">
+                    D: Sugerindo a criação imediata de múltiplas fontes de renda passiva.
+                </button>
+
+            </div>
 
         </div>
 
-        <p id="resultado"></p>
-        <div class="finalizar-area">
+        <!-- PERGUNTA 3 -->
+        <div class="questao">
 
-    <a href="../html/home.html" class="finish-btn">
-        Concluir Curso
-    </a>
+            <p class="pergunta">
+                3. De que forma o vídeo simplifica o conceito de planejamento
+                financeiro pessoal?
+            </p>
 
-</div>
-</div>
+            <div class="opcoes">
+
+                <button class="opcao" data-correta="false">
+                    A: Ao introduzir softwares avançados de análise financeira.
+                </button>
+
+                <button class="opcao correta" data-correta="true">
+                    B: Através de explicações visuais e métodos práticos
+                    que não exigem cálculos complicados.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    C: Utilizando planilhas complexas e porcentagens avançadas.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    D: Sugerindo investimentos de alto risco.
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- MENSAGEM -->
+        <p id="mensagem"></p>
+
+        <!-- BOTÕES -->
+        <div class="acoes-quiz">
+
+            <button id="proximaPergunta" class="proxima-btn" disabled>
+                Próxima pergunta
+            </button>
+
+            <a href="home.html" id="concluirQuiz" class="finish-btn">
+                Concluir curso
+            </a>
+
+        </div>
 
     </div>
 
     <script>
+        const questoes = document.querySelectorAll(".questao");
+        const numeroPergunta = document.getElementById("numeroPergunta");
+        const porcentagem = document.getElementById("porcentagem");
+        const progresso = document.getElementById("progresso");
+        const mensagem = document.getElementById("mensagem");
+        const botaoProxima = document.getElementById("proximaPergunta");
+        const botaoConcluir = document.getElementById("concluirQuiz");
 
-        function certo() {
-            document.getElementById("resultado").innerHTML = "✅ Resposta correta!";
+        let perguntaAtual = 0;
+        let acertos = 0;
+
+        questoes.forEach((questao) => {
+            const opcoes = questao.querySelectorAll(".opcao");
+
+            opcoes.forEach((opcao) => {
+                opcao.addEventListener("click", () => {
+                    responderQuestao(questao, opcao);
+                });
+            });
+        });
+
+        function responderQuestao(questao, opcaoSelecionada) {
+            const opcoes = questao.querySelectorAll(".opcao");
+            const acertou = opcaoSelecionada.dataset.correta === "true";
+
+            opcoes.forEach((opcao) => {
+                opcao.disabled = true;
+
+                if (opcao.dataset.correta === "true") {
+                    opcao.classList.add("acertou");
+                }
+            });
+
+            if (acertou) {
+                acertos++;
+                mensagem.textContent = "✅ Resposta correta!";
+                mensagem.className = "mensagem-correta";
+            } else {
+                opcaoSelecionada.classList.add("errou");
+                mensagem.textContent = "❌ Resposta errada. A alternativa correta está destacada.";
+                mensagem.className = "mensagem-errada";
+            }
+
+            botaoProxima.disabled = false;
+
+            if (perguntaAtual === questoes.length - 1) {
+                botaoProxima.textContent = "Ver resultado";
+            }
         }
 
-        function errado() {
-            document.getElementById("resultado").innerHTML = "❌ Resposta errada!";
+        botaoProxima.addEventListener("click", () => {
+            questoes[perguntaAtual].classList.remove("ativa");
+
+            perguntaAtual++;
+
+            mensagem.textContent = "";
+            mensagem.className = "";
+
+            if (perguntaAtual < questoes.length) {
+                questoes[perguntaAtual].classList.add("ativa");
+
+                atualizarProgresso();
+
+                botaoProxima.disabled = true;
+                botaoProxima.textContent =
+                    perguntaAtual === questoes.length - 1
+                        ? "Ver resultado"
+                        : "Próxima pergunta";
+            } else {
+                mostrarResultado();
+            }
+        });
+
+        function atualizarProgresso() {
+            const numeroAtual = perguntaAtual + 1;
+            const percentual = Math.round(
+                (numeroAtual / questoes.length) * 100
+            );
+
+            numeroPergunta.textContent =
+                `Pergunta ${numeroAtual} de ${questoes.length}`;
+
+            porcentagem.textContent = `${percentual}%`;
+
+            progresso.style.width = `${percentual}%`;
         }
 
+        function mostrarResultado() {
+            document.querySelector(".progresso-area").style.display = "none";
+
+            mensagem.innerHTML = `
+                <strong>Quiz finalizado!</strong><br>
+                Você acertou ${acertos} de ${questoes.length} perguntas.
+            `;
+
+            mensagem.className = "resultado-final";
+
+            botaoProxima.style.display = "none";
+            botaoConcluir.style.display = "inline-flex";
+        }
+
+        atualizarProgresso();
     </script>
 
 </body>
-
 </html>

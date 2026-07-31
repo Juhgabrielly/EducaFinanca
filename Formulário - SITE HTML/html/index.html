@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Educa Finança</title>
   <link rel="stylesheet" href="../css/style.css">
-
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
@@ -14,6 +14,13 @@
     <div class="logo">
       <img src="../html/educa.png" class="logo-img">
       <h2>Educa Finança</h2>
+    </div>
+    <div class="menu-info">
+      <a href="#" class="link-protegido">Home</a>
+      <a href="#" class="link-protegido">Cursos</a>
+      <a href="#" class="link-protegido">Relatórios</a>
+      <a href="#" class="link-protegido">Investimentos</a>
+      <a href="#" class="link-protegido">Perfil</a>
     </div>
     <div class="menu-hamburguer" id="menu-hamburguer"> ☰
     </div>
@@ -54,6 +61,58 @@
       menu.classList.toggle("active");
     });
   </script>
+  <div class="modal-login" id="modalLogin">
+    <div class="modal-conteudo">
+        <button class="fechar-modal" id="fecharModal">&times;</button>
 
+        <i class="fa-solid fa-lock"></i>
+        
+        <h2>É necessário fazer login</h2>
+
+        <p id="mensagemModal">
+            Para acessar esta funcionalidade, entre em sua conta ou crie um cadastro.
+        </p>
+
+        <div class="botoes-modal">
+            <a href="login.html" class="btn-login">Fazer Login</a>
+            <a href="cadastro.html" class="btn-cadastro">Criar Conta</a>
+        </div>
+    </div>
+</div>
+<script>
+    const linksProtegidos = document.querySelectorAll(".link-protegido");
+    const modalLogin = document.getElementById("modalLogin");
+    const fecharModal = document.getElementById("fecharModal");
+    const mensagemModal = document.getElementById("mensagemModal");
+
+    linksProtegidos.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            const pagina = link.dataset.pagina;
+
+            mensagemModal.textContent =
+                `Para acessar ${pagina}, é necessário entrar em sua conta ou criar um cadastro.`;
+
+            modalLogin.classList.add("ativo");
+        });
+    });
+
+    fecharModal.addEventListener("click", () => {
+        modalLogin.classList.remove("ativo");
+    });
+
+    modalLogin.addEventListener("click", (event) => {
+        if (event.target === modalLogin) {
+            modalLogin.classList.remove("ativo");
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            modalLogin.classList.remove("ativo");
+        }
+    });
+</script>
 </body>
 </html>

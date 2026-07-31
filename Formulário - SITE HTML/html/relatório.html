@@ -12,7 +12,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- FONT AWESOME -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+  >
 </head>
 
 <body>
@@ -21,13 +30,25 @@
   <header>
 
     <div class="logo">
-      <img src="../html/educa.png" class="logo-img">
+
+      <img
+        src="educa.png"
+        alt="Logo do Educa Finança"
+        class="logo-img"
+      >
+
       <h2>Educa Finança</h2>
+
     </div>
 
-    <div class="menu-toggle" id="menu-toggle">
-      ☰
-    </div>
+    <button
+      type="button"
+      class="menu-toggle"
+      id="menu-toggle"
+      aria-label="Abrir menu"
+    >
+      <i class="fa-solid fa-bars"></i>
+    </button>
 
     <nav class="menu" id="menu">
 
@@ -35,11 +56,11 @@
 
       <a href="cursos.html">Cursos</a>
 
-      <a href="relatorios.html">Relatórios</a>
+      <a href="relatório.html" class="ativo">Relatórios</a>
 
-      <a href="../html/investimento.html">Investimentos</a>
+      <a href="investimento.html">Investimentos</a>
 
-      <a href="perfil.html">Perfil</a>
+      <a href="usuario.html">Perfil</a>
 
     </nav>
 
@@ -48,140 +69,389 @@
   <!-- RELATÓRIOS -->
   <main class="reports-page">
 
-    <h1>
-      <span>Resultados Financeiros</span>
-    </h1>
+    <!-- CABEÇALHO -->
+    <section class="reports-header">
 
-    <p class="description">
-    </p>
+      <span class="mini-title">
+        CONTROLE FINANCEIRO
+      </span>
+
+      <h1>
+        Resultados
+        <span>Financeiros</span>
+      </h1>
+
+      <p class="description">
+        Acompanhe suas receitas, despesas, investimentos e resultados
+        financeiros de forma simples e organizada.
+      </p>
+
+      <!-- AÇÕES -->
+      <div class="acoes-financeiras">
+
+        <button type="button" class="btn-acao btn-receita">
+          <i class="fa-solid fa-plus"></i>
+          Adicionar receita
+        </button>
+
+        <button type="button" class="btn-acao btn-despesa">
+          <i class="fa-solid fa-plus"></i>
+          Adicionar despesa
+        </button>
+
+        <button type="button" class="btn-acao btn-investimento">
+          <i class="fa-solid fa-plus"></i>
+          Adicionar investimento
+        </button>
+
+      </div>
+
+    </section>
 
     <!-- CARDS -->
     <section class="stats-grid">
 
-      <div class="stat-card">
+      <!-- RECEITAS -->
+      <article class="stat-card">
 
-        <h2>Saldo Atual</h2>
+        <div class="stat-icon receita-icon">
+          <i class="fa-solid fa-arrow-trend-up"></i>
+        </div>
 
-        <h3>R$ 20.00,00</h3>
+        <div class="stat-content">
 
-        <p>Atualizado este mês</p>
+          <span class="stat-label">
+            Receitas do mês
+          </span>
 
-      </div>
+          <h2>R$ 12.000,00</h2>
 
-      <div class="stat-card">
+          <p>Valores cadastrados</p>
 
-        <h2>Despesas</h2>
+        </div>
 
-        <h3>R$ 7.000,00</h3>
+      </article>
 
-        <p>Gastos registrados</p>
+      <!-- DESPESAS -->
+      <article class="stat-card">
 
-      </div>
+        <div class="stat-icon despesa-icon">
+          <i class="fa-solid fa-arrow-trend-down"></i>
+        </div>
 
-      <div class="stat-card">
+        <div class="stat-content">
 
-        <h2>Investimentos</h2>
+          <span class="stat-label">
+            Despesas do mês
+          </span>
 
-        <h3>R$ 5.000,00</h3>
+          <h2>R$ 7.000,00</h2>
 
-        <p>Total investido</p>
+          <p>Gastos registrados</p>
 
-      </div>
+        </div>
+
+      </article>
+
+      <!-- SALDO -->
+      <article class="stat-card">
+
+        <div class="stat-icon saldo-icon">
+          <i class="fa-solid fa-wallet"></i>
+        </div>
+
+        <div class="stat-content">
+
+          <span class="stat-label">
+            Saldo do mês
+          </span>
+
+          <h2>R$ 5.000,00</h2>
+
+          <p>Receitas menos despesas</p>
+
+        </div>
+
+      </article>
+
+      <!-- INVESTIMENTOS -->
+      <article class="stat-card">
+
+        <div class="stat-icon investimento-icon">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+
+        <div class="stat-content">
+
+          <span class="stat-label">
+            Total investido
+          </span>
+
+          <h2>R$ 5.000,00</h2>
+
+          <p>Investimentos cadastrados</p>
+
+        </div>
+
+      </article>
 
     </section>
 
     <!-- TABELA -->
     <section class="table-card">
 
-      <div class="table-title">
+      <div class="table-header">
 
-        <h2>Histórico Financeiro</h2>
+        <div class="table-title">
+
+          <span>RESUMO MENSAL</span>
+
+          <h2>Histórico Financeiro</h2>
+
+        </div>
+
+        <!-- FILTROS -->
+        <div class="table-filters">
+
+          <label>
+            <span>Mês</span>
+
+            <select id="filtroMes">
+              <option value="todos">Todos</option>
+              <option value="janeiro">Janeiro</option>
+              <option value="fevereiro">Fevereiro</option>
+              <option value="marco">Março</option>
+              <option value="abril">Abril</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Ano</span>
+
+            <select id="filtroAno">
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+            </select>
+          </label>
+
+        </div>
 
       </div>
 
-      <table>
+      <div class="table-responsive">
 
-        <thead>
+        <table>
 
-          <tr>
+          <thead>
 
-            <th>Mês</th>
+            <tr>
+              <th>Mês</th>
+              <th>Receita</th>
+              <th>Despesas</th>
+              <th>Resultado</th>
+              <th>Ações</th>
+            </tr>
 
-            <th>Receita</th>
+          </thead>
 
-            <th>Despesas</th>
+          <tbody>
 
-            <th>Resultado</th>
+            <tr data-mes="janeiro">
 
-          </tr>
+              <td>Janeiro</td>
 
-        </thead>
+              <td class="valor-receita">
+                R$ 8.000,00
+              </td>
 
-        <tbody>
+              <td class="valor-despesa">
+                R$ 4.500,00
+              </td>
 
-          <tr>
+              <td class="positive">
+                + R$ 3.500,00
+              </td>
 
-            <td>Janeiro</td>
+              <td class="acoes-tabela">
 
-            <td>R$ 8.000</td>
+                <button
+                  type="button"
+                  class="btn-editar"
+                  aria-label="Editar Janeiro"
+                >
+                  <i class="fa-solid fa-pen"></i>
+                </button>
 
-            <td>R$ 4.500</td>
+                <button
+                  type="button"
+                  class="btn-excluir"
+                  aria-label="Excluir Janeiro"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </button>
 
-            <td class="positive">+ R$ 3.500</td>
+              </td>
 
-          </tr>
+            </tr>
 
-          <tr>
+            <tr data-mes="fevereiro">
 
-            <td>Fevereiro</td>
+              <td>Fevereiro</td>
 
-            <td>R$ 9.200</td>
+              <td class="valor-receita">
+                R$ 9.200,00
+              </td>
 
-            <td>R$ 4.700</td>
+              <td class="valor-despesa">
+                R$ 4.700,00
+              </td>
 
-            <td class="positive">+ R$ 4.500</td>
+              <td class="positive">
+                + R$ 4.500,00
+              </td>
 
-          </tr>
+              <td class="acoes-tabela">
 
-          <tr>
+                <button
+                  type="button"
+                  class="btn-editar"
+                  aria-label="Editar Fevereiro"
+                >
+                  <i class="fa-solid fa-pen"></i>
+                </button>
 
-            <td>Março</td>
+                <button
+                  type="button"
+                  class="btn-excluir"
+                  aria-label="Excluir Fevereiro"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </button>
 
-            <td>R$ 7.800</td>
+              </td>
 
-            <td>R$ 5.100</td>
+            </tr>
 
-            <td class="positive">+ R$ 2.700</td>
+            <tr data-mes="marco">
 
-          </tr>
+              <td>Março</td>
 
-          <tr>
+              <td class="valor-receita">
+                R$ 7.800,00
+              </td>
 
-            <td>Abril</td>
+              <td class="valor-despesa">
+                R$ 5.100,00
+              </td>
 
-            <td>R$ 10.000</td>
+              <td class="positive">
+                + R$ 2.700,00
+              </td>
 
-            <td>R$ 5.300</td>
+              <td class="acoes-tabela">
 
-            <td class="positive">+ R$ 4.700</td>
+                <button
+                  type="button"
+                  class="btn-editar"
+                  aria-label="Editar Março"
+                >
+                  <i class="fa-solid fa-pen"></i>
+                </button>
 
-          </tr>
+                <button
+                  type="button"
+                  class="btn-excluir"
+                  aria-label="Excluir Março"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </button>
 
-        </tbody>
+              </td>
 
-      </table>
+            </tr>
+
+            <tr data-mes="abril">
+
+              <td>Abril</td>
+
+              <td class="valor-receita">
+                R$ 10.000,00
+              </td>
+
+              <td class="valor-despesa">
+                R$ 5.300,00
+              </td>
+
+              <td class="positive">
+                + R$ 4.700,00
+              </td>
+
+              <td class="acoes-tabela">
+
+                <button
+                  type="button"
+                  class="btn-editar"
+                  aria-label="Editar Abril"
+                >
+                  <i class="fa-solid fa-pen"></i>
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-excluir"
+                  aria-label="Excluir Abril"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
 
     </section>
 
   </main>
 
-  <!-- SCRIPT MENU -->
   <script>
     const toggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("menu");
+    const filtroMes = document.getElementById("filtroMes");
 
     toggle.addEventListener("click", () => {
       menu.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (event) => {
+      const clicouNoMenu = menu.contains(event.target);
+      const clicouNoBotao = toggle.contains(event.target);
+
+      if (!clicouNoMenu && !clicouNoBotao) {
+        menu.classList.remove("active");
+      }
+    });
+
+    filtroMes.addEventListener("change", () => {
+      const mesSelecionado = filtroMes.value;
+      const linhas = document.querySelectorAll("tbody tr");
+
+      linhas.forEach((linha) => {
+        const mesDaLinha = linha.dataset.mes;
+
+        if (
+          mesSelecionado === "todos" ||
+          mesSelecionado === mesDaLinha
+        ) {
+          linha.style.display = "";
+        } else {
+          linha.style.display = "none";
+        }
+      });
     });
   </script>
 
