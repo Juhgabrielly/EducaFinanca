@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,674 +9,895 @@
 
   <link rel="stylesheet" href="../css/investimento.css">
 
-  <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
-    rel="stylesheet"
-  >
+    rel="stylesheet">
 
-  <!-- ÍCONES -->
   <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-  >
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
+<header>
 
-    <div class="logo">
+  <div class="logo">
+    <img src="educa.png" alt="Logo do Educa Finança" class="logo-img">
+    <h2>Educa Finança</h2>
+  </div>
 
-      <img
-        src="educa.png"
-        alt="Logo do Educa Finança"
-        class="logo-img"
-      >
+  <button class="menu-toggle" id="menu-toggle">
+    <i class="fa-solid fa-bars"></i>
+  </button>
 
-      <h2>Educa Finança</h2>
+  <nav class="menu" id="menu">
+    <a href="home.html">Home</a>
+    <a href="cursos.html">Cursos</a>
+    <a href="relatório.html">Relatórios</a>
+    <a href="investimento.html" class="ativo">Investimentos</a>
+    <a href="usuario.html">Perfil</a>
+  </nav>
+
+</header>
+
+
+<main class="invest-page">
+
+  <section class="invest-header">
+
+    <span class="mini-title">ORGANIZAÇÃO FINANCEIRA</span>
+
+    <h1>Seus <span>Investimentos</span></h1>
+
+    <p class="description">
+      Acompanhe seu patrimônio, organize sua carteira e monitore
+      suas metas financeiras.
+    </p>
+
+    <div class="invest-actions">
+
+      <button
+        class="action-btn investment-btn"
+        onclick="cadastrarInvestimento()">
+        <i class="fa-solid fa-plus"></i>
+        Adicionar investimento
+      </button>
+
+      <button
+        class="action-btn goal-btn"
+        onclick="cadastrarMeta()">
+        <i class="fa-solid fa-bullseye"></i>
+        Adicionar meta
+      </button>
+
+      <button
+        class="action-btn reserve-btn"
+        onclick="editarReserva()">
+        <i class="fa-solid fa-shield-halved"></i>
+        Atualizar reserva
+      </button>
 
     </div>
 
-    <button
-      type="button"
-      class="menu-toggle"
-      id="menu-toggle"
-      aria-label="Abrir menu"
-    >
-      <i class="fa-solid fa-bars"></i>
-    </button>
+  </section>
 
-    <!-- MENU -->
-    <nav class="menu" id="menu">
+  <section class="resume-grid">
 
-      <a href="home.html">Home</a>
+    <article class="resume-card">
 
-      <a href="cursos.html">Cursos</a>
+      <div class="resume-icon patrimonio-icon">
+        <i class="fa-solid fa-wallet"></i>
+      </div>
 
-      <a href="relatorio.html">Relatórios</a>
+      <div class="resume-content">
+        <span>Total investido</span>
+        <h2 id="total-investido">R$ 0,00</h2>
+        <p>Valor atual da carteira</p>
+      </div>
 
-      <a href="investimento.html" class="ativo">
-        Investimentos
-      </a>
+    </article>
 
-      <a href="usuario.html">Perfil</a>
 
-    </nav>
+    <article class="resume-card">
 
-  </header>
+      <div class="resume-icon rentabilidade-icon">
+        <i class="fa-solid fa-arrow-trend-up"></i>
+      </div>
 
-  <!-- CONTEÚDO -->
-  <main class="invest-page">
+      <div class="resume-content">
+        <span>Rentabilidade acumulada</span>
+        <h2 id="rentabilidade" class="positive-value">0%</h2>
+        <p>Carteira atual</p>
+      </div>
 
-    <!-- CABEÇALHO -->
-    <section class="invest-header">
+    </article>
 
-      <span class="mini-title">
-        ORGANIZAÇÃO FINANCEIRA
-      </span>
 
-      <h1>
-        Seus
-        <span>Investimentos</span>
-      </h1>
+    <article class="resume-card">
 
-      <p class="description">
-        Acompanhe seu patrimônio, organize sua carteira e monitore o
-        progresso das suas metas financeiras.
+      <div class="resume-icon reserva-icon">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+
+      <div class="resume-content">
+        <span>Reserva de emergência</span>
+
+        <h2 id="reserva">R$ 0,00</h2>
+
+        <p>Valor reservado</p>
+
+        <button class="edit-btn" onclick="editarReserva()">
+          <i class="fa-solid fa-pen"></i>
+          Editar
+        </button>
+      </div>
+
+    </article>
+
+  </section>
+
+  <section class="invest-section">
+
+    <div class="section-header">
+
+      <div>
+        <span class="section-label">PATRIMÔNIO</span>
+        <h2>Sua carteira</h2>
+      </div>
+
+      <p>Seus investimentos cadastrados.</p>
+
+    </div>
+
+    <div class="invest-grid" id="investments-container"></div>
+
+  </section>
+
+  <section class="goal-section">
+
+    <div class="section-header">
+
+      <div>
+        <span class="section-label">OBJETIVOS</span>
+        <h2>Metas Financeiras</h2>
+      </div>
+
+      <button class="new-goal-btn" onclick="cadastrarMeta()">
+        <i class="fa-solid fa-plus"></i>
+        Nova meta
+      </button>
+
+    </div>
+
+    <div id="goals-container"></div>
+
+  </section>
+
+</main>
+
+
+<script>
+
+const $ = id => document.getElementById(id);
+
+const TAXA_MENSAL = 0.01;
+
+const TIPOS = {
+  "CDB": "Renda fixa",
+  "Tesouro Direto": "Renda fixa",
+  "LCI/LCA": "Renda fixa",
+  "Ações": "Renda variável",
+  "FIIs": "Renda variável",
+  "ETFs": "Renda variável"
+};
+
+let investimentos =
+  JSON.parse(localStorage.getItem("investimentos")) || [];
+
+let metas =
+  JSON.parse(localStorage.getItem("metas")) || [];
+
+let reserva =
+  Number(localStorage.getItem("reserva")) || 0;
+
+const dinheiro = valor =>
+  Number(valor || 0).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+
+
+const numero = valor =>
+  Number(
+    String(valor)
+      .replace(/\./g, "")
+      .replace(",", ".")
+  );
+
+
+function salvar() {
+
+  localStorage.setItem(
+    "investimentos",
+    JSON.stringify(investimentos)
+  );
+
+  localStorage.setItem(
+    "metas",
+    JSON.stringify(metas)
+  );
+
+  localStorage.setItem(
+    "reserva",
+    reserva
+  );
+}
+
+$("menu-toggle").onclick = () =>
+  $("menu").classList.toggle("active");
+
+
+document.addEventListener("click", e => {
+
+  if (
+    !$("menu").contains(e.target) &&
+    !$("menu-toggle").contains(e.target)
+  ) {
+    $("menu").classList.remove("active");
+  }
+
+});
+
+function atualizarPatrimonio() {
+
+  const aplicado = investimentos.reduce(
+    (soma, i) => soma + i.valorAplicado,
+    0
+  );
+
+  const patrimonio = investimentos.reduce(
+    (soma, i) => soma + i.valorAtual,
+    0
+  );
+
+  const rendimento = aplicado
+    ? ((patrimonio - aplicado) / aplicado) * 100
+    : 0;
+
+  $("total-investido").textContent =
+    dinheiro(patrimonio);
+
+  $("rentabilidade").textContent =
+    `${rendimento.toFixed(1).replace(".", ",")}%`;
+
+}
+
+function mostrarReserva() {
+
+  $("reserva").textContent =
+    dinheiro(reserva);
+
+}
+
+
+function editarReserva() {
+
+  const resposta = prompt(
+    `Reserva atual: ${dinheiro(reserva)}
+
+Digite o novo valor ou deixe vazio para manter:`
+  );
+
+  if (
+    resposta === null ||
+    !resposta.trim()
+  ) return;
+
+  const valor = numero(resposta);
+
+  if (isNaN(valor) || valor < 0) {
+    alert("Digite um valor válido.");
+    return;
+  }
+
+  reserva = valor;
+
+  salvar();
+  mostrarReserva();
+
+}
+
+function calcularValor(valor, meses) {
+
+  return valor *
+    Math.pow(1 + TAXA_MENSAL, meses);
+
+}
+
+
+function escolherTipo() {
+
+  const tipos = Object.keys(TIPOS);
+
+  const lista = tipos
+    .map((tipo, i) => `${i + 1} - ${tipo}`)
+    .join("\n");
+
+  const resposta = prompt(
+    `Escolha o investimento:
+
+${lista}
+
+Digite o número:`
+  );
+
+  if (
+    resposta === null ||
+    !resposta.trim()
+  ) return null;
+
+  const indice = Number(resposta) - 1;
+
+  if (
+    !Number.isInteger(indice) ||
+    !tipos[indice]
+  ) {
+    alert("Escolha uma opção válida.");
+    return null;
+  }
+
+  return {
+    nome: tipos[indice],
+    tipo: TIPOS[tipos[indice]]
+  };
+
+}
+
+
+function cadastrarInvestimento() {
+
+  const tipo = escolherTipo();
+
+  if (!tipo) return;
+
+
+  const valorTexto = prompt(
+    `${tipo.nome}
+
+Digite o valor investido:`
+  );
+
+  if (
+    valorTexto === null ||
+    !valorTexto.trim()
+  ) return;
+
+
+  const valor = numero(valorTexto);
+
+  if (
+    isNaN(valor) ||
+    valor <= 0
+  ) {
+    alert("Digite um valor válido.");
+    return;
+  }
+
+
+  const mesesTexto = prompt(
+    "Por quantos meses deseja manter o investimento?"
+  );
+
+  if (
+    mesesTexto === null ||
+    !mesesTexto.trim()
+  ) return;
+
+
+  const meses = Number(mesesTexto);
+
+  if (
+    !Number.isInteger(meses) ||
+    meses <= 0
+  ) {
+    alert("Digite uma quantidade de meses válida.");
+    return;
+  }
+
+
+  investimentos.push({
+
+    id: Date.now(),
+
+    nome: tipo.nome,
+
+    tipo: tipo.tipo,
+
+    valorAplicado: valor,
+
+    meses,
+
+    valorAtual: calcularValor(valor, meses)
+
+  });
+
+
+  salvar();
+  mostrarInvestimentos();
+
+  alert("Investimento cadastrado com sucesso!");
+
+}
+
+
+function mostrarInvestimentos() {
+
+  const container =
+    $("investments-container");
+
+
+  if (!investimentos.length) {
+
+    container.innerHTML = `
+      <p class="empty-message">
+        Nenhum investimento cadastrado.
       </p>
+    `;
 
-      <!-- BOTÕES -->
-      <div class="invest-actions">
+    atualizarPatrimonio();
+    return;
+  }
 
-        <button
-          type="button"
-          class="action-btn investment-btn"
-          onclick="cadastrarInvestimento()"
-        >
-          <i class="fa-solid fa-plus"></i>
-          Adicionar investimento
-        </button>
 
-        <button
-          type="button"
-          class="action-btn goal-btn"
-          onclick="cadastrarMeta()"
-        >
-          <i class="fa-solid fa-bullseye"></i>
-          Adicionar meta
-        </button>
+  container.innerHTML =
+    investimentos.map(i => {
 
-        <button
-          type="button"
-          class="action-btn reserve-btn"
-        >
-          <i class="fa-solid fa-shield-halved"></i>
-          Atualizar reserva
-        </button>
+      const rendimento =
+        i.valorAplicado
+          ? ((i.valorAtual - i.valorAplicado) /
+             i.valorAplicado) * 100
+          : 0;
 
-      </div>
+      const icone =
+        i.tipo === "Renda fixa"
+          ? "fa-building-columns"
+          : "fa-chart-line";
 
-    </section>
 
-    <!-- RESUMO -->
-    <section class="resume-grid">
-
-      <!-- PATRIMÔNIO -->
-      <article class="resume-card">
-
-        <div class="resume-icon patrimonio-icon">
-          <i class="fa-solid fa-wallet"></i>
-        </div>
-
-        <div class="resume-content">
-
-          <span>Patrimônio investido</span>
-
-          <h2 id="total-investido">
-            R$ 40.000,00
-          </h2>
-
-          <p>Valor atual da carteira</p>
-
-        </div>
-
-      </article>
-
-      <!-- RENTABILIDADE -->
-      <article class="resume-card">
-
-        <div class="resume-icon rentabilidade-icon">
-          <i class="fa-solid fa-arrow-trend-up"></i>
-        </div>
-
-        <div class="resume-content">
-
-          <span>Rentabilidade acumulada</span>
-
-          <h2 class="positive-value">
-            + 12,5%
-          </h2>
-
-          <p>Últimos 12 meses</p>
-
-        </div>
-
-      </article>
-
-      <!-- RESERVA -->
-      <article class="resume-card">
-
-        <div class="resume-icon reserva-icon">
-          <i class="fa-solid fa-shield-halved"></i>
-        </div>
-
-        <div class="resume-content">
-
-          <span>Reserva de emergência</span>
-
-          <h2>
-            R$ 20.000,00
-          </h2>
-
-          <p>Valor reservado</p>
-
-        </div>
-
-      </article>
-
-    </section>
-
-    <!-- CARTEIRA -->
-    <section class="invest-section">
-
-      <div class="section-header">
-
-        <div>
-
-          <span class="section-label">
-            PATRIMÔNIO
-          </span>
-
-          <h2>Sua carteira</h2>
-
-        </div>
-
-        <p>
-          Investimentos cadastrados manualmente por você.
-        </p>
-
-      </div>
-
-      <div class="invest-grid" id="investments-container">
-
-        <!-- RENDA VARIÁVEL -->
+      return `
         <article class="invest-card">
 
           <div class="invest-card-top">
 
             <div class="invest-icon variable-icon">
-              <i class="fa-solid fa-chart-line"></i>
+              <i class="fa-solid ${icone}"></i>
             </div>
 
             <span class="invest-type">
-              Renda variável
+              ${i.tipo}
             </span>
 
           </div>
 
-          <h3>Investimento em ações</h3>
+
+          <h3>${i.nome}</h3>
 
           <p>
-            Investimentos em empresas com potencial de valorização.
+            Investimento por ${i.meses} mês(es).
           </p>
+
 
           <div class="invest-values">
 
             <div>
-              <span>Valor aplicado</span>
-              <strong>R$ 20.000,00</strong>
+              <span>Valor investido</span>
+              <strong>${dinheiro(i.valorAplicado)}</strong>
             </div>
 
             <div>
               <span>Valor atual</span>
-              <strong>R$ 24.000,00</strong>
+              <strong>${dinheiro(i.valorAtual)}</strong>
             </div>
 
           </div>
 
+
           <div class="invest-return positive-return">
+
             <i class="fa-solid fa-arrow-trend-up"></i>
-            +20% de rendimento
+
+            +${rendimento
+              .toFixed(1)
+              .replace(".", ",")}% de rendimento
+
           </div>
+
 
           <div class="invest-card-actions">
 
-            <button type="button" class="edit-btn">
+            <button
+              class="edit-btn"
+              onclick="editarInvestimento(${i.id})">
+
               <i class="fa-solid fa-pen"></i>
               Editar
+
             </button>
 
-            <button type="button" class="delete-btn">
+
+            <button
+              class="delete-btn"
+              onclick="excluirInvestimento(${i.id})">
+
               <i class="fa-solid fa-trash"></i>
               Excluir
+
             </button>
 
           </div>
 
         </article>
+      `;
 
-        <!-- RENDA FIXA -->
-        <article class="invest-card">
+    }).join("");
 
-          <div class="invest-card-top">
 
-            <div class="invest-icon fixed-icon">
-              <i class="fa-solid fa-building-columns"></i>
-            </div>
+  atualizarPatrimonio();
 
-            <span class="invest-type">
-              Renda fixa
-            </span>
+}
 
-          </div>
 
-          <h3>Investimento em CDB</h3>
+function editarInvestimento(id) {
 
-          <p>
-            Modalidade segura e previsível para objetivos de curto e médio prazo.
-          </p>
+  const i =
+    investimentos.find(item => item.id === id);
 
-          <div class="invest-values">
+  if (!i) return;
 
-            <div>
-              <span>Valor aplicado</span>
-              <strong>R$ 20.000,00</strong>
-            </div>
 
-            <div>
-              <span>Valor atual</span>
-              <strong>R$ 21.500,00</strong>
-            </div>
+  const valorTexto = prompt(
+    `Valor investido atual: ${dinheiro(i.valorAplicado)}
 
-          </div>
+Digite o novo valor ou deixe vazio para manter:`
+  );
 
-          <div class="invest-return positive-return">
-            <i class="fa-solid fa-arrow-trend-up"></i>
-            +7,5% de rendimento
-          </div>
 
-          <div class="invest-card-actions">
+  if (
+    valorTexto !== null &&
+    valorTexto.trim()
+  ) {
 
-            <button type="button" class="edit-btn">
-              <i class="fa-solid fa-pen"></i>
-              Editar
-            </button>
+    const valor = numero(valorTexto);
 
-            <button type="button" class="delete-btn">
-              <i class="fa-solid fa-trash"></i>
-              Excluir
-            </button>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-    <!-- METAS -->
-    <section class="goal-section">
-
-      <div class="section-header">
-
-        <div>
-
-          <span class="section-label">
-            OBJETIVOS
-          </span>
-
-          <h2>Metas Financeiras</h2>
-
-        </div>
-
-        <button
-          type="button"
-          class="new-goal-btn"
-          onclick="cadastrarMeta()"
-        >
-          <i class="fa-solid fa-plus"></i>
-          Nova meta
-        </button>
-
-      </div>
-
-      <!-- METAS INSERIDAS PELO JAVASCRIPT -->
-      <div id="goals-container"></div>
-
-    </section>
-
-  </main>
-
-  <script>
-    /* =========================
-       MENU
-    ========================= */
-
-    const toggle = document.getElementById("menu-toggle");
-    const menu = document.getElementById("menu");
-
-    toggle.addEventListener("click", () => {
-      menu.classList.toggle("active");
-    });
-
-    document.addEventListener("click", (event) => {
-      const clicouNoMenu = menu.contains(event.target);
-      const clicouNoBotao = toggle.contains(event.target);
-
-      if (!clicouNoMenu && !clicouNoBotao) {
-        menu.classList.remove("active");
-      }
-    });
-
-    /* =========================
-       FORMATAÇÃO DE DINHEIRO
-    ========================= */
-
-    function formatarDinheiro(valor) {
-      return Number(valor).toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
+    if (
+      !isNaN(valor) &&
+      valor > 0
+    ) {
+      i.valorAplicado = valor;
+    } else {
+      alert("Valor inválido. O anterior foi mantido.");
     }
 
-    /* =========================
-       METAS
-    ========================= */
+  }
 
-    function pegarMetas() {
-      const metasSalvas = JSON.parse(
-        localStorage.getItem("metas")
-      );
 
-      if (metasSalvas && metasSalvas.length > 0) {
-        return metasSalvas;
-      }
+  const mesesTexto = prompt(
+    `Tempo atual: ${i.meses} mês(es)
 
-      const metasIniciais = [
-        {
-          id: 1,
-          nome: "Comprar um Carro",
-          valorAtual: 32000,
-          valorMeta: 40000
-        },
-        {
-          id: 2,
-          nome: "Viagem Internacional",
-          valorAtual: 10050,
-          valorMeta: 15000
-        },
-        {
-          id: 3,
-          nome: "Independência Financeira",
-          valorAtual: 120000,
-          valorMeta: 500000
-        }
-      ];
+Digite os novos meses ou deixe vazio para manter:`
+  );
 
-      salvarMetas(metasIniciais);
 
-      return metasIniciais;
+  if (
+    mesesTexto !== null &&
+    mesesTexto.trim()
+  ) {
+
+    const meses = Number(mesesTexto);
+
+    if (
+      Number.isInteger(meses) &&
+      meses > 0
+    ) {
+      i.meses = meses;
+    } else {
+      alert("Quantidade inválida. O valor anterior foi mantido.");
     }
 
-    function salvarMetas(metas) {
-      localStorage.setItem(
-        "metas",
-        JSON.stringify(metas)
-      );
-    }
+  }
 
-    function calcularPercentual(valorAtual, valorMeta) {
-      if (valorMeta <= 0) {
-        return 0;
-      }
 
-      const percentual = Math.round(
-        (valorAtual / valorMeta) * 100
-      );
+  i.valorAtual =
+    calcularValor(
+      i.valorAplicado,
+      i.meses
+    );
 
-      return Math.min(percentual, 100);
-    }
 
-    function mostrarMetas() {
-      const container = document.getElementById(
-        "goals-container"
-      );
+  salvar();
+  mostrarInvestimentos();
 
-      const metas = pegarMetas();
+}
 
-      container.innerHTML = "";
 
-      metas.forEach((meta) => {
-        const percentual = calcularPercentual(
-          meta.valorAtual,
-          meta.valorMeta
+function excluirInvestimento(id) {
+
+  if (
+    !confirm(
+      "Deseja realmente excluir este investimento?"
+    )
+  ) return;
+
+
+  investimentos =
+    investimentos.filter(
+      i => i.id !== id
+    );
+
+
+  salvar();
+  mostrarInvestimentos();
+
+}
+
+function cadastrarMeta() {
+
+  const nome = prompt(
+    "Digite o nome da meta:"
+  );
+
+  if (
+    nome === null ||
+    !nome.trim()
+  ) return;
+
+
+  const metaTexto = prompt(
+    "Digite o valor total da meta:"
+  );
+
+  if (
+    metaTexto === null ||
+    !metaTexto.trim()
+  ) return;
+
+
+  const valorMeta =
+    numero(metaTexto);
+
+
+  if (
+    isNaN(valorMeta) ||
+    valorMeta <= 0
+  ) {
+    alert("Digite um valor válido.");
+    return;
+  }
+
+
+  const atualTexto = prompt(
+    "Quanto você já possui?"
+  );
+
+  if (
+    atualTexto === null ||
+    !atualTexto.trim()
+  ) return;
+
+
+  const valorAtual =
+    numero(atualTexto);
+
+
+  if (
+    isNaN(valorAtual) ||
+    valorAtual < 0
+  ) {
+    alert("Digite um valor válido.");
+    return;
+  }
+
+
+  metas.push({
+
+    id: Date.now(),
+
+    nome: nome.trim(),
+
+    valorAtual,
+
+    valorMeta
+
+  });
+
+
+  salvar();
+  mostrarMetas();
+
+}
+
+
+function mostrarMetas() {
+
+  const container =
+    $("goals-container");
+
+
+  container.innerHTML =
+    metas.map(meta => {
+
+      const percentual =
+        Math.min(
+          Math.round(
+            meta.valorAtual /
+            meta.valorMeta * 100
+          ),
+          100
         );
 
-        const valorFaltante = Math.max(
-          meta.valorMeta - meta.valorAtual,
+
+      const faltante =
+        Math.max(
+          meta.valorMeta -
+          meta.valorAtual,
           0
         );
 
-        container.innerHTML += `
-          <article class="goal-card">
 
-            <div class="goal-top">
+      return `
+        <article class="goal-card">
 
-              <div class="goal-title">
+          <div class="goal-top">
 
-                <div class="goal-icon">
-                  <i class="fa-solid fa-bullseye"></i>
-                </div>
+            <div class="goal-title">
 
-                <div>
-                  <h3>${meta.nome}</h3>
-
-                  <p>
-                    ${formatarDinheiro(meta.valorAtual)}
-                    de
-                    ${formatarDinheiro(meta.valorMeta)}
-                  </p>
-                </div>
-
+              <div class="goal-icon">
+                <i class="fa-solid fa-bullseye"></i>
               </div>
 
-              <span class="percent">
-                ${percentual}%
-              </span>
+              <div>
 
-            </div>
+                <h3>${meta.nome}</h3>
 
-            <div class="progress-bar">
-
-              <div
-                class="progress"
-                style="width: ${percentual}%"
-              ></div>
-
-            </div>
-
-            <div class="goal-footer">
-
-              <span>
-                Faltam ${formatarDinheiro(valorFaltante)}
-              </span>
-
-              <div class="goal-actions">
-
-                <button
-                  type="button"
-                  class="add-value-btn"
-                  onclick="adicionarValorMeta(${meta.id})"
-                >
-                  <i class="fa-solid fa-plus"></i>
-                  Adicionar valor
-                </button>
-
-                <button
-                  type="button"
-                  class="goal-delete-btn"
-                  onclick="excluirMeta(${meta.id})"
-                  aria-label="Excluir meta"
-                >
-                  <i class="fa-solid fa-trash"></i>
-                </button>
+                <p>
+                  ${dinheiro(meta.valorAtual)}
+                  de
+                  ${dinheiro(meta.valorMeta)}
+                </p>
 
               </div>
 
             </div>
 
-          </article>
-        `;
-      });
-    }
+            <span class="percent">
+              ${percentual}%
+            </span>
 
-    function cadastrarMeta() {
-      const nome = prompt(
-        "Digite o nome da meta:"
-      );
+          </div>
 
-      if (!nome || !nome.trim()) {
-        return;
-      }
 
-      const valorMeta = Number(
-        prompt("Digite o valor total da meta:")
-      );
+          <div class="progress-bar">
 
-      if (!valorMeta || valorMeta <= 0) {
-        alert("Digite um valor válido para a meta.");
-        return;
-      }
+            <div
+              class="progress"
+              style="width:${percentual}%">
+            </div>
 
-      const valorAtual = Number(
-        prompt("Quanto você já possui para essa meta?")
-      );
+          </div>
 
-      if (
-        Number.isNaN(valorAtual) ||
-        valorAtual < 0
-      ) {
-        alert("Digite um valor atual válido.");
-        return;
-      }
 
-      const metas = pegarMetas();
+          <div class="goal-footer">
 
-      metas.push({
-        id: Date.now(),
-        nome: nome.trim(),
-        valorAtual,
-        valorMeta
-      });
+            <span>
+              Faltam ${dinheiro(faltante)}
+            </span>
 
-      salvarMetas(metas);
-      mostrarMetas();
 
-      alert("Meta cadastrada com sucesso!");
-    }
+            <div class="goal-actions">
 
-    function adicionarValorMeta(id) {
-      const valor = Number(
-        prompt("Digite o valor que deseja adicionar:")
-      );
+              <button
+                class="add-value-btn"
+                onclick="adicionarValorMeta(${meta.id})">
 
-      if (!valor || valor <= 0) {
-        alert("Digite um valor válido.");
-        return;
-      }
+                <i class="fa-solid fa-plus"></i>
+                Adicionar valor
 
-      const metas = pegarMetas();
+              </button>
 
-      const meta = metas.find(
-        (item) => item.id === id
-      );
 
-      if (!meta) {
-        return;
-      }
+              <button
+                class="goal-delete-btn"
+                onclick="excluirMeta(${meta.id})">
 
-      meta.valorAtual += valor;
+                <i class="fa-solid fa-trash"></i>
 
-      if (meta.valorAtual > meta.valorMeta) {
-        meta.valorAtual = meta.valorMeta;
-      }
+              </button>
 
-      salvarMetas(metas);
-      mostrarMetas();
-    }
+            </div>
 
-    function excluirMeta(id) {
-      const confirmou = confirm(
-        "Deseja realmente excluir esta meta?"
-      );
+          </div>
 
-      if (!confirmou) {
-        return;
-      }
+        </article>
+      `;
 
-      const metas = pegarMetas().filter(
-        (meta) => meta.id !== id
-      );
+    }).join("");
 
-      salvarMetas(metas);
-      mostrarMetas();
-    }
+}
 
-    /* =========================
-       INVESTIMENTOS
-    ========================= */
 
-    function cadastrarInvestimento() {
-      const nome = prompt(
-        "Digite o nome do investimento:"
-      );
+function adicionarValorMeta(id) {
 
-      if (!nome || !nome.trim()) {
-        return;
-      }
+  const meta =
+    metas.find(m => m.id === id);
 
-      const tipo = prompt(
-        "Digite o tipo do investimento:"
-      );
+  if (!meta) return;
 
-      const valorAplicado = Number(
-        prompt("Digite o valor aplicado:")
-      );
 
-      if (!valorAplicado || valorAplicado <= 0) {
-        alert("Digite um valor aplicado válido.");
-        return;
-      }
+  const resposta = prompt(
+    "Digite o valor que deseja adicionar:"
+  );
 
-      alert(
-        `Investimento "${nome}" cadastrado com sucesso!`
-      );
 
-      /*
-        Depois você pode salvar esses dados
-        no banco de dados ou no localStorage.
-      */
-    }
+  if (
+    resposta === null ||
+    !resposta.trim()
+  ) return;
 
-    /* INICIALIZAÇÃO */
-    mostrarMetas();
-  </script>
+
+  const valor = numero(resposta);
+
+
+  if (
+    isNaN(valor) ||
+    valor <= 0
+  ) {
+    alert("Digite um valor válido.");
+    return;
+  }
+
+
+  meta.valorAtual =
+    Math.min(
+      meta.valorAtual + valor,
+      meta.valorMeta
+    );
+
+
+  salvar();
+  mostrarMetas();
+
+}
+
+
+function excluirMeta(id) {
+
+  if (
+    !confirm(
+      "Deseja realmente excluir esta meta?"
+    )
+  ) return;
+
+
+  metas =
+    metas.filter(
+      meta => meta.id !== id
+    );
+
+
+  salvar();
+  mostrarMetas();
+
+}
+
+mostrarReserva();
+mostrarInvestimentos();
+mostrarMetas();
+
+</script>
 
 </body>
 </html>
