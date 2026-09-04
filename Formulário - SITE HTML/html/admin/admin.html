@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin - Educa Finança</title>
+
+  <link rel="stylesheet" href="../../css/admin.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+  >
+</head>
+
+<body>
+
+  <aside class="sidebar">
+
+    <div class="logo">
+      <h2>Educa Finança</h2>
+      <span>ADMIN</span>
+    </div>
+
+    <nav>
+
+      <a href="admin.html" class="ativo">
+        <i class="fa-solid fa-chart-line"></i>
+        Dashboard
+      </a>
+
+      <a href="usuarios.html">
+        <i class="fa-solid fa-users"></i>
+        Usuários
+      </a>
+
+      <a href="cursos.html">
+        <i class="fa-solid fa-graduation-cap"></i>
+        Cursos
+      </a>
+
+      <a href="resultados.html">
+        <i class="fa-solid fa-square-poll-vertical"></i>
+        Resultados
+      </a>
+
+      <button id="sair">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Sair
+      </button>
+
+    </nav>
+
+  </aside>
+
+
+  <main>
+
+    <header class="topo">
+
+      <div>
+        <p>Painel Administrativo</p>
+        <h1>Dashboard</h1>
+      </div>
+
+      <div class="admin-info">
+        <span id="nomeAdmin">Administrador</span>
+      </div>
+
+    </header>
+
+
+    <section class="cards">
+
+      <div class="card">
+
+        <div class="card-icon">
+          <i class="fa-solid fa-users"></i>
+        </div>
+
+        <div>
+          <span>Usuários</span>
+          <h2 id="totalUsuarios">0</h2>
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          <i class="fa-solid fa-crown"></i>
+        </div>
+
+        <div>
+          <span>Premium</span>
+          <h2 id="totalPremium">0</h2>
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          <i class="fa-solid fa-book"></i>
+        </div>
+
+        <div>
+          <span>Cursos</span>
+          <h2 id="totalCursos">0</h2>
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          <i class="fa-solid fa-check"></i>
+        </div>
+
+        <div>
+          <span>Cursos concluídos</span>
+          <h2 id="totalConcluidos">0</h2>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="painel">
+
+      <h2>Usuários recentes</h2>
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Plano</th>
+            <th>Tipo</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="tabelaUsuarios">
+        </tbody>
+
+      </table>
+
+    </section>
+
+  </main>
+
+
+  <script src="../../js/admin.js"></script>
+
+</body>
+
+</html>
