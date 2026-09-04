@@ -8,3 +8,4 @@ function abrirMenu(){
         menu.style.width = "250px";
     }
 }
+

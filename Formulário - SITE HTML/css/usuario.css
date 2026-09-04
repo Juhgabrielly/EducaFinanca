@@ -403,3 +403,55 @@ header{
   }
 
 }
+.perfil-avatar {
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.perfil-avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+#planoPerfil {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #7c3aed;
+  font-weight: 600;
+}
+.logout-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+
+  border: 1px solid #dc3545;
+  border-radius: 10px;
+
+  background: transparent;
+  color: #dc3545;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: #dc3545;
+  color: white;
+}

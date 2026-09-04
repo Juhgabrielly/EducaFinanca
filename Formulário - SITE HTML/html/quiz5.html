@@ -1,83 +1,271 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Quiz de Conhecimento</title>
-<link rel="stylesheet" href="../css/quiz.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz de Educação Financeira Empresarial</title>
+
+    <link rel="stylesheet" href="../css/quiz.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <div class="quiz-container">
 
-<h1>Quiz de Educação Financeira Empresarial</h1>
+    <h1>Quiz de Educação Financeira Empresarial</h1>
 
-<p class="pergunta">
-1. O vídeo sugere que oferecer educação financeira para os colaboradores é:
-</p>
+    <!-- PROGRESSO -->
+    <div class="progresso-area">
 
-<div class="opcoes">
+        <div class="progresso-texto">
+            <span id="numeroPergunta">Pergunta 1 de 3</span>
+            <span id="porcentagem">33%</span>
+        </div>
 
-<button onclick="errado()">A: Apenas um benefício opcional para as empresas.</button>
+        <div class="barra-progresso">
+            <div id="progresso"></div>
+        </div>
 
-<button onclick="certo()">B: Uma oportunidade para as empresas consolidarem boas práticas de gestão.</button>
+    </div>
 
-<button onclick="errado()">C: Uma estratégia arriscada que pode levar a mais dívidas.</button>
+    <!-- PERGUNTA 1 -->
+    <div class="questao ativa">
 
-<button onclick="errado()">D: Irrelevante para o sucesso de uma empresa.</button>
+        <p class="pergunta">
+            1. O vídeo sugere que oferecer educação financeira para os colaboradores é:
+        </p>
 
-</div>
+        <div class="opcoes">
 
-<p class="pergunta">
-2. Qual é o tema central do vídeo?
-</p>
+            <button class="opcao" data-correta="false">
+                A: Apenas um benefício opcional para as empresas.
+            </button>
 
-<div class="opcoes">
+            <button class="opcao correta" data-correta="true">
+                B: Uma oportunidade para as empresas consolidarem boas práticas de gestão.
+            </button>
 
-<button onclick="errado()">A: Como investir em ações de empresas.</button>
+            <button class="opcao" data-correta="false">
+                C: Uma estratégia arriscada que pode levar a mais dívidas.
+            </button>
 
-<button onclick="certo()">B: A importância da educação financeira como um benefício e necessidade para as empresas.</button>
+            <button class="opcao" data-correta="false">
+                D: Irrelevante para o sucesso de uma empresa.
+            </button>
 
-<button onclick="errado()">C: Estratégias para quitar dívidas pessoais.</button>
+        </div>
 
-<button onclick="errado()">D: Métodos para aprender matemática financeira do zero.</button>
+    </div>
 
-</div>
+    <!-- PERGUNTA 2 -->
+    <div class="questao">
 
-<p class="pergunta">
-3. Qual o tema principal abordado no vídeo, além da educação financeira corporativa?
-</p>
+        <p class="pergunta">
+            2. Qual é o tema central do vídeo?
+        </p>
 
-<div class="opcoes">
+        <div class="opcoes">
 
-<button onclick="errado()">A: Investimentos em renda fixa.</button>
+            <button class="opcao" data-correta="false">
+                A: Como investir em ações de empresas.
+            </button>
 
-<button onclick="errado()">B: Matemática financeira básica.</button>
+            <button class="opcao correta" data-correta="true">
+                B: A importância da educação financeira como um benefício e necessidade para as empresas.
+            </button>
 
-<button onclick="errado()">C: Como quitar dívidas pessoais.</button>
+            <button class="opcao" data-correta="false">
+                C: Estratégias para quitar dívidas pessoais.
+            </button>
 
-<button onclick="certo()">D: O vídeo foca exclusivamente na perspectiva empresarial da educação financeira.</button>
+            <button class="opcao" data-correta="false">
+                D: Métodos para aprender matemática financeira do zero.
+            </button>
 
-</div>
+        </div>
 
-<p id="resultado"></p>
-        <a href="../html/home.html" class="finish-btn">
-        Concluir Curso
-    </a>
+    </div>
 
-</div>
+    <!-- PERGUNTA 3 -->
+    <div class="questao">
+
+        <p class="pergunta">
+            3. Qual o tema principal abordado no vídeo, além da educação financeira corporativa?
+        </p>
+
+        <div class="opcoes">
+
+            <button class="opcao" data-correta="false">
+                A: Investimentos em renda fixa.
+            </button>
+
+            <button class="opcao" data-correta="false">
+                B: Matemática financeira básica.
+            </button>
+
+            <button class="opcao" data-correta="false">
+                C: Como quitar dívidas pessoais.
+            </button>
+
+            <button class="opcao correta" data-correta="true">
+                D: O vídeo foca exclusivamente na perspectiva empresarial da educação financeira.
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- MENSAGEM -->
+    <p id="mensagem"></p>
+
+    <!-- BOTÕES -->
+    <div class="acoes-quiz">
+
+        <button id="proximaPergunta" class="proxima-btn" disabled>
+            Próxima pergunta
+        </button>
+
+        <a href="../html/home.html" id="concluirQuiz" class="finish-btn">
+            Concluir curso
+        </a>
+
+    </div>
 
 </div>
 
 <script>
 
-function certo(){
-    document.getElementById("resultado").innerHTML = "✅ Resposta correta!";
+const questoes = document.querySelectorAll(".questao");
+const numeroPergunta = document.getElementById("numeroPergunta");
+const porcentagem = document.getElementById("porcentagem");
+const progresso = document.getElementById("progresso");
+const mensagem = document.getElementById("mensagem");
+const botaoProxima = document.getElementById("proximaPergunta");
+const botaoConcluir = document.getElementById("concluirQuiz");
+
+let perguntaAtual = 0;
+let acertos = 0;
+
+questoes.forEach((questao)=>{
+
+    const opcoes = questao.querySelectorAll(".opcao");
+
+    opcoes.forEach((opcao)=>{
+
+        opcao.addEventListener("click",()=>{
+
+            responderQuestao(questao,opcao);
+
+        });
+
+    });
+
+});
+
+function responderQuestao(questao,opcaoSelecionada){
+
+    const opcoes = questao.querySelectorAll(".opcao");
+
+    const acertou = opcaoSelecionada.dataset.correta==="true";
+
+    opcoes.forEach((opcao)=>{
+
+        opcao.disabled=true;
+
+        if(opcao.dataset.correta==="true"){
+            opcao.classList.add("acertou");
+        }
+
+    });
+
+    if(acertou){
+
+        acertos++;
+
+        mensagem.textContent="✅ Resposta correta!";
+        mensagem.className="mensagem-correta";
+
+    }else{
+
+        opcaoSelecionada.classList.add("errou");
+
+        mensagem.textContent="❌ Resposta errada. A alternativa correta está destacada.";
+        mensagem.className="mensagem-errada";
+
+    }
+
+    botaoProxima.disabled=false;
+
+    if(perguntaAtual===questoes.length-1){
+        botaoProxima.textContent="Ver resultado";
+    }
+
 }
 
-function errado(){
-    document.getElementById("resultado").innerHTML = "❌ Resposta errada!";
+botaoProxima.addEventListener("click",()=>{
+
+    questoes[perguntaAtual].classList.remove("ativa");
+
+    perguntaAtual++;
+
+    mensagem.textContent="";
+    mensagem.className="";
+
+    if(perguntaAtual<questoes.length){
+
+        questoes[perguntaAtual].classList.add("ativa");
+
+        atualizarProgresso();
+
+        botaoProxima.disabled=true;
+
+        botaoProxima.textContent=
+        perguntaAtual===questoes.length-1
+        ?"Ver resultado"
+        :"Próxima pergunta";
+
+    }else{
+
+        mostrarResultado();
+
+    }
+
+});
+
+function atualizarProgresso(){
+
+    const numeroAtual=perguntaAtual+1;
+
+    const percentual=Math.round((numeroAtual/questoes.length)*100);
+
+    numeroPergunta.textContent=`Pergunta ${numeroAtual} de ${questoes.length}`;
+
+    porcentagem.textContent=`${percentual}%`;
+
+    progresso.style.width=`${percentual}%`;
+
 }
+
+function mostrarResultado(){
+
+    document.querySelector(".progresso-area").style.display="none";
+
+    mensagem.innerHTML=`
+        <strong>Quiz finalizado!</strong><br>
+        Você acertou ${acertos} de ${questoes.length} perguntas.
+    `;
+
+    mensagem.className="resultado-final";
+
+    botaoProxima.style.display="none";
+    botaoConcluir.style.display="inline-flex";
+
+}
+
+atualizarProgresso();
 
 </script>
 

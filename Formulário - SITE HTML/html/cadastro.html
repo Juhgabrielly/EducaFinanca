@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Cadastro - Educa Finança</title>
 
   <link rel="stylesheet" href="../css/cadastro.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -24,38 +28,74 @@
         <h1>Cadastro da Conta</h1>
       </div>
 
-      <form>
+      <form id="formCadastro">
 
         <div class="input-grid">
 
           <div class="input-box">
             <label>Nome de usuário</label>
-            <input type="email" placeholder="Digite seu username">
+            <input
+              type="text"
+              id="nome"
+              placeholder="Digite seu username"
+              required>
           </div>
 
           <div class="input-box">
             <label>E-mail</label>
-            <input type="email" placeholder="Digite seu e-mail">
+            <input
+              type="email"
+              id="email"
+              placeholder="Digite seu e-mail"
+              required>
           </div>
 
           <div class="input-box">
             <label>Telefone</label>
-            <input type="email" placeholder="Digite seu telefone">
+            <input
+              type="tel"
+              id="telefone"
+              placeholder="Digite seu telefone">
           </div>
 
           <div class="input-box">
             <label>Senha</label>
-            <input type="password" placeholder="Digite sua senha">
+            <input
+              type="password"
+              id="senha"
+              placeholder="Digite sua senha"
+              required>
           </div>
 
         </div>
 
-        <a href="../html/home.html" class="login-btn">
-          Entrar
-        </a>
+        <button type="submit" class="login-btn">
+          Criar conta
+        </button>
+
+        <!-- DIVISOR -->
+
+        <div class="divider">
+          <span>ou</span>
+        </div>
+
+        <!-- GOOGLE -->
+
+        <button
+          type="button"
+          id="googleLogin"
+          class="google-btn">
+
+          <img
+            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+            alt="Google">
+
+          Continuar com Google
+
+        </button>
 
         <p class="register-text">
-         Possui conta?
+          Possui conta?
           <a href="../html/login.html">Fazer Login</a>
         </p>
 
@@ -65,5 +105,9 @@
 
   </div>
 
+  <!-- LOGIN COM GOOGLE -->
+  <script type="module" src="../js/firebase-login.js"></script>
+
 </body>
+
 </html>
