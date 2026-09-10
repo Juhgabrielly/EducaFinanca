@@ -1,18 +1,12 @@
-const express = require("express");
-
+const express = require('express');
 const router = express.Router();
 
-const { 
-    cadastrar, 
-    listar, 
-    buscar, 
-    atualizar, 
-    excluir } = require("../controllers/usuarios.controller");
+const usuariosController = require('../controllers/usuarios.controller');
 
-router.post("/cadastrar", cadastrar);
-router.get("/listar", listar);
-router.get("/buscar/:id", buscar);
-router.put("/atualizar/:id", atualizar);
-router.delete("/excluir/:id", excluir);
+router.post('/cadastrar', usuariosController.cadastrar);
+router.get('/listar', usuariosController.listar);
+router.get('/buscar/:id', usuariosController.buscar);
+router.put('/atualizar/:id', usuariosController.atualizar);
+router.delete('/excluir/:id', usuariosController.excluir);
 
 module.exports = router;

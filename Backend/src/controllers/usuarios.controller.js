@@ -1,53 +1,117 @@
-const prisma = require("../data/prisma");
+const prisma = require('../data/prisma');
 
 const cadastrar = async (req, res) => {
-    console.log("ENTROU NO CADASTRAR");
-    console.log(req.body);
+    try {
+        const { nome, telefone, email, senha, tipo, plano, status } = req.body;
 
-    const data = req.body;
+        const usuario = await prisma.usuarios.create({
+            data: {
+                nome,
+                telefone,
+                email,
+                senha,
+                tipo,
+                plano,
+                status
+            }
+        });
 
-    const item = await prisma.usuarios.create({
-        data
-    });
-
-    res.status(201).json(item);
+        res.status(201).json(usuario);
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro ao cadastrar usuário',
+            detalhes: error.message
+        });
+    }
 };
 
-   const listar = async (req, res) => {
-    const lista = await prisma.usuarios.findMany();
+const listar = async (req, res) => {
+    try {
+        const usuarios = await prisma.usuarios.findMany();
 
-    res.status(200).json(lista);
+        res.json(usuarios);
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro ao listar usuários',
+            detalhes: error.message
+        });
+    }
 };
 
 const buscar = async (req, res) => {
-    const { id } = req.params;
-    
-    const item = await prisma.usuarios.findUnique({
-        where: { id : Number(id) }
-    });
+    try {
+        const id = Number(req.params.id);
 
-    res.status(200).json(item);
+        const usuario = await prisma.usuarios.findUnique({
+            where: {
+                id: id
+            }
+        });
+
+        if (!usuario) {
+            return res.status(404).json({
+                erro: 'Usuário não encontrado'
+            });
+        }
+
+        res.json(usuario);
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro ao buscar usuário',
+            detalhes: error.message
+        });
+    }
 };
 
 const atualizar = async (req, res) => {
-    const { id } = req.params;
-    const dados = req.body;
-    const item = await prisma.usuarios.update({
-        where: { id : Number(id) },
-        data: dados
-    });
+    try {
+        const id = Number(req.params.id);
 
-   res.status(200).json(item);
+        const { nome, telefone, email, senha, tipo, plano, status } = req.body;
+
+        const usuario = await prisma.usuarios.update({
+            where: {
+                id: id
+            },
+            data: {
+                nome,
+                telefone,
+                email,
+                senha,
+                tipo,
+                plano,
+                status
+            }
+        });
+
+        res.json(usuario);
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro ao atualizar usuário',
+            detalhes: error.message
+        });
+    }
 };
 
 const excluir = async (req, res) => {
-    const { id } = req.params;
-    
-    const item = await prisma.usuarios.delete({
-        where: { id : Number(id) }
-    });
+    try {
+        const id = Number(req.params.id);
 
-  res.status(200).json(item);
+        await prisma.usuarios.delete({
+            where: {
+                id: id
+            }
+        });
+
+        res.json({
+            mensagem: 'Usuário excluído com sucesso'
+        });
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro ao excluir usuário',
+            detalhes: error.message
+        });
+    }
 };
 
 module.exports = {
@@ -56,4 +120,4 @@ module.exports = {
     buscar,
     atualizar,
     excluir
-}
+};

@@ -1,78 +1,44 @@
-require('dotenv').config();
 const express = require('express');
-const cors = require("cors");
+const cors = require('cors');
 
 const app = express();
-app.use(express.json());
+
 app.use(cors());
-
-const resultadoquizRoutes = require('./src/routes/resultadoquiz.routes');
-
-app.use('/resultadoquiz', resultadoquizRoutes);
-
-
-const alternativaRoutes = require('./src/routes/alternativa.routes');
-
-app.use('/alternativa', alternativaRoutes);
-
-
-const perguntaRoutes = require('./src/routes/pergunta.routes');
-
-app.use('/pergunta', perguntaRoutes);
-
-
-const quizRoutes = require('./src/routes/quiz.routes');
-
-app.use('/quiz', quizRoutes);
-
-
-const progressocursoRoutes = require('./src/routes/progressocurso.routes');
-
-app.use('/progressocurso', progressocursoRoutes);
-
-
-const cursoRoutes = require('./src/routes/curso.routes');
-
-app.use('/curso', cursoRoutes);
-
-
-const materiaRoutes = require('./src/routes/materia.routes');
-
-app.use('/materia', materiaRoutes);
-
-
-const historicofinanceiroRoutes = require('./src/routes/historicofinanceiro.routes');
-
-app.use('/historicofinanceiro', historicofinanceiroRoutes);
-
-
-const relatorioRoutes = require('./src/routes/relatorio.routes');
-
-app.use('/relatorio', relatorioRoutes);
-
-
-const investimentoRoutes = require('./src/routes/investimento.routes');
-
-app.use('/investimento', investimentoRoutes);
-
-
-const dashboardfinanceiroRoutes = require('./src/routes/dashboardfinanceiro.routes');
-
-app.use('/dashboardfinanceiro', dashboardfinanceiroRoutes);
-
-
-const metaRoutes = require('./src/routes/meta.routes');
-
-app.use('/meta', metaRoutes);
-
+app.use(express.json());
 
 const usuariosRoutes = require('./src/routes/usuarios.routes');
+const assinaturasRoutes = require('./src/routes/assinaturas.routes');
+const cursosRoutes = require('./src/routes/cursos.routes');
+const progressoCursosRoutes = require('./src/routes/progressoCursos.routes');
+const quizzesRoutes = require('./src/routes/quizzes.routes');
+const questoesRoutes = require('./src/routes/questoes.routes');
+const resultadosQuizRoutes = require('./src/routes/resultadosQuiz.routes');
+const metasRoutes = require('./src/routes/metas.routes');
+const tiposInvestimentoRoutes = require('./src/routes/tiposInvestimento.routes');
+const investimentosRoutes = require('./src/routes/investimentos.routes');
+const reservasEmergenciaRoutes = require('./src/routes/reservasEmergencia.routes');
+const movimentacoesRoutes = require('./src/routes/movimentacoes.routes');
 
 app.use('/usuarios', usuariosRoutes);
+app.use('/assinaturas', assinaturasRoutes);
+app.use('/cursos', cursosRoutes);
+app.use('/progressoCursos', progressoCursosRoutes);
+app.use('/quizzes', quizzesRoutes);
+app.use('/questoes', questoesRoutes);
+app.use('/resultadosQuiz', resultadosQuizRoutes);
+app.use('/metas', metasRoutes);
+app.use('/tiposInvestimento', tiposInvestimentoRoutes);
+app.use('/investimentos', investimentosRoutes);
+app.use('/reservasEmergencia', reservasEmergenciaRoutes);
+app.use('/movimentacoes', movimentacoesRoutes);
 
-
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+app.get('/', (req, res) => {
+    res.json({
+        mensagem: 'API EducaFinança funcionando!'
+    });
 });
+
+app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000');
+});
+

@@ -4,174 +4,171 @@ generator client {
 
 datasource db {
   provider = "mysql"
-
 }
 
-model Usuarios {
-  id             Int      @id @default(autoincrement())
-  nome           String
-  email          String   @unique
-  senha          String
-  telefone       String?
-  cidade         String?
-  area_interesse String?
-  foto_perfil    String?
-  criado_em      DateTime @default(now())
-
-  metas           Meta[]
-  dashboard       DashboardFinanceiro[]
-  investimentos   Investimento[]
-  relatorios      Relatorio[]
-  historicos      HistoricoFinanceiro[]
-  progressoCursos ProgressoCurso[]
-  resultadosQuiz  ResultadoQuiz[]
+model usuarios {
+  id                 Int                  @id @default(autoincrement())
+  nome               String               @db.VarChar(100)
+  telefone           String?              @db.VarChar(20)
+  email              String               @unique(map: "email") @db.VarChar(150)
+  senha              String?              @db.VarChar(255)
+  tipo               TipoUsuario?         @default(USUARIO)
+  plano              Plano?               @default(FREE)
+  status             Boolean?             @default(true)
+  criado_em          DateTime?            @default(now()) @db.DateTime(0)
+  assinaturas        assinaturas[]
+  investimentos      investimentos[]
+  metas              metas[]
+  movimentacoes      movimentacoes[]
+  progresso_cursos   progresso_cursos[]
+  reserva_emergencia reservas_emergencia?
+  resultados_quiz    resultados_quiz[]
 }
 
-model Meta {
-  id             Int      @id @default(autoincrement())
-  titulo         String
-  descricao      String?
-  valor_objetivo Decimal  @db.Decimal(10,2)
-  valor_atual    Decimal  @default(0) @db.Decimal(10,2)
-  prazo          DateTime?
-
+model assinaturas {
+  id         Int               @id @default(autoincrement())
   usuario_id Int
-  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
+  plano      Plano
+  status     StatusAssinatura? @default(ATIVA)
+  inicio     DateTime?         @default(now()) @db.DateTime(0)
+  fim        DateTime?         @db.DateTime(0)
+  usuario    usuarios          @relation(fields: [usuario_id], references: [id], onUpdate: Restrict, map: "assinaturas_ibfk_1")
+
+  @@index([usuario_id], map: "usuario_id")
 }
 
-model DashboardFinanceiro {
-  id                   Int     @id @default(autoincrement())
-  saldo_total          Decimal @default(0) @db.Decimal(10,2)
-  lucro_total          Decimal @default(0) @db.Decimal(10,2)
-  percentual_investido Decimal @default(0) @db.Decimal(5,2)
+model cursos {
+  id               Int                @id @default(autoincrement())
+  titulo           String             @db.VarChar(150)
+  descricao        String?            @db.Text
+  conteudo         String?            @db.Text
+  exclusivo        Boolean?           @default(false)
+  criado_em        DateTime?          @default(now()) @db.DateTime(0)
+  progresso_cursos progresso_cursos[]
+  quizzes          quizzes[]
+}
 
+model progresso_cursos {
+  id         Int      @id @default(autoincrement())
   usuario_id Int
-  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
+  curso_id   Int
+  progresso  Decimal? @default(0.00) @db.Decimal(5, 2)
+  concluido  Boolean? @default(false)
+  usuario    usuarios @relation(fields: [usuario_id], references: [id], onUpdate: Restrict, map: "progresso_cursos_ibfk_1")
+  curso      cursos   @relation(fields: [curso_id], references: [id], onUpdate: Restrict, map: "progresso_cursos_ibfk_2")
+
+  @@unique([usuario_id, curso_id], map: "usuario_id")
+  @@index([curso_id], map: "curso_id")
 }
 
-model Investimento {
-  id                Int               @id @default(autoincrement())
-  tipo              TipoInvestimento
-  nome              String?
-  valor_aplicado    Decimal           @db.Decimal(10,2)
-  lucro             Decimal           @default(0) @db.Decimal(10,2)
-  data_investimento DateTime?
+model quizzes {
+  id              Int               @id @default(autoincrement())
+  curso_id        Int?
+  titulo          String            @db.VarChar(150)
+  descricao       String?           @db.Text
+  exclusivo       Boolean?          @default(false)
+  questoes        questoes[]
+  curso           cursos?           @relation(fields: [curso_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "quizzes_ibfk_1")
+  resultados_quiz resultados_quiz[]
 
-  usuario_id Int
-  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
+  @@index([curso_id], map: "curso_id")
 }
 
-model Relatorio {
-  id        Int     @id @default(autoincrement())
-  mes       Int
-  ano       Int
-  receita   Decimal @default(0) @db.Decimal(10,2)
-  despesas  Decimal @default(0) @db.Decimal(10,2)
-  resultado Decimal @default(0) @db.Decimal(10,2)
+model questoes {
+  id               Int     @id @default(autoincrement())
+  quiz_id          Int
+  pergunta         String  @db.Text
+  resposta_correta String  @db.VarChar(255)
+  quiz             quizzes @relation(fields: [quiz_id], references: [id], onUpdate: Restrict, map: "questoes_ibfk_1")
 
-  usuario_id Int
-  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
+  @@index([quiz_id], map: "quiz_id")
 }
 
-model HistoricoFinanceiro {
+model resultados_quiz {
+  id           Int       @id @default(autoincrement())
+  usuario_id   Int
+  quiz_id      Int
+  pontuacao    Decimal   @db.Decimal(5, 2)
+  realizado_em DateTime? @default(now()) @db.DateTime(0)
+  usuario      usuarios  @relation(fields: [usuario_id], references: [id], onUpdate: Restrict, map: "resultados_quiz_ibfk_1")
+  quiz         quizzes   @relation(fields: [quiz_id], references: [id], onUpdate: Restrict, map: "resultados_quiz_ibfk_2")
+
+  @@index([quiz_id], map: "quiz_id")
+  @@index([usuario_id], map: "usuario_id")
+}
+
+model metas {
+  id          Int       @id @default(autoincrement())
+  usuario_id  Int
+  nome        String    @db.VarChar(150)
+  valor_meta  Decimal   @db.Decimal(12, 2)
+  valor_atual Decimal?  @default(0.00) @db.Decimal(12, 2)
+  criada_em   DateTime? @default(now()) @db.DateTime(0)
+  usuario     usuarios  @relation(fields: [usuario_id], references: [id], onUpdate: Restrict, map: "metas_ibfk_1")
+
+  @@index([usuario_id], map: "usuario_id")
+}
+
+model tipos_investimento {
+  id            Int             @id @default(autoincrement())
+  nome          String          @db.VarChar(100)
+  descricao     String?         @db.Text
+  investimentos investimentos[]
+}
+
+model investimentos {
+  id                   Int                @id @default(autoincrement())
+  usuario_id           Int
+  tipo_investimento_id Int
+  nome                 String             @db.VarChar(150)
+  valor_investido      Decimal            @db.Decimal(12, 2)
+  valor_atual          Decimal?           @default(0.00) @db.Decimal(12, 2)
+  rentabilidade        Decimal?           @default(0.00) @db.Decimal(8, 2)
+  criado_em            DateTime?          @default(now()) @db.DateTime(0)
+  usuario              usuarios           @relation(fields: [usuario_id], references: [id], onUpdate: Restrict, map: "investimentos_ibfk_1")
+  tipo_investimento    tipos_investimento @relation(fields: [tipo_investimento_id], references: [id], onUpdate: Restrict, map: "investimentos_ibfk_2")
+
+  @@index([tipo_investimento_id], map: "tipo_investimento_id")
+  @@index([usuario_id], map: "usuario_id")
+}
+
+model reservas_emergencia {
+  id            Int       @id @default(autoincrement())
+  usuario_id    Int       @unique(map: "usuario_id")
+  valor         Decimal?  @default(0.00) @db.Decimal(12, 2)
+  atualizado_em DateTime? @default(now()) @db.DateTime(0)
+  usuario       usuarios  @relation(fields: [usuario_id], references: [id], onUpdate: Restrict, map: "reservas_emergencia_ibfk_1")
+}
+
+model movimentacoes {
   id                Int              @id @default(autoincrement())
+  usuario_id        Int
   tipo              TipoMovimentacao
-  descricao         String?
-  valor             Decimal          @db.Decimal(10,2)
-  data_movimentacao DateTime?
+  valor             Decimal          @db.Decimal(12, 2)
+  descricao         String?          @db.VarChar(255)
+  data_movimentacao DateTime         @db.Date
+  usuario           usuarios         @relation(fields: [usuario_id], references: [id], onUpdate: Restrict, map: "movimentacoes_ibfk_1")
 
-  usuario_id Int
-  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
+  @@index([usuario_id], map: "usuario_id")
 }
 
-model Materia {
-  id        Int     @id @default(autoincrement())
-  nome      String
-  descricao String?
-
-  cursos Curso[]
+enum TipoUsuario {
+  USUARIO
+  ADMIN
 }
 
-model Curso {
-  id        Int     @id @default(autoincrement())
-  titulo    String
-  descricao String?
-  conteudo  String? @db.LongText
-  video_url String?
-
-  materia_id Int
-  materia    Materia @relation(fields: [materia_id], references: [id])
-
-  quizzes   Quiz[]
-  progresso ProgressoCurso[]
+enum Plano {
+  FREE
+  PREMIUM
 }
 
-model ProgressoCurso {
-  id             Int      @id @default(autoincrement())
-  porcentagem    Decimal  @default(0) @db.Decimal(5,2)
-  concluido      Boolean  @default(false)
-  data_conclusao DateTime?
-
-  usuario_id Int
-  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
-
-  curso_id Int
-  curso    Curso @relation(fields: [curso_id], references: [id])
-}
-
-model Quiz {
-  id        Int     @id @default(autoincrement())
-  titulo    String?
-  descricao String?
-
-  curso_id Int
-  curso    Curso @relation(fields: [curso_id], references: [id])
-
-  perguntas  Pergunta[]
-  resultados ResultadoQuiz[]
-}
-
-model Pergunta {
-  id       Int    @id @default(autoincrement())
-  pergunta String @db.Text
-
-  quiz_id Int
-  quiz    Quiz @relation(fields: [quiz_id], references: [id])
-
-  alternativas Alternativa[]
-}
-
-model Alternativa {
-  id       Int     @id @default(autoincrement())
-  resposta String
-  correta  Boolean @default(false)
-
-  pergunta_id Int
-  pergunta    Pergunta @relation(fields: [pergunta_id], references: [id])
-}
-
-model ResultadoQuiz {
-  id              Int      @id @default(autoincrement())
-  acertos         Int?
-  erros           Int?
-  nota            Decimal? @db.Decimal(5,2)
-  data_realizacao DateTime @default(now())
-
-  usuario_id Int
-  usuario    Usuarios @relation(fields: [usuario_id], references: [id])
-
-  quiz_id Int
-  quiz    Quiz @relation(fields: [quiz_id], references: [id])
-}
-
-enum TipoInvestimento {
-  renda_fixa
-  renda_variavel
-  reserva_emergencia
-  investimento_futuro
+enum StatusAssinatura {
+  ATIVA
+  EXPIRADA
+  CANCELADA
 }
 
 enum TipoMovimentacao {
-  receita
-  despesa
+  RECEITA
+  DESPESA
 }
