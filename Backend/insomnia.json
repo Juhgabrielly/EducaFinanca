@@ -537,12 +537,12 @@
       ],
       "name": "Listar",
       "method": "GET",
-      "url": "http://localhost:3000/resultados_quiz/listar"
+      "url": "http://localhost:3000/resultadosQuiz/listar"
     },
     {
-      "_id": "req_resultados_quiz_GET_ID",
+      "_id": "req_resultadosQuiz_GET_ID",
       "_type": "request",
-      "parentId": "fld_resultados_quiz",
+      "parentId": "fld_resultadosQuiz",
       "headers": [
         {
           "name": "Content-Type",
@@ -551,12 +551,12 @@
       ],
       "name": "Buscar",
       "method": "GET",
-      "url": "http://localhost:3000/resultados_quiz/buscar/:id"
+      "url": "http://localhost:3000/resultadosQuiz/buscar/:id"
     },
     {
-      "_id": "req_resultados_quiz_POST",
+      "_id": "req_resultadosQuiz_POST",
       "_type": "request",
-      "parentId": "fld_resultados_quiz",
+      "parentId": "fld_resultadosQuiz",
       "name": "Cadastrar",
       "headers": [
         {
@@ -565,16 +565,16 @@
         }
       ],
       "method": "POST",
-      "url": "http://localhost:3000/resultados_quiz/cadastrar",
+      "url": "http://localhost:3000/resultadosQuiz/cadastrar",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"usuario_id\": 0,\n  \"quiz_id\": 0,\n  \"pontuacao\": null,\n  \"realizado_em\": \"2026-09-10T17:41:33.275Z\"\n}"
       }
     },
     {
-      "_id": "req_resultados_quiz_PUT",
+      "_id": "req_resultadosQuiz_PUT",
       "_type": "request",
-      "parentId": "fld_resultados_quiz",
+      "parentId": "fld_resultadosQuiz",
       "headers": [
         {
           "name": "Content-Type",
@@ -583,16 +583,16 @@
       ],
       "name": "Atualizar",
       "method": "PUT",
-      "url": "http://localhost:3000/resultados_quiz/atualizar/:id",
+      "url": "http://localhost:3000/resultadosQuiz/atualizar/:id",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"usuario_id\": 0,\n  \"quiz_id\": 0,\n  \"pontuacao\": null,\n  \"realizado_em\": \"2026-09-10T17:41:33.275Z\"\n}"
       }
     },
     {
-      "_id": "req_resultados_quiz_DELETE",
+      "_id": "req_resultadosQuiz_DELETE",
       "_type": "request",
-      "parentId": "fld_resultados_quiz",
+      "parentId": "fld_resultadosQuiz",
       "headers": [
         {
           "name": "Content-Type",
@@ -601,7 +601,7 @@
       ],
       "name": "Excluir",
       "method": "DELETE",
-      "url": "http://localhost:3000/resultados_quiz/excluir/:id"
+      "url": "http://localhost:3000/resultadosQuiz/excluir/:id"
     },
     {
       "_id": "fld_metas",
@@ -705,10 +705,10 @@
       ],
       "name": "Listar",
       "method": "GET",
-      "url": "http://localhost:3000/tipos_investimento/listar"
+      "url": "http://localhost:3000/tiposInvestimento/listar"
     },
     {
-      "_id": "req_tipos_investimento_GET_ID",
+      "_id": "req_tiposInvestimento_GET_ID",
       "_type": "request",
       "parentId": "fld_tipos_investimento",
       "headers": [
@@ -719,12 +719,12 @@
       ],
       "name": "Buscar",
       "method": "GET",
-      "url": "http://localhost:3000/tipos_investimento/buscar/:id"
+      "url": "http://localhost:3000/tiposInvestimento/buscar/:id"
     },
     {
-      "_id": "req_tipos_investimento_POST",
+      "_id": "req_tiposInvestimento_POST",
       "_type": "request",
-      "parentId": "fld_tipos_investimento",
+      "parentId": "fld_tiposInvestimento",
       "name": "Cadastrar",
       "headers": [
         {
@@ -733,16 +733,16 @@
         }
       ],
       "method": "POST",
-      "url": "http://localhost:3000/tipos_investimento/cadastrar",
+      "url": "http://localhost:3000/tiposInvestimento/cadastrar",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"nome\": \"string\",\n  \"descricao\": \"string\"\n}"
       }
     },
     {
-      "_id": "req_tipos_investimento_PUT",
+      "_id": "req_tiposInvestimento_PUT",
       "_type": "request",
-      "parentId": "fld_tipos_investimento",
+      "parentId": "fld_tiposInvestimento",
       "headers": [
         {
           "name": "Content-Type",
@@ -751,16 +751,16 @@
       ],
       "name": "Atualizar",
       "method": "PUT",
-      "url": "http://localhost:3000/tipos_investimento/atualizar/:id",
+      "url": "http://localhost:3000/tiposInvestimento/atualizar/:id",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"nome\": \"string\",\n  \"descricao\": \"string\"\n}"
       }
     },
     {
-      "_id": "req_tipos_investimento_DELETE",
+      "_id": "req_tiposInvestimento_DELETE",
       "_type": "request",
-      "parentId": "fld_tipos_investimento",
+      "parentId": "fld_tiposInvestimento",
       "headers": [
         {
           "name": "Content-Type",
@@ -769,7 +769,7 @@
       ],
       "name": "Excluir",
       "method": "DELETE",
-      "url": "http://localhost:3000/tipos_investimento/excluir/:id"
+      "url": "http://localhost:3000/tiposInvestimento/excluir/:id"
     },
     {
       "_id": "fld_investimentos",
@@ -862,9 +862,9 @@
       "name": "reservas_emergencia"
     },
     {
-      "_id": "req_reservas_emergencia_GET_ALL",
+      "_id": "req_reservasEmergencia_GET_ALL",
       "_type": "request",
-      "parentId": "fld_reservas_emergencia",
+      "parentId": "fld_reservasEmergencia",
       "headers": [
         {
           "name": "Content-Type",
@@ -873,12 +873,12 @@
       ],
       "name": "Listar",
       "method": "GET",
-      "url": "http://localhost:3000/reservas_emergencia/listar"
+      "url": "http://localhost:3000/reservasEmergencia/listar"
     },
     {
-      "_id": "req_reservas_emergencia_GET_ID",
+      "_id": "req_reservasEmergencia_GET_ID",
       "_type": "request",
-      "parentId": "fld_reservas_emergencia",
+      "parentId": "fld_reservasEmergencia",
       "headers": [
         {
           "name": "Content-Type",
@@ -887,12 +887,12 @@
       ],
       "name": "Buscar",
       "method": "GET",
-      "url": "http://localhost:3000/reservas_emergencia/buscar/:id"
+      "url": "http://localhost:3000/reservasEmergencia/buscar/:id"
     },
     {
-      "_id": "req_reservas_emergencia_POST",
+      "_id": "req_reservasEmergencia_POST",
       "_type": "request",
-      "parentId": "fld_reservas_emergencia",
+      "parentId": "fld_reservasEmergencia",
       "name": "Cadastrar",
       "headers": [
         {
@@ -901,16 +901,16 @@
         }
       ],
       "method": "POST",
-      "url": "http://localhost:3000/reservas_emergencia/cadastrar",
+      "url": "http://localhost:3000/reservasEmergencia/cadastrar",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"usuario_id\": 0,\n  \"valor\": null,\n  \"atualizado_em\": \"2026-09-10T17:41:33.275Z\"\n}"
       }
     },
     {
-      "_id": "req_reservas_emergencia_PUT",
+      "_id": "req_reservasEmergencia_PUT",
       "_type": "request",
-      "parentId": "fld_reservas_emergencia",
+      "parentId": "fld_reservasEmergencia",
       "headers": [
         {
           "name": "Content-Type",
@@ -919,14 +919,14 @@
       ],
       "name": "Atualizar",
       "method": "PUT",
-      "url": "http://localhost:3000/reservas_emergencia/atualizar/:id",
+      "url": "http://localhost:3000/reservasEmergencia/atualizar/:id",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"usuario_id\": 0,\n  \"valor\": null,\n  \"atualizado_em\": \"2026-09-10T17:41:33.275Z\"\n}"
       }
     },
     {
-      "_id": "req_reservas_emergencia_DELETE",
+      "_id": "req_reservasEmergencia_DELETE",
       "_type": "request",
       "parentId": "fld_reservas_emergencia",
       "headers": [
@@ -937,7 +937,7 @@
       ],
       "name": "Excluir",
       "method": "DELETE",
-      "url": "http://localhost:3000/reservas_emergencia/excluir/:id"
+      "url": "http://localhost:3000/reservasEmergencia/excluir/:id"
     },
     {
       "_id": "fld_movimentacoes",
