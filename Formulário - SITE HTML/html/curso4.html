@@ -1,131 +1,328 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Matematica Financeira- Educa Finança</title>
+  <title>Matemática Financeira - Educa Finança</title>
 
   <link rel="stylesheet" href="../css/cursos.css">
-
-  <!-- FONTES -->
+<link rel="stylesheet" href="../css/chat.css">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
 </head>
 
 <body>
 
-  <!-- HEADER -->
   <header>
 
     <div class="logo">
-      <img src="../html/educa.png" class="logo-img">
+
+      <img
+        src="../html/educa.png"
+        class="logo-img"
+        alt="Educa Finança"
+      >
+
       <h2>Educa Finança</h2>
+
     </div>
 
-    <div class="menu-toggle" id="menu-toggle">
+
+    <div
+      class="menu-toggle"
+      id="menu-toggle"
+    >
       ☰
     </div>
 
-    <!-- MENU -->
-    <nav class="menu" id="menu">
 
-      <a href="home.html">Home</a>
+    <nav
+      class="menu"
+      id="menu"
+    >
 
-      <a href="cursos.html">Cursos</a>
+      <a href="home.html">
+        Home
+      </a>
 
-      <a href="../html/relatório.html">Relatórios</a>
+      <a href="cursos.html">
+        Cursos
+      </a>
 
-      <a href="../html/investimento.html">Investimentos</a>
+      <a href="relatório.html">
+        Relatórios
+      </a>
 
-      <a href="../html/usuario.html">Perfil</a>
+      <a href="investimento.html">
+        Investimentos
+      </a>
 
-      <a href="#">Contato</a>
-''
+      <a href="usuario.html">
+        Perfil
+      </a>
+      <a href="plano.html">Planos</a>
+
+      <a href="#">
+        Contato
+      </a>
+
     </nav>
 
   </header>
 
-  <!-- CURSO -->
   <main class="course-page">
-
 
     <h1>
       Matemática Financeira
     </h1>
 
+
     <p class="description">
-      Neste curso você aprenderá a estruturar suas finanças pessoais e familiares,
-      criando um plano sólido para alcançar estabilidade, segurança e liberdade financeira.
+      Neste curso você aprenderá os principais conceitos de matemática financeira,
+      compreendendo juros, capitalização, fluxo de caixa, séries de pagamentos
+      e sistemas de amortização.
     </p>
 
-    <!-- VIDEO -->
     <section class="video-card">
 
       <h2>Aula Introdutória</h2>
 
       <div class="video-container">
 
-        <iframe 
+        <iframe
           src="https://www.youtube.com/embed/SEU_VIDEO_ID"
           title="YouTube video player"
           frameborder="0"
-          allowfullscreen>
+          allowfullscreen
+        >
         </iframe>
 
       </div>
 
     </section>
 
-    <!-- CONTEÚDO -->
     <section class="content-card">
 
-      <h2>Conteúdo do Curso</h2>
+      <h2>
+        Conteúdo do Curso
+      </h2>
 
       <ul>
 
-        <li>Conceitos Fundamentais</li>
+        <li>
+          Conceitos Fundamentais
+        </li>
 
-        <li>Fluxo de Caixa e Equivalência</li>
+        <li>
+          Fluxo de Caixa e Equivalência
+        </li>
 
-        <li>Regimes de Capitalização</li>
+        <li>
+          Regimes de Capitalização
+        </li>
 
-        <li>Séries de Pagamento </li>
+        <li>
+          Séries de Pagamento
+        </li>
 
-        <li>Sistemas de Amortização</li>
+        <li>
+          Sistemas de Amortização
+        </li>
 
       </ul>
 
     </section>
 
-    <!-- QUIZ -->
     <section class="quiz-card">
 
-      <h2>Teste seus conhecimentos</h2>
+      <h2>
+        Teste seus conhecimentos
+      </h2>
 
       <p>
         Finalize o módulo realizando o quiz interativo do curso.
       </p>
 
-      <a href="../html/quiz4.html" class="quiz-btn">
-        Iniciar Quiz 
+
+      <a
+        href="quiz4.html"
+        class="quiz-btn"
+      >
+        Iniciar Quiz
       </a>
+
+
+      <button
+        type="button"
+        id="concluirCurso"
+        disabled
+      >
+        🔒 Complete o quiz para concluir
+      </button>
 
     </section>
 
   </main>
 
-  <!-- SCRIPT MENU -->
+
   <script>
-    const toggle = document.getElementById("menu-toggle");
-    const menu = document.getElementById("menu");
 
-    toggle.addEventListener("click", () => {
-      menu.classList.toggle("active");
-    });
+    const toggle =
+      document.getElementById("menu-toggle");
+
+    const menu =
+      document.getElementById("menu");
+
+
+    toggle.addEventListener(
+      "click",
+      () => {
+
+        menu.classList.toggle("active");
+
+      }
+    );
+
+    const usuario =
+      JSON.parse(
+        localStorage.getItem("usuario")
+      );
+
+
+    if (!usuario) {
+
+      alert(
+        "Faça login para acessar o curso."
+      );
+
+      window.location.href =
+        "login.html";
+
+    }
+
+    const botaoConcluirCurso =
+      document.getElementById(
+        "concluirCurso"
+      );
+
+    const quizConcluido =
+      localStorage.getItem(
+        "quiz4Concluido"
+      );
+
+
+    console.log(
+      "Quiz 4 concluído:",
+      quizConcluido
+    );
+
+
+    if (
+      quizConcluido === "true"
+    ) {
+
+      botaoConcluirCurso.disabled =
+        false;
+
+      botaoConcluirCurso.textContent =
+        "✓ Concluir curso";
+
+    } else {
+
+      botaoConcluirCurso.disabled =
+        true;
+
+      botaoConcluirCurso.textContent =
+        "🔒 Complete o quiz para concluir";
+
+    }
+
+    botaoConcluirCurso.addEventListener(
+      "click",
+      () => {
+
+        const quizAtual =
+          localStorage.getItem(
+            "quiz4Concluido"
+          );
+
+
+        if (
+          quizAtual !== "true"
+        ) {
+
+          alert(
+            "Você precisa concluir o quiz primeiro."
+          );
+
+          return;
+
+        }
+
+        const usuarioId =
+          usuario.uid ||
+          usuario.email ||
+          "usuario";
+
+
+        const chaveCursos =
+          `cursosConcluidos_${usuarioId}`;
+
+
+        let cursosConcluidos =
+          JSON.parse(
+            localStorage.getItem(
+              chaveCursos
+            )
+          ) || [];
+
+
+        const nomeCurso =
+          "Matemática Financeira";
+
+
+        if (
+          !cursosConcluidos.includes(
+            nomeCurso
+          )
+        ) {
+
+          cursosConcluidos.push(
+            nomeCurso
+          );
+
+
+          localStorage.setItem(
+            chaveCursos,
+            JSON.stringify(
+              cursosConcluidos
+            )
+          );
+
+        }
+
+
+        alert(
+          "Curso concluído com sucesso! 🎉"
+        );
+
+
+        window.location.href =
+          "cursos.html";
+
+      }
+    );
+
   </script>
-
+<script src="../js/chat.js"></script>
 </body>
+
 </html>

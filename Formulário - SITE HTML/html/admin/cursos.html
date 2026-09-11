@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso - Educa Finança</title>
+  <link rel="stylesheet" href="../css/curso.css">
+  <link rel="stylesheet" href="../css/chat.css">
+</head>
+<body>
+    <header>
+    <div class="logo">
+      <img src="../educa.png" alt="Logo do Educa Finança" class="logo-img">
+      <h2> Educa Finança</h2>
+    </div>
+    <button type="button" class="menu-toggle" id="menu-toggle">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <nav class="menu" id="menu">
+      <a href="home.html">
+        Home
+      </a>
+      <a href="cursos.html" class="ativo">
+        Cursos
+      </a>
+      <a href="relatório.html">
+        Relatórios
+      </a>
+      <a href="investimento.html">
+        Investimentos
+      </a>
+      <a href="usuario.html">
+        Perfil
+      </a>
+      <a href="plano.html">
+        Planos
+      </a>
+    </nav>
+  </header>
+  
+  <main>
+    <section class="curso-container" id="cursoContainer">
+      <div id="carregando" class="carregando">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        <p>
+          Carregando curso...
+        </p>
+      </div>
+      <div id="erro" class="erro" style="display: none;">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <h2>
+          Não foi possível carregar o curso
+        </h2>
+        <p>Verifique se o curso existe ou se o servidor está funcionando.</p>
+        <a href="cursos.html" class="btn-voltar">
+          Voltar para cursos
+        </a>
+      </div>
+      <div id="conteudoCurso" style="display: none;">
+
+        <div class="curso-cabecalho">
+          <span id="cursoNivel" class="nivel-curso">
+            Iniciante
+          </span>
+          <div id="cursoPremium" class="premium-badge" style="display: none;">
+            ⭐ Premium
+          </div>
+          <h1 id="cursoNome">
+            Nome do curso
+          </h1>
+          <p id="cursoDescricao">
+            Descrição do curso
+          </p>
+        </div>
+        <div class="curso-info">
+          <div class="info-card">
+            <i class="fa-regular fa-clock"></i>
+            <div>
+              <span>
+                Duração
+              </span>
+              <strong id="cursoDuracao">
+                -
+              </strong>
+            </div>
+          </div>
+          <div class="info-card">
+            <i class="fa-solid fa-video"></i>
+            <div>
+              <span>
+                Videoaulas
+              </span>
+              <strong id="cursoVideoaulas">
+                -
+              </strong>
+            </div>
+          </div>
+          <div class="info-card">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <div>
+              <span>
+                Nível
+              </span>
+              <strong id="cursoNivelInfo">
+                -
+              </strong>
+            </div>
+          </div>
+        </div>
+        <section class="conteudo-curso">
+          <h2>Sobre este curso</h2>
+          <div id="conteudoTexto" class="texto-curso">
+          </div>
+        </section>
+
+        <section id="areaVideo" class="area-video" style="display: none;">
+          <h2>
+            <i class="fa-solid fa-play"></i>
+            Videoaula
+          </h2>
+          <div class="video-container">
+            <iframe id="videoCurso" src="" title="Videoaula do curso" allowfullscreen>
+            </iframe>
+          </div>
+        </section>
+        <section
+          id="areaQuiz"
+          class="area-quiz"
+        >
+
+          <h2>
+            Teste seus conhecimentos
+          </h2>
+
+          <p>
+            Depois de estudar o conteúdo, faça o quiz para verificar o que você aprendeu.
+          </p>
+
+
+          <button
+            id="btnQuiz"
+            class="btn-quiz"
+          >
+
+            <i class="fa-solid fa-circle-question"></i>
+
+            Fazer quiz
+
+          </button>
+
+        </section>
+
+
+
+        <!-- VOLTAR -->
+
+        <div class="acoes-curso">
+
+          <a
+            href="cursos.html"
+            class="btn-voltar"
+          >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Voltar para cursos
+
+          </a>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- ========================= -->
+  <!-- JAVASCRIPT -->
+  <!-- ========================= -->
+
+  <script>
+
+    const API =
+      "http://localhost:3000";
+
+
+    // =====================================
+    // MENU
+    // =====================================
+
+    const toggle =
+      document.getElementById(
+        "menu-toggle"
+      );
+
+
+    const menu =
+      document.getElementById(
+        "menu"
+      );
+
+
+    toggle.addEventListener(
+      "click",
+      () => {
+
+        menu.classList.toggle(
+          "active"
+        );
+
+      }
+    );
+
+
+    document.addEventListener(
+      "click",
+      (event) => {
+
+        const clicouMenu =
+          menu.contains(
+            event.target
+          );
+
+
+        const clicouBotao =
+          toggle.contains(
+            event.target
+          );
+
+
+        if (
+          !clicouMenu &&
+          !clicouBotao
+        ) {
+
+          menu.classList.remove(
+            "active"
+          );
+
+        }
+
+      }
+    );
+
+
+
+    // =====================================
+    // PEGAR ID DO CURSO
+    // =====================================
+
+    const parametros =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const cursoId =
+      parametros.get("id");
+
+
+    console.log(
+      "ID do curso:",
+      cursoId
+    );
+
+
+
+    // =====================================
+    // ELEMENTOS
+    // =====================================
+
+    const carregando =
+      document.getElementById(
+        "carregando"
+      );
+
+
+    const erro =
+      document.getElementById(
+        "erro"
+      );
+
+
+    const conteudoCurso =
+      document.getElementById(
+        "conteudoCurso"
+      );
+
+
+    const cursoNome =
+      document.getElementById(
+        "cursoNome"
+      );
+
+
+    const cursoDescricao =
+      document.getElementById(
+        "cursoDescricao"
+      );
+
+
+    const cursoNivel =
+      document.getElementById(
+        "cursoNivel"
+      );
+
+
+    const cursoNivelInfo =
+      document.getElementById(
+        "cursoNivelInfo"
+      );
+
+
+    const cursoDuracao =
+      document.getElementById(
+        "cursoDuracao"
+      );
+
+
+    const cursoVideoaulas =
+      document.getElementById(
+        "cursoVideoaulas"
+      );
+
+
+    const cursoPremium =
+      document.getElementById(
+        "cursoPremium"
+      );
+
+
+    const conteudoTexto =
+      document.getElementById(
+        "conteudoTexto"
+      );
+
+
+    const areaVideo =
+      document.getElementById(
+        "areaVideo"
+      );
+
+
+    const videoCurso =
+      document.getElementById(
+        "videoCurso"
+      );
+
+
+    const btnQuiz =
+      document.getElementById(
+        "btnQuiz"
+      );
+
+
+
+    // =====================================
+    // VERIFICAR ID
+    // =====================================
+
+    if (!cursoId) {
+
+      mostrarErro();
+
+    } else {
+
+      carregarCurso();
+
+    }
+
+
+
+    // =====================================
+    // BUSCAR CURSO
+    // =====================================
+
+    async function carregarCurso() {
+
+      try {
+
+        const resposta =
+          await fetch(
+            `${API}/cursos/${cursoId}`
+          );
+
+
+        if (!resposta.ok) {
+
+          throw new Error(
+            "Curso não encontrado"
+          );
+
+        }
+
+
+        const curso =
+          await resposta.json();
+
+
+        console.log(
+          "Curso recebido:",
+          curso
+        );
+
+
+        // =================================
+        // VERIFICAR PREMIUM
+        // =================================
+
+        if (
+          curso.premium === true
+        ) {
+
+          const usuario =
+            JSON.parse(
+              localStorage.getItem(
+                "usuario"
+              )
+            );
+
+
+          if (
+            !usuario ||
+            usuario.plano !== "PREMIUM"
+          ) {
+
+            alert(
+              "⭐ Este curso é exclusivo do EducaFinança+."
+            );
+
+
+            window.location.href =
+              "plano.html";
+
+
+            return;
+
+          }
+
+        }
+
+
+
+        // =================================
+        // PREENCHER PÁGINA
+        // =================================
+
+        cursoNome.textContent =
+          curso.nome ||
+          "Curso";
+
+
+        cursoDescricao.textContent =
+          curso.descricao ||
+          "Sem descrição disponível.";
+
+
+        cursoNivel.textContent =
+          curso.nivel ||
+          "Iniciante";
+
+
+        cursoNivelInfo.textContent =
+          curso.nivel ||
+          "Iniciante";
+
+
+        cursoDuracao.textContent =
+          curso.duracao ||
+          "2 semanas";
+
+
+        cursoVideoaulas.textContent =
+          curso.videoaulas ||
+          1;
+
+
+
+        // =================================
+        // PREMIUM
+        // =================================
+
+        if (
+          curso.premium === true
+        ) {
+
+          cursoPremium.style.display =
+            "inline-flex";
+
+        } else {
+
+          cursoPremium.style.display =
+            "none";
+
+        }
+
+
+
+        // =================================
+        // CONTEÚDO
+        // =================================
+
+        /*
+          Caso o backend tenha um campo
+          "conteudo", ele será mostrado.
+
+          Caso ainda não tenha,
+          usamos a descrição.
+        */
+
+        conteudoTexto.textContent =
+          curso.conteudo ||
+          curso.descricao ||
+          "Conteúdo ainda não disponível.";
+
+
+
+        // =================================
+        // VÍDEO
+        // =================================
+
+        if (
+          curso.videoUrl
+        ) {
+
+          areaVideo.style.display =
+            "block";
+
+
+          videoCurso.src =
+            curso.videoUrl;
+
+        }
+
+
+
+        // =================================
+        // QUIZ
+        // =================================
+
+        btnQuiz.addEventListener(
+          "click",
+          () => {
+
+            window.location.href =
+              `quiz.html?cursoId=${curso.id}`;
+
+          }
+        );
+
+
+
+        // =================================
+        // MOSTRAR
+        // =================================
+
+        carregando.style.display =
+          "none";
+
+
+        conteudoCurso.style.display =
+          "block";
+
+
+      } catch (error) {
+
+        console.error(
+          "Erro:",
+          error
+        );
+
+
+        mostrarErro();
+
+      }
+
+    }
+
+
+
+    // =====================================
+    // MOSTRAR ERRO
+    // =====================================
+
+    function mostrarErro() {
+
+      carregando.style.display =
+        "none";
+
+
+      conteudoCurso.style.display =
+        "none";
+
+
+      erro.style.display =
+        "block";
+
+    }
+
+  </script>
+
+  <script src="../js/chat.js"></script>
+
+</body>
+
+</html>

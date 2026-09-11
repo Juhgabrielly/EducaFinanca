@@ -7,7 +7,6 @@
 
   <link rel="stylesheet" href="../css/login.css">
 
-  <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
 
@@ -59,11 +58,40 @@
             <a href="cadastro.html">Criar Cadastro</a>
           </p>
 
+          <div class="divider">
+          <span>ou</span>
+        </div>
+
+        <button
+          type="button"
+          id="googleLogin"
+          class="google-btn">
+
+          <img
+            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+            alt="Google">
+
+          Continuar com Google
+
+        </button>
+
+        <p class="register-text">
+          Possui conta?
+          <a href="../html/login.html">Fazer Login</a>
+        </p>
+
       </form>
 
     </div>
 
   </div>
 
+
+      </form>
+
+    </div>
+
+  </div>
+  <script type="module" src="../js/firebase-login.js"></script>
 </body>
 </html>

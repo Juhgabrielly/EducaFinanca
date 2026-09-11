@@ -10,7 +10,7 @@
   <title>Home - Educa Finança</title>
 
   <link rel="stylesheet" href="../css/home.css">
-
+<link rel="stylesheet" href="../css/chat.css">
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
     rel="stylesheet"
@@ -24,7 +24,6 @@
 
 <body>
 
-  <!-- HEADER -->
   <header>
 
     <div class="logo">
@@ -37,7 +36,6 @@
       <h2>Educa Finança</h2>
     </div>
 
-    <!-- BOTÃO DO MENU -->
     <button
       type="button"
       class="menu-toggle"
@@ -47,7 +45,6 @@
       <i class="fa-solid fa-bars"></i>
     </button>
 
-    <!-- MENU -->
     <nav class="menu" id="menu">
 
       <a href="home.html">Home</a>
@@ -59,12 +56,13 @@
       <a href="investimento.html">Investimentos</a>
 
       <a href="usuario.html">Perfil</a>
+      <a href="plano.html">Planos</a>
+      <a href="admin/admin.html" id="painelAdmin" style="display: none;">Painel Admin</a>
 
     </nav>
 
   </header>
 
-  <!-- CONTEÚDO PRINCIPAL -->
   <main>
 
     <section class="jornada">
@@ -80,7 +78,6 @@
 
       <div class="cards-jornada">
 
-        <!-- CARD CURSOS -->
         <a href="cursos.html" class="card-jornada">
 
           <div class="icone-card">
@@ -101,7 +98,6 @@
 
         </a>
 
-        <!-- CARD RELATÓRIOS -->
         <a href="relatório.html" class="card-jornada">
 
           <div class="icone-card">
@@ -122,7 +118,6 @@
 
         </a>
 
-        <!-- CARD INVESTIMENTOS -->
         <a href="investimento.html" class="card-jornada">
 
           <div class="icone-card">
@@ -149,7 +144,6 @@
 
   </main>
 
-  <!-- SCRIPT DO MENU -->
   <script>
     const toggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("menu");
@@ -157,7 +151,19 @@
     toggle.addEventListener("click", () => {
       menu.classList.toggle("active");
     });
-  </script>
+  const usuarioLogado = JSON.parse(
+    localStorage.getItem("usuario")
+  );
 
+  const EMAIL_ADMIN = "juliagonzaga062@gmail.com";
+
+  if (
+    usuarioLogado &&
+    usuarioLogado.email === EMAIL_ADMIN
+  ) {
+    document.getElementById("painelAdmin").style.display = "inline-block";
+  }
+  </script>
+<script src="../js/chat.js"></script>
 </body>
 </html>

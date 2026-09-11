@@ -157,7 +157,27 @@
     </section>
 
   </main>
+<script>
+  const usuario = JSON.parse(
+    localStorage.getItem("usuario")
+  );
 
+  const EMAIL_ADMIN = "SEU_EMAIL_AQUI";
+
+  if (!usuario) {
+
+    alert("Faça login primeiro.");
+
+    window.location.href = "../login.html";
+
+  } else if (usuario.email !== "juliagonzaga062@gmail.com") {
+
+    alert("Você não tem permissão para acessar o painel administrativo.");
+
+    window.location.href = "../home.html";
+
+  }
+</script>
 
   <script src="../../js/admin.js"></script>
 

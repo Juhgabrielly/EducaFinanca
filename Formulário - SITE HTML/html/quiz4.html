@@ -7,7 +7,7 @@
     <title>Quiz de Matemática Financeira</title>
 
     <link rel="stylesheet" href="../css/quiz.css">
-
+<link rel="stylesheet" href="../css/chat.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet"
@@ -20,7 +20,6 @@
 
         <h1>Quiz de Matemática Financeira</h1>
 
-        <!-- PROGRESSO -->
         <div class="progresso-area">
 
             <div class="progresso-texto">
@@ -34,7 +33,6 @@
 
         </div>
 
-        <!-- PERGUNTA 1 -->
         <div class="questao ativa">
 
             <p class="pergunta">
@@ -48,7 +46,7 @@
                     A: Método de Gauss.
                 </button>
 
-                <button class="opcao correta" data-correta="true">
+                <button class="opcao" data-correta="true">
                     B: Método de Curió.
                 </button>
 
@@ -64,7 +62,6 @@
 
         </div>
 
-        <!-- PERGUNTA 2 -->
         <div class="questao">
 
             <p class="pergunta">
@@ -78,7 +75,7 @@
                     A: Juros compostos e inflação.
                 </button>
 
-                <button class="opcao correta" data-correta="true">
+                <button class="opcao" data-correta="true">
                     B: Porcentagem e juros simples.
                 </button>
 
@@ -94,7 +91,6 @@
 
         </div>
 
-        <!-- PERGUNTA 3 -->
         <div class="questao">
 
             <p class="pergunta">
@@ -104,7 +100,7 @@
 
             <div class="opcoes">
 
-                <button class="opcao correta" data-correta="true">
+                <button class="opcao" data-correta="true">
                     A: Tornar a matemática complexa mais acessível e de fácil absorção.
                 </button>
 
@@ -124,138 +120,270 @@
 
         </div>
 
-        <!-- MENSAGEM -->
         <p id="mensagem"></p>
 
-        <!-- BOTÕES -->
         <div class="acoes-quiz">
 
-            <button id="proximaPergunta" class="proxima-btn" disabled>
+            <button
+                id="proximaPergunta"
+                class="proxima-btn"
+                disabled>
                 Próxima pergunta
             </button>
 
-            <a
-                href="../html/home.html"
+            <button
                 id="concluirQuiz"
                 class="finish-btn"
-            >
-                Concluir curso
-            </a>
+                type="button"
+                style="display: none;">
+                Concluir Quiz
+            </button>
 
         </div>
 
     </div>
 
+
     <script>
-        const questoes = document.querySelectorAll(".questao");
-        const numeroPergunta = document.getElementById("numeroPergunta");
-        const porcentagem = document.getElementById("porcentagem");
-        const progresso = document.getElementById("progresso");
-        const mensagem = document.getElementById("mensagem");
-        const botaoProxima = document.getElementById("proximaPergunta");
-        const botaoConcluir = document.getElementById("concluirQuiz");
+
+        const questoes =
+            document.querySelectorAll(".questao");
+
+        const numeroPergunta =
+            document.getElementById("numeroPergunta");
+
+        const porcentagem =
+            document.getElementById("porcentagem");
+
+        const progresso =
+            document.getElementById("progresso");
+
+        const mensagem =
+            document.getElementById("mensagem");
+
+        const botaoProxima =
+            document.getElementById("proximaPergunta");
+
+        const botaoConcluir =
+            document.getElementById("concluirQuiz");
+
 
         let perguntaAtual = 0;
         let acertos = 0;
 
+        const usuario =
+            JSON.parse(
+                localStorage.getItem("usuario")
+            );
+
+        if (!usuario) {
+            alert("Faça login para realizar o quiz.");
+            window.location.href = "login.html";
+        }
+
         questoes.forEach((questao) => {
-            const opcoes = questao.querySelectorAll(".opcao");
+
+            const opcoes =
+                questao.querySelectorAll(".opcao");
 
             opcoes.forEach((opcao) => {
+
                 opcao.addEventListener("click", () => {
-                    responderQuestao(questao, opcao);
+
+                    responderQuestao(
+                        questao,
+                        opcao
+                    );
+
                 });
+
             });
+
         });
 
-        function responderQuestao(questao, opcaoSelecionada) {
-            const opcoes = questao.querySelectorAll(".opcao");
-            const acertou = opcaoSelecionada.dataset.correta === "true";
+
+        function responderQuestao(
+            questao,
+            opcaoSelecionada
+        ) {
+
+            const opcoes =
+                questao.querySelectorAll(".opcao");
+
+            const acertou =
+                opcaoSelecionada.dataset.correta
+                === "true";
+
 
             opcoes.forEach((opcao) => {
+
                 opcao.disabled = true;
 
-                if (opcao.dataset.correta === "true") {
+                if (
+                    opcao.dataset.correta === "true"
+                ) {
                     opcao.classList.add("acertou");
                 }
+
             });
 
+
             if (acertou) {
+
                 acertos++;
 
-                mensagem.textContent = "✅ Resposta correta!";
-                mensagem.className = "mensagem-correta";
+                mensagem.textContent =
+                    "✅ Resposta correta!";
+
+                mensagem.className =
+                    "mensagem-correta";
+
             } else {
+
                 opcaoSelecionada.classList.add("errou");
 
                 mensagem.textContent =
                     "❌ Resposta errada. A alternativa correta está destacada.";
 
-                mensagem.className = "mensagem-errada";
+                mensagem.className =
+                    "mensagem-errada";
+
             }
+
 
             botaoProxima.disabled = false;
 
-            if (perguntaAtual === questoes.length - 1) {
-                botaoProxima.textContent = "Ver resultado";
-            }
-        }
 
-        botaoProxima.addEventListener("click", () => {
-            questoes[perguntaAtual].classList.remove("ativa");
-
-            perguntaAtual++;
-
-            mensagem.textContent = "";
-            mensagem.className = "";
-
-            if (perguntaAtual < questoes.length) {
-                questoes[perguntaAtual].classList.add("ativa");
-
-                atualizarProgresso();
-
-                botaoProxima.disabled = true;
+            if (
+                perguntaAtual ===
+                questoes.length - 1
+            ) {
 
                 botaoProxima.textContent =
-                    perguntaAtual === questoes.length - 1
-                        ? "Ver resultado"
-                        : "Próxima pergunta";
-            } else {
-                mostrarResultado();
+                    "Ver resultado";
+
             }
-        });
+
+        }
+
+        botaoProxima.addEventListener(
+            "click",
+            () => {
+
+                questoes[perguntaAtual]
+                    .classList.remove("ativa");
+
+                perguntaAtual++;
+
+                mensagem.textContent = "";
+                mensagem.className = "";
+
+
+                if (
+                    perguntaAtual <
+                    questoes.length
+                ) {
+
+                    questoes[perguntaAtual]
+                        .classList.add("ativa");
+
+                    atualizarProgresso();
+
+                    botaoProxima.disabled = true;
+
+                    botaoProxima.textContent =
+                        perguntaAtual ===
+                        questoes.length - 1
+                            ? "Ver resultado"
+                            : "Próxima pergunta";
+
+                } else {
+
+                    mostrarResultado();
+
+                }
+
+            }
+        );
 
         function atualizarProgresso() {
-            const numeroAtual = perguntaAtual + 1;
 
-            const percentual = Math.round(
-                (numeroAtual / questoes.length) * 100
-            );
+            const numeroAtual =
+                perguntaAtual + 1;
+
+            const percentual =
+                Math.round(
+                    (
+                        numeroAtual /
+                        questoes.length
+                    ) * 100
+                );
 
             numeroPergunta.textContent =
                 `Pergunta ${numeroAtual} de ${questoes.length}`;
 
-            porcentagem.textContent = `${percentual}%`;
+            porcentagem.textContent =
+                `${percentual}%`;
 
-            progresso.style.width = `${percentual}%`;
+            progresso.style.width =
+                `${percentual}%`;
+
         }
 
         function mostrarResultado() {
-            document.querySelector(".progresso-area").style.display = "none";
+
+            document
+                .querySelector(".progresso-area")
+                .style.display = "none";
+
+            const percentualAcertos =
+                Math.round(
+                    (
+                        acertos /
+                        questoes.length
+                    ) * 100
+                );
 
             mensagem.innerHTML = `
                 <strong>Quiz finalizado!</strong><br>
-                Você acertou ${acertos} de ${questoes.length} perguntas.
+                Você acertou ${acertos} de ${questoes.length} perguntas.<br>
+                Sua pontuação foi ${percentualAcertos}%.
             `;
 
-            mensagem.className = "resultado-final";
+            mensagem.className =
+                "resultado-final";
 
-            botaoProxima.style.display = "none";
-            botaoConcluir.style.display = "inline-flex";
+            botaoProxima.style.display =
+                "none";
+
+            botaoConcluir.style.display =
+                "inline-flex";
+
         }
 
-        atualizarProgresso();
-    </script>
+        botaoConcluir.addEventListener(
+            "click",
+            () => {
 
+                localStorage.setItem(
+                    "quiz4Concluido",
+                    "true"
+                );
+
+                alert(
+                    "Quiz concluído com sucesso! 🎉"
+                );
+
+                window.location.href =
+                    "curso4.html";
+
+            }
+        );
+
+
+        atualizarProgresso();
+
+    </script>
+<script src="../js/chat.js"></script>
 </body>
 </html>

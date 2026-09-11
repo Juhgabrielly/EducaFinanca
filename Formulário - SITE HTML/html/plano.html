@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planos - Educa Finança</title>
+  <link rel="stylesheet" href="../css/planos.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<body>
+  <header>
+    <div class="logo">
+      <img src="educa.png" class="logo-img" alt="Educa Finança">
+      <h2>Educa Finança</h2>
+    </div>
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+    <nav class="menu" id="menu">
+      <a href="home.html">Home</a>
+      <a href="cursos.html">Cursos</a>
+      <a href="relatório.html">Relatórios</a>
+      <a href="investimento.html">Investimentos</a>
+      <a href="usuario.html">Perfil</a>
+    </nav>
+  </header>
+  <main class="planos-page">
+    <section class="planos-intro">
+      <span class="tag">PLANOS</span>
+      <h1>
+        Escolha como você quer
+        <span>evoluir financeiramente</span>
+      </h1>
+      <p>Comece gratuitamente ou desbloqueie todos os recursos do Educa Finança com o EducaFinança+.</p>
+
+    </section>
+    <section class="planos-container">
+      <article class="plano-card">
+        <div class="plano-topo">
+          <p class="tipo-plano">FREE</p>
+          <h2>Plano Gratuito</h2>
+          <div class="preco">
+            <span>R$</span>
+            <strong>0</strong>
+            <small>/mês</small>
+          </div>
+          <p class="descricao-plano">Para começar a organizar sua vida financeira.</p>
+        </div>
+        <div class="recursos">
+          <p>✓ Acesso a 3 cursos básicos</p>
+          <p>✓ Quizzes dos cursos</p>
+          <p>✓ Controle de investimentos</p>
+          <p>✓ Metas financeiras</p>
+          <p>✓ Simuladores básicos</p>
+          <p class="bloqueado">✕ Cursos Premium</p>
+
+          <p class="bloqueado">
+            ✕ Simuladores avançados
+          </p>
+
+          <p class="bloqueado">
+            ✕ Recursos com Inteligência Artificial
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="btn-free"
+          id="btnFree"
+        >
+          Plano atual
+        </button>
+
+      </article>
+
+      <article class="plano-card premium">
+
+        <div class="mais-popular">
+          MAIS COMPLETO
+        </div>
+
+
+        <div class="plano-topo">
+
+          <p class="tipo-plano">
+            EDUCAFINANÇA+
+          </p>
+
+          <h2>Plano Premium</h2>
+
+
+          <div class="preco">
+
+            <span>R$</span>
+
+            <strong>19,90</strong>
+
+            <small>
+              /mês
+            </small>
+
+          </div>
+
+
+          <p class="descricao-plano">
+            Para quem quer ter uma experiência financeira completa.
+          </p>
+
+        </div>
+
+
+        <div class="recursos">
+
+          <p>✓ Todos os 6 cursos</p>
+
+          <p>✓ Todos os quizzes</p>
+
+          <p>✓ Controle de investimentos</p>
+
+          <p>✓ Metas financeiras</p>
+
+          <p>✓ Simuladores básicos</p>
+
+          <p>✓ Simuladores avançados</p>
+
+          <p>✓ Relatórios financeiros completos</p>
+
+          <p>✓ Recursos com Inteligência Artificial</p>
+
+          <p>✓ Recomendações personalizadas</p>
+
+        </div>
+
+
+        <a href="checkout.html" class="btn-premium">
+  Assinar EducaFinança+
+</a>
+
+      </article>
+
+    </section>
+    <section class="seguranca">
+
+      <h3>🔒 Pagamento seguro</h3>
+
+      <p>
+        Você poderá cancelar sua assinatura quando quiser.
+        Seus dados financeiros não serão armazenados diretamente
+        pelo Educa Finança.
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <script>
+    const toggle =
+      document.getElementById("menu-toggle");
+
+    const menu =
+      document.getElementById("menu");
+
+
+    toggle.addEventListener("click", () => {
+
+      menu.classList.toggle("active");
+
+    });
+
+    const usuario =
+      JSON.parse(
+        localStorage.getItem("usuario")
+      );
+
+
+    if (!usuario) {
+
+      alert(
+        "Faça login para acessar os planos."
+      );
+
+      window.location.href =
+        "login.html";
+
+    }
+    const btnPremium =
+      document.getElementById(
+        "assinarPremium"
+      );
+
+    const btnFree =
+      document.getElementById(
+        "btnFree"
+      );
+
+    if (
+      usuario &&
+      usuario.plano === "PREMIUM"
+    ) {
+
+      btnPremium.textContent =
+        "✓ Seu plano atual";
+
+      btnPremium.disabled =
+        true;
+
+
+      btnFree.textContent =
+        "Plano gratuito";
+
+    } else {
+
+      btnFree.textContent =
+        "✓ Seu plano atual";
+
+    }
+
+   btnPremium.addEventListener("click", () => {
+
+    if (usuario.plano === "PREMIUM") {
+        return;
+    }
+
+    usuario.plano = "PREMIUM";
+
+    localStorage.setItem(
+        "usuario",
+        JSON.stringify(usuario)
+    );
+
+    alert("EducaFinança+ ativado com sucesso! ⭐");
+
+    window.location.href = "cursos.html";
+});
+  </script>
+
+</body>
+
+</html>

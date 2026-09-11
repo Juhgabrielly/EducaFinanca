@@ -8,7 +8,7 @@
     <title>Relatórios - Educa Finança</title>
 
     <link rel="stylesheet" href="../css/relatorio.css">
-
+<link rel="stylesheet" href="../css/chat.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -52,6 +52,7 @@
         <a href="relatório.html" class="ativo">Relatórios</a>
         <a href="investimento.html">Investimentos</a>
         <a href="usuario.html">Perfil</a>
+        <a href="plano.html">Planos</a>
 
     </nav>
 
@@ -59,8 +60,6 @@
 
 
 <main class="reports-page">
-
-    <!-- CABEÇALHO -->
 
     <section class="reports-header">
 
@@ -80,12 +79,7 @@
 
     </section>
 
-
-    <!-- CARDS -->
-
     <section class="stats-grid">
-
-        <!-- RECEITA -->
 
         <article class="stat-card">
 
@@ -115,9 +109,6 @@
 
         </article>
 
-
-        <!-- DESPESA -->
-
         <article class="stat-card">
 
             <div class="stat-icon despesa-icon">
@@ -146,9 +137,6 @@
 
         </article>
 
-
-        <!-- SALDO -->
-
         <article class="stat-card">
 
             <div class="stat-icon saldo-icon">
@@ -175,9 +163,6 @@
 
     </section>
 
-
-    <!-- TABELA -->
-
     <section class="table-card">
 
         <div class="table-header">
@@ -193,9 +178,6 @@
                 </h2>
 
             </div>
-
-
-            <!-- FILTROS -->
 
             <div class="table-filters">
 
@@ -332,10 +314,6 @@ const filtroMes = document.getElementById("filtroMes");
 const filtroAno = document.getElementById("filtroAno");
 
 
-/* =========================
-   MESES
-========================= */
-
 const meses = [
     "janeiro",
     "fevereiro",
@@ -366,58 +344,38 @@ const nomesMeses = [
     "Dezembro"
 ];
 
-
-/* =========================
-   MÊS ATUAL
-========================= */
-
 const hoje = new Date();
 
 const mesAtual = meses[hoje.getMonth()];
 const anoAtual = hoje.getFullYear();
 
-
-/* =========================
-   DADOS SALVOS
-========================= */
-
 let dados = JSON.parse(
     localStorage.getItem("historicoFinanceiro")
 ) || {};
 
-
-/* =========================
-   DADOS INICIAIS
-========================= */
-
 const dadosIniciais = {
 
-    janeiro: {
+    maio: {
         receita: 8000,
         despesa: 4500
     },
 
-    fevereiro: {
+    junho: {
         receita: 9200,
         despesa: 4700
     },
 
-    marco: {
+    julho: {
         receita: 7800,
         despesa: 5100
     },
 
-    abril: {
+    agosto: {
         receita: 10000,
         despesa: 5300
     }
 
 };
-
-
-/* =========================
-   ADICIONAR DADOS INICIAIS
-========================= */
 
 Object.keys(dadosIniciais).forEach(mes => {
 
@@ -429,11 +387,6 @@ Object.keys(dadosIniciais).forEach(mes => {
     }
 
 });
-
-
-/* =========================
-   GARANTIR MÊS ATUAL
-========================= */
 
 if (!dados[`${mesAtual}-${anoAtual}`]) {
 
@@ -447,11 +400,6 @@ if (!dados[`${mesAtual}-${anoAtual}`]) {
 
 salvar();
 
-
-/* =========================
-   SALVAR
-========================= */
-
 function salvar() {
 
     localStorage.setItem(
@@ -460,11 +408,6 @@ function salvar() {
     );
 
 }
-
-
-/* =========================
-   FORMATAR DINHEIRO
-========================= */
 
 function dinheiro(valor) {
 
@@ -477,11 +420,6 @@ function dinheiro(valor) {
     );
 
 }
-
-
-/* =========================
-   ATUALIZAR SALDO
-========================= */
 
 function atualizarSaldo() {
 
@@ -504,11 +442,6 @@ function atualizarSaldo() {
 
 }
 
-
-/* =========================
-   CARREGAR MÊS ATUAL
-========================= */
-
 function carregarMesAtual() {
 
     const dadosMes =
@@ -523,11 +456,6 @@ function carregarMesAtual() {
     atualizarSaldo();
 
 }
-
-
-/* =========================
-   SALVAR MÊS ATUAL
-========================= */
 
 function salvarMesAtual() {
 
@@ -548,11 +476,6 @@ function salvarMesAtual() {
     renderizarTabela();
 
 }
-
-
-/* =========================
-   TABELA
-========================= */
 
 function renderizarTabela() {
 
@@ -628,11 +551,6 @@ function renderizarTabela() {
 
 }
 
-
-/* =========================
-   INPUTS
-========================= */
-
 receitaInput.addEventListener(
     "input",
     salvarMesAtual
@@ -643,11 +561,6 @@ despesaInput.addEventListener(
     salvarMesAtual
 );
 
-
-/* =========================
-   FILTROS
-========================= */
-
 filtroMes.addEventListener(
     "change",
     renderizarTabela
@@ -657,11 +570,6 @@ filtroAno.addEventListener(
     "change",
     renderizarTabela
 );
-
-
-/* =========================
-   MENU
-========================= */
 
 toggle.addEventListener("click", () => {
 
@@ -686,15 +594,10 @@ document.addEventListener("click", event => {
 
 });
 
-
-/* =========================
-   INICIAR
-========================= */
-
 carregarMesAtual();
 renderizarTabela();
 
 </script>
-
+<script src="../js/chat.js"></script>
 </body>
 </html>

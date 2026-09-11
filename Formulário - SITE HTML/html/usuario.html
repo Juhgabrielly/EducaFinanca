@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,18 @@
   <title>Perfil do Usuário - Educa Finança</title>
 
   <link rel="stylesheet" href="../css/usuario.css">
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/chat.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
 
-  <!-- HEADER -->
   <header>
 
     <div class="logo">
-      <img src="../html/educa.png" class="logo-img">
+      <img src="../html/educa.png" class="logo-img" alt="Educa Finança">
       <h2>Educa Finança</h2>
     </div>
 
@@ -28,14 +30,11 @@
     <nav class="menu" id="menu">
 
       <a href="home.html">Home</a>
-
       <a href="cursos.html">Cursos</a>
-
       <a href="relatório.html">Relatórios</a>
-
       <a href="investimento.html">Investimentos</a>
-
-      <a href="perfil.html">Perfil</a>
+      <a href="usuario.html">Perfil</a>
+      <a href="plano.html">Planos</a>
 
     </nav>
 
@@ -48,76 +47,134 @@
       <div class="perfil-top">
 
         <div class="perfil-avatar">
+
           <img
             id="fotoPerfil"
             src=""
             alt="Foto do usuário">
+
         </div>
 
         <div class="perfil-info">
-          <h2 id="nomePerfil">Usuário</h2>
-          <p id="planoPerfil">Plano Free</p>
+
+          <h2 id="nomePerfil">
+            Usuário
+          </h2>
+
+          <p id="planoPerfil">
+            Plano Free
+          </p>
+
+          <div
+            id="areaAssinatura"
+            class="area-assinatura"
+            style="display: none;">
+
+            <p class="assinatura-status">
+              Assinatura EducaFinança+ ativa
+            </p>
+
+            <button
+              type="button"
+              id="cancelarAssinatura"
+              class="cancelar-assinatura">
+              Cancelar assinatura
+            </button>
+
+          </div>
+
         </div>
 
       </div>
 
-      <form class="perfil-form" id="perfilForm">
+      <form
+        class="perfil-form"
+        id="perfilForm">
 
         <div class="input-grid">
 
           <div class="input-box">
-            <label>Nome Completo</label>
+
+            <label>
+              Nome Completo
+            </label>
 
             <input
               type="text"
               id="nome"
               placeholder="Digite seu nome">
+
           </div>
 
+
           <div class="input-box">
-            <label>E-mail</label>
+
+            <label>
+              E-mail
+            </label>
 
             <input
               type="email"
               id="email"
               placeholder="Digite seu e-mail"
               readonly>
+
           </div>
 
+
           <div class="input-box">
-            <label>Telefone</label>
+
+            <label>
+              Telefone
+            </label>
 
             <input
               type="text"
               id="telefone"
               placeholder="(19) 99999-0000">
+
           </div>
 
+
           <div class="input-box">
-            <label>Cidade</label>
+
+            <label>
+              Cidade
+            </label>
 
             <input
               type="text"
               id="cidade"
               placeholder="Amparo, SP">
+
           </div>
 
+
           <div class="input-box">
-            <label>Meta Financeira</label>
+
+            <label>
+              Meta Financeira
+            </label>
 
             <input
               type="text"
               id="meta"
               placeholder="Guardar R$ 50 mil">
+
           </div>
 
+
           <div class="input-box">
-            <label>Área de Interesse</label>
+
+            <label>
+              Área de Interesse
+            </label>
 
             <input
               type="text"
               id="interesse"
               placeholder="Investimentos">
+
           </div>
 
         </div>
@@ -128,9 +185,12 @@
           Salvar Alterações
         </button>
 
-        <button type="button" class="logout-btn" id="logoutBtn">
-  Sair da conta
-</button>
+        <button
+          type="button"
+          class="logout-btn"
+          id="logoutBtn">
+          Sair da conta
+        </button>
 
       </form>
 
@@ -139,126 +199,189 @@
     <section class="status-grid">
 
       <div class="status-card">
-        <h3>Cursos Concluídos</h3>
-        <p id="cursosConcluidos">0 Cursos</p>
+
+        <h3>
+          Cursos Concluídos
+        </h3>
+
+        <p id="cursosConcluidos">
+          0 Cursos
+        </p>
+
       </div>
 
-      <div class="status-card">
-        <h3>Saldo Total</h3>
-        <p id="saldoTotal">R$ 0,00</p>
-      </div>
 
       <div class="status-card">
-        <h3>Investimentos</h3>
-        <p id="investimentos">R$ 0,00</p>
+
+        <h3>
+          Saldo Total
+        </h3>
+
+        <p id="saldoTotal">
+          R$ 0,00
+        </p>
+
+      </div>
+
+
+      <div class="status-card">
+
+        <h3>
+          Investimentos
+        </h3>
+
+        <p id="investimentos">
+          R$ 0,00
+        </p>
+
       </div>
 
     </section>
 
   </main>
 
+
   <script>
 
-    const toggle = document.getElementById("menu-toggle");
-    const menu = document.getElementById("menu");
+    const toggle =
+      document.getElementById("menu-toggle");
+
+    const menu =
+      document.getElementById("menu");
 
     toggle.addEventListener("click", () => {
       menu.classList.toggle("active");
     });
 
+    let usuario =
+      JSON.parse(
+        localStorage.getItem("usuario")
+      );
 
-    // USUÁRIO LOGADO
-
-    let usuario = JSON.parse(
-      localStorage.getItem("usuario")
-    );
-
-
-    // SE NÃO ESTIVER LOGADO
 
     if (!usuario) {
 
-      alert("Faça login para acessar seu perfil.");
+      alert(
+        "Faça login para acessar seu perfil."
+      );
 
-      window.location.href = "login.html";
-
+      window.location.href =
+        "login.html";
     }
 
+    const usuarioId =
+      usuario.uid ||
+      usuario.email ||
+      "usuario";
 
-    // MOSTRAR DADOS DO GOOGLE
-
-    document.getElementById("nomePerfil").textContent =
+    document
+      .getElementById("nomePerfil")
+      .textContent =
       usuario.nome || "Usuário";
 
-    document.getElementById("nome").value =
+
+    document
+      .getElementById("nome")
+      .value =
       usuario.nome || "";
 
-    document.getElementById("email").value =
+
+    document
+      .getElementById("email")
+      .value =
       usuario.email || "";
 
-
-    // FOTO GOOGLE
-
     const fotoPerfil =
-      document.getElementById("fotoPerfil");
+      document.getElementById(
+        "fotoPerfil"
+      );
+
 
     if (usuario.foto) {
 
-      fotoPerfil.src = usuario.foto;
+      fotoPerfil.src =
+        usuario.foto;
 
     } else {
 
-      fotoPerfil.src = "../img/perfil-padrao.png";
-
+      fotoPerfil.src =
+        "../img/perfil-padrao.png";
     }
 
-
-    // DADOS SALVOS PELO USUÁRIO
-
-    document.getElementById("telefone").value =
+    document
+      .getElementById("telefone")
+      .value =
       usuario.telefone || "";
 
-    document.getElementById("cidade").value =
-      usuario.cidade || "";
-
-    document.getElementById("meta").value =
-      usuario.meta || "";
-
-    document.getElementById("interesse").value =
-      usuario.interesse || "";
-
-
-    // PLANO
-
-    document.getElementById("planoPerfil").textContent =
-      usuario.plano === "PREMIUM"
-        ? "EducaFinança+ ⭐"
-        : "Plano Free";
-
-
-    // SALVAR ALTERAÇÕES
 
     document
-      .getElementById("perfilForm")
-      .addEventListener("submit", function(event) {
+      .getElementById("cidade")
+      .value =
+      usuario.cidade || "";
 
-        event.preventDefault();
+
+    document
+      .getElementById("meta")
+      .value =
+      usuario.meta || "";
 
 
-        usuario.nome =
-          document.getElementById("nome").value;
+    document
+      .getElementById("interesse")
+      .value =
+      usuario.interesse || "";
 
-        usuario.telefone =
-          document.getElementById("telefone").value;
+    const planoPerfil =
+      document.getElementById(
+        "planoPerfil"
+      );
 
-        usuario.cidade =
-          document.getElementById("cidade").value;
 
-        usuario.meta =
-          document.getElementById("meta").value;
+    const areaAssinatura =
+      document.getElementById(
+        "areaAssinatura"
+      );
 
-        usuario.interesse =
-          document.getElementById("interesse").value;
+
+    const cancelarAssinatura =
+      document.getElementById(
+        "cancelarAssinatura"
+      );
+
+
+    if (usuario.plano === "PREMIUM") {
+
+      planoPerfil.textContent =
+        "EducaFinança+";
+
+      areaAssinatura.style.display =
+        "block";
+
+    } else {
+
+      planoPerfil.textContent =
+        "Plano Free";
+
+      areaAssinatura.style.display =
+        "none";
+    }
+
+    cancelarAssinatura.addEventListener(
+      "click",
+      () => {
+
+        const confirmar =
+          confirm(
+            "Tem certeza que deseja cancelar sua assinatura EducaFinança+?"
+          );
+
+
+        if (!confirmar) {
+          return;
+        }
+
+        usuario.plano =
+          "FREE";
 
 
         localStorage.setItem(
@@ -267,15 +390,132 @@
         );
 
 
-        document.getElementById("nomePerfil").textContent =
-          usuario.nome;
+        alert(
+          "Sua assinatura EducaFinança+ foi cancelada."
+        );
 
 
-        alert("Perfil atualizado com sucesso!");
+        window.location.reload();
+      }
+    );
 
-      });
+    const chaveCursos =
+      `cursosConcluidos_${usuarioId}`;
+
+
+    const cursosConcluidos =
+      JSON.parse(
+        localStorage.getItem(
+          chaveCursos
+        )
+      ) || [];
+
+
+    const quantidadeCursos =
+      cursosConcluidos.length;
+
+
+    const textoCursos =
+      document.getElementById(
+        "cursosConcluidos"
+      );
+
+
+    if (quantidadeCursos === 1) {
+
+      textoCursos.textContent =
+        "1 Curso";
+
+    } else {
+
+      textoCursos.textContent =
+        `${quantidadeCursos} Cursos`;
+    }
+
+    console.log(
+      "Usuário:",
+      usuarioId
+    );
+
+
+    console.log(
+      "Plano:",
+      usuario.plano
+    );
+
+
+    console.log(
+      "Cursos concluídos:",
+      cursosConcluidos
+    );
+
+    document
+      .getElementById("perfilForm")
+      .addEventListener(
+        "submit",
+        function(event) {
+
+          event.preventDefault();
+
+
+          usuario.nome =
+            document
+              .getElementById("nome")
+              .value;
+
+
+          usuario.telefone =
+            document
+              .getElementById("telefone")
+              .value;
+
+
+          usuario.cidade =
+            document
+              .getElementById("cidade")
+              .value;
+
+
+          usuario.meta =
+            document
+              .getElementById("meta")
+              .value;
+
+
+          usuario.interesse =
+            document
+              .getElementById("interesse")
+              .value;
+
+
+          localStorage.setItem(
+            "usuario",
+            JSON.stringify(usuario)
+          );
+
+
+          document
+            .getElementById("nomePerfil")
+            .textContent =
+            usuario.nome;
+
+
+          alert(
+            "Perfil atualizado com sucesso!"
+          );
+
+        }
+      );
 
   </script>
-<script type="module" src="../js/logout.js"></script>
+
+  <script
+    type="module"
+    src="../js/logout.js">
+    
+  </script>
+  <script src="../js/chat.js"></script>
+
 </body>
+
 </html>

@@ -4,24 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Gestão de Dividas e de Credito - Educa Finança</title>
+  <title>Gestão de Dívidas e Créditos</title>
 
   <link rel="stylesheet" href="../css/cursos.css">
-
-  <!-- FONTES -->
+<link rel="stylesheet" href="../css/chat.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
 </head>
 
 <body>
 
-  <!-- HEADER -->
   <header>
 
     <div class="logo">
-      <img src="../html/educa.png" class="logo-img">
+      <img
+        src="../html/educa.png"
+        class="logo-img"
+        alt="Educa Finança">
+
       <h2>Educa Finança</h2>
     </div>
 
@@ -29,45 +34,41 @@
       ☰
     </div>
 
-    <!-- MENU -->
     <nav class="menu" id="menu">
 
       <a href="home.html">Home</a>
-
       <a href="cursos.html">Cursos</a>
-
-      <a href="../html/relatório.html">Relatórios</a>
-
-      <a href="../html/investimento.html">Investimentos</a>
-
-      <a href="../html/usuario.html">Perfil</a>
-
+      <a href="relatório.html">Relatórios</a>
+      <a href="investimento.html">Investimentos</a>
+      <a href="usuario.html">Perfil</a>
+      <a href="plano.html">Planos</a>
       <a href="#">Contato</a>
-''
+
     </nav>
 
   </header>
 
-  <!-- CURSO -->
+
   <main class="course-page">
 
     <h1>
-      Gestão de Dívidas e Crédito
+      Gestão de Dívidas
+      <span>e Créditos</span>
     </h1>
 
     <p class="description">
-      Neste curso você aprenderá a estruturar suas finanças pessoais e familiares,
-      criando um plano sólido para alcançar estabilidade, segurança e liberdade financeira.
+      Neste curso você aprenderá a compreender e organizar suas dívidas,
+      utilizar o crédito de maneira consciente e desenvolver estratégias
+      para melhorar sua situação financeira.
     </p>
 
-    <!-- VIDEO -->
     <section class="video-card">
 
       <h2>Aula Introdutória</h2>
 
       <div class="video-container">
 
-        <iframe 
+        <iframe
           src="https://www.youtube.com/embed/SEU_VIDEO_ID"
           title="YouTube video player"
           frameborder="0"
@@ -78,30 +79,23 @@
 
     </section>
 
-    <!-- CONTEÚDO -->
     <section class="content-card">
 
       <h2>Conteúdo do Curso</h2>
 
       <ul>
 
-        <li>Uso Inteligente do Crédito</li>
-
+        <li>Uso inteligente do crédito</li>
         <li>Controle de gastos e orçamento</li>
-
-        <li>Diagnóstico Financeiro</li>
-
-        <li>Controle de Passivos</li>
-
-        <li>Estratégias para economizar dinheiro</li>
-
-        <li>Gestão de Crédito</li>
+        <li>Diagnóstico financeiro</li>
+        <li>Controle de passivos</li>
+        <li>Estratégias para reduzir dívidas</li>
+        <li>Gestão de crédito</li>
 
       </ul>
 
     </section>
 
-    <!-- QUIZ -->
     <section class="quiz-card">
 
       <h2>Teste seus conhecimentos</h2>
@@ -110,23 +104,168 @@
         Finalize o módulo realizando o quiz interativo do curso.
       </p>
 
-      <a href="../html/quiz2.html" class="quiz-btn">
-        Iniciar Quiz 
+      <a
+        href="quiz2.html"
+        class="quiz-btn">
+        Iniciar Quiz
       </a>
+
+      <button
+        type="button"
+        id="concluirCurso"
+        disabled>
+        🔒 Complete o quiz para concluir
+      </button>
 
     </section>
 
   </main>
 
-  <!-- SCRIPT MENU -->
+
   <script>
-    const toggle = document.getElementById("menu-toggle");
-    const menu = document.getElementById("menu");
+
+    const toggle =
+      document.getElementById("menu-toggle");
+
+    const menu =
+      document.getElementById("menu");
 
     toggle.addEventListener("click", () => {
       menu.classList.toggle("active");
     });
-  </script>
 
+    const usuario =
+      JSON.parse(
+        localStorage.getItem("usuario")
+      );
+
+
+    if (!usuario) {
+
+      alert(
+        "Faça login para acessar o curso."
+      );
+
+      window.location.href =
+        "login.html";
+
+    }
+
+    const botaoConcluirCurso =
+      document.getElementById(
+        "concluirCurso"
+      );
+
+    const quizConcluido =
+      localStorage.getItem(
+        "quiz2Concluido"
+      );
+
+
+    console.log(
+      "Quiz 2 concluído:",
+      quizConcluido
+    );
+
+
+    if (
+      quizConcluido === "true"
+    ) {
+
+      botaoConcluirCurso.disabled =
+        false;
+
+      botaoConcluirCurso.textContent =
+        "✓ Concluir curso";
+
+    } else {
+
+      botaoConcluirCurso.disabled =
+        true;
+
+      botaoConcluirCurso.textContent =
+        "🔒 Complete o quiz para concluir";
+
+    }
+
+    botaoConcluirCurso.addEventListener(
+      "click",
+      () => {
+
+        const quizAtual =
+          localStorage.getItem(
+            "quiz2Concluido"
+          );
+
+
+        if (
+          quizAtual !== "true"
+        ) {
+
+          alert(
+            "Você precisa concluir o quiz primeiro."
+          );
+
+          return;
+
+        }
+
+
+        const usuarioId =
+          usuario.uid ||
+          usuario.email ||
+          "usuario";
+
+
+        const chaveCursos =
+          `cursosConcluidos_${usuarioId}`;
+
+
+        let cursosConcluidos =
+          JSON.parse(
+            localStorage.getItem(
+              chaveCursos
+            )
+          ) || [];
+
+
+        const nomeCurso =
+          "Gestão de Dívidas e Créditos";
+
+
+        if (
+          !cursosConcluidos.includes(
+            nomeCurso
+          )
+        ) {
+
+          cursosConcluidos.push(
+            nomeCurso
+          );
+
+
+          localStorage.setItem(
+            chaveCursos,
+            JSON.stringify(
+              cursosConcluidos
+            )
+          );
+
+        }
+
+
+        alert(
+          "Curso concluído com sucesso! 🎉"
+        );
+
+
+        window.location.href =
+          "cursos.html";
+
+      }
+    );
+
+  </script>
+<script src="../js/chat.js"></script>
 </body>
 </html>

@@ -7,40 +7,52 @@
   <title>Educação Financeira Empresarial - Educa Finança</title>
 
   <link rel="stylesheet" href="../css/cursos.css">
-
-  <!-- FONTES -->
+<link rel="stylesheet" href="../css/chat.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
 </head>
 
 <body>
 
-  <!-- HEADER -->
   <header>
 
     <div class="logo">
-      <img src="../html/educa.png" class="logo-img">
+      <img
+        src="../html/educa.png"
+        class="logo-img"
+        alt="Educa Finança"
+      >
+
       <h2>Educa Finança</h2>
     </div>
 
-    <div class="menu-toggle" id="menu-toggle">
+    <div
+      class="menu-toggle"
+      id="menu-toggle"
+    >
       ☰
     </div>
 
-    <!-- MENU -->
-    <nav class="menu" id="menu">
+    <nav
+      class="menu"
+      id="menu"
+    >
 
       <a href="home.html">Home</a>
 
       <a href="cursos.html">Cursos</a>
 
-      <a href="../html/relatório.html">Relatórios</a>
+      <a href="relatório.html">Relatórios</a>
 
-      <a href="../html/investimento.html">Investimentos</a>
+      <a href="investimento.html">Investimentos</a>
 
-      <a href="../html/usuario.html">Perfil</a>
+      <a href="usuario.html">Perfil</a>
+      <a href="plano.html">Planos</a>
 
       <a href="#">Contato</a>
 
@@ -48,27 +60,27 @@
 
   </header>
 
-  <!-- CURSO -->
+
   <main class="course-page">
 
     <h1>
-      
       <span>Educação Financeira Empresarial</span>
     </h1>
 
     <p class="description">
-      Neste curso você aprenderá a estruturar suas finanças pessoais e familiares,
-      criando um plano sólido para alcançar estabilidade, segurança e liberdade financeira.
+      Neste curso você aprenderá os principais conceitos de organização
+      financeira empresarial, controle de custos, fluxo de caixa,
+      planejamento estratégico e gestão de dívidas.
     </p>
 
-    <!-- VIDEO -->
+
     <section class="video-card">
 
       <h2>Aula Introdutória</h2>
 
       <div class="video-container">
 
-        <iframe 
+        <iframe
           src="https://www.youtube.com/embed/SEU_VIDEO_ID"
           title="YouTube video player"
           frameborder="0"
@@ -79,7 +91,7 @@
 
     </section>
 
-    <!-- CONTEÚDO -->
+
     <section class="content-card">
 
       <h2>Conteúdo do Curso</h2>
@@ -102,7 +114,7 @@
 
     </section>
 
-    <!-- QUIZ -->
+
     <section class="quiz-card">
 
       <h2>Teste seus conhecimentos</h2>
@@ -111,23 +123,164 @@
         Finalize o módulo realizando o quiz interativo do curso.
       </p>
 
-      <a href="../html/quiz5.html" class="quiz-btn">
-        Iniciar Quiz 
+      <a
+        href="quiz5.html"
+        class="quiz-btn"
+      >
+        Iniciar Quiz
       </a>
+
+      <button
+        type="button"
+        id="concluirCurso"
+        disabled
+      >
+        🔒 Complete o quiz para concluir
+      </button>
 
     </section>
 
   </main>
 
-  <!-- SCRIPT MENU -->
+
   <script>
-    const toggle = document.getElementById("menu-toggle");
-    const menu = document.getElementById("menu");
+
+    const toggle =
+      document.getElementById("menu-toggle");
+
+    const menu =
+      document.getElementById("menu");
 
     toggle.addEventListener("click", () => {
       menu.classList.toggle("active");
     });
-  </script>
 
+    const usuario =
+      JSON.parse(
+        localStorage.getItem("usuario")
+      );
+
+    if (!usuario) {
+
+      alert(
+        "Faça login para acessar o curso."
+      );
+
+      window.location.href =
+        "login.html";
+
+    }
+
+    const botaoConcluirCurso =
+      document.getElementById(
+        "concluirCurso"
+      );
+
+    const quizConcluido =
+      localStorage.getItem(
+        "quiz5Concluido"
+      );
+
+    console.log(
+      "Quiz 5 concluído:",
+      quizConcluido
+    );
+
+
+    if (quizConcluido === "true") {
+
+      botaoConcluirCurso.disabled =
+        false;
+
+      botaoConcluirCurso.textContent =
+        "✓ Concluir curso";
+
+    } else {
+
+      botaoConcluirCurso.disabled =
+        true;
+
+      botaoConcluirCurso.textContent =
+        "🔒 Complete o quiz para concluir";
+
+    }
+
+    botaoConcluirCurso.addEventListener(
+      "click",
+      () => {
+
+        const quizAtual =
+          localStorage.getItem(
+            "quiz5Concluido"
+          );
+
+
+        if (quizAtual !== "true") {
+
+          alert(
+            "Você precisa concluir o quiz primeiro."
+          );
+
+          return;
+
+        }
+
+
+        const usuarioId =
+          usuario.uid ||
+          usuario.email ||
+          "usuario";
+
+
+        const chaveCursos =
+          `cursosConcluidos_${usuarioId}`;
+
+
+        let cursosConcluidos =
+          JSON.parse(
+            localStorage.getItem(
+              chaveCursos
+            )
+          ) || [];
+
+
+        const nomeCurso =
+          "Educação Financeira Empresarial";
+
+
+        if (
+          !cursosConcluidos.includes(
+            nomeCurso
+          )
+        ) {
+
+          cursosConcluidos.push(
+            nomeCurso
+          );
+
+
+          localStorage.setItem(
+            chaveCursos,
+            JSON.stringify(
+              cursosConcluidos
+            )
+          );
+
+        }
+
+
+        alert(
+          "Curso concluído com sucesso! 🎉"
+        );
+
+
+        window.location.href =
+          "cursos.html";
+
+      }
+    );
+
+  </script>
+<script src="../js/chat.js"></script>
 </body>
 </html>
