@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Relatórios - Educa Finança</title>
+
+    <link rel="stylesheet" href="../css/relatorio.css">
+<link rel="stylesheet" href="../css/chat.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+
+        <img
+            src="educa.png"
+            alt="Logo do Educa Finança"
+            class="logo-img">
+
+        <h2>Educa Finança</h2>
+
+    </div>
+
+    <button
+        type="button"
+        class="menu-toggle"
+        id="menu-toggle">
+
+        <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+    <nav class="menu" id="menu">
+
+        <a href="home.html">Home</a>
+        <a href="cursos.html">Cursos</a>
+        <a href="relatório.html" class="ativo">Relatórios</a>
+        <a href="investimento.html">Investimentos</a>
+        <a href="usuario.html">Perfil</a>
+        <a href="plano.html">Planos</a>
+
+    </nav>
+
+</header>
+
+
+<main class="reports-page">
+
+    <section class="reports-header">
+
+        <span class="mini-title">
+            CONTROLE FINANCEIRO
+        </span>
+
+        <h1>
+            Resultados
+            <span>Financeiros</span>
+        </h1>
+
+        <p class="description">
+            Acompanhe suas receitas, despesas e resultados
+            financeiros de forma simples e organizada.
+        </p>
+
+    </section>
+
+    <section class="stats-grid">
+
+        <article class="stat-card">
+
+            <div class="stat-icon receita-icon">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    Receita do mês
+                </span>
+
+                <input
+                    type="number"
+                    id="receitaInput"
+                    class="valor-input"
+                    placeholder="Digite o valor"
+                    min="0"
+                    step="0.01">
+
+                <p>
+                    Digite sua receita
+                </p>
+
+            </div>
+
+        </article>
+
+        <article class="stat-card">
+
+            <div class="stat-icon despesa-icon">
+                <i class="fa-solid fa-arrow-trend-down"></i>
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    Despesa do mês
+                </span>
+
+                <input
+                    type="number"
+                    id="despesaInput"
+                    class="valor-input"
+                    placeholder="Digite o valor"
+                    min="0"
+                    step="0.01">
+
+                <p>
+                    Digite sua despesa
+                </p>
+
+            </div>
+
+        </article>
+
+        <article class="stat-card">
+
+            <div class="stat-icon saldo-icon">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    Saldo do mês
+                </span>
+
+                <h2 id="saldoAtual">
+                    R$ 0,00
+                </h2>
+
+                <p>
+                    Receita menos despesas
+                </p>
+
+            </div>
+
+        </article>
+
+    </section>
+
+    <section class="table-card">
+
+        <div class="table-header">
+
+            <div class="table-title">
+
+                <span>
+                    RESUMO MENSAL
+                </span>
+
+                <h2>
+                    Histórico Financeiro
+                </h2>
+
+            </div>
+
+            <div class="table-filters">
+
+                <label>
+
+                    <span>
+                        Mês
+                    </span>
+
+                    <select id="filtroMes">
+
+                        <option value="todos">
+                            Todos
+                        </option>
+
+                        <option value="janeiro">
+                            Janeiro
+                        </option>
+
+                        <option value="fevereiro">
+                            Fevereiro
+                        </option>
+
+                        <option value="marco">
+                            Março
+                        </option>
+
+                        <option value="abril">
+                            Abril
+                        </option>
+
+                        <option value="maio">
+                            Maio
+                        </option>
+
+                        <option value="junho">
+                            Junho
+                        </option>
+
+                        <option value="julho">
+                            Julho
+                        </option>
+
+                        <option value="agosto">
+                            Agosto
+                        </option>
+
+                        <option value="setembro">
+                            Setembro
+                        </option>
+
+                        <option value="outubro">
+                            Outubro
+                        </option>
+
+                        <option value="novembro">
+                            Novembro
+                        </option>
+
+                        <option value="dezembro">
+                            Dezembro
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+                <label>
+
+                    <span>
+                        Ano
+                    </span>
+
+                    <select id="filtroAno">
+
+                        <option value="2026">
+                            2026
+                        </option>
+
+                        <option value="2025">
+                            2025
+                        </option>
+
+                    </select>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Mês</th>
+                        <th>Receita</th>
+                        <th>Despesas</th>
+                        <th>Resultado</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tabelaFinanceira"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+const toggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu");
+
+const receitaInput = document.getElementById("receitaInput");
+const despesaInput = document.getElementById("despesaInput");
+const saldoAtual = document.getElementById("saldoAtual");
+
+const tabela = document.getElementById("tabelaFinanceira");
+
+const filtroMes = document.getElementById("filtroMes");
+const filtroAno = document.getElementById("filtroAno");
+
+
+const meses = [
+    "janeiro",
+    "fevereiro",
+    "marco",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro"
+];
+
+const nomesMeses = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
+];
+
+const hoje = new Date();
+
+const mesAtual = meses[hoje.getMonth()];
+const anoAtual = hoje.getFullYear();
+
+let dados = JSON.parse(
+    localStorage.getItem("historicoFinanceiro")
+) || {};
+
+const dadosIniciais = {
+
+    maio: {
+        receita: 8000,
+        despesa: 4500
+    },
+
+    junho: {
+        receita: 9200,
+        despesa: 4700
+    },
+
+    julho: {
+        receita: 7800,
+        despesa: 5100
+    },
+
+    agosto: {
+        receita: 10000,
+        despesa: 5300
+    }
+
+};
+
+Object.keys(dadosIniciais).forEach(mes => {
+
+    if (!dados[`${mes}-2026`]) {
+
+        dados[`${mes}-2026`] =
+            dadosIniciais[mes];
+
+    }
+
+});
+
+if (!dados[`${mesAtual}-${anoAtual}`]) {
+
+    dados[`${mesAtual}-${anoAtual}`] = {
+        receita: 0,
+        despesa: 0
+    };
+
+}
+
+
+salvar();
+
+function salvar() {
+
+    localStorage.setItem(
+        "historicoFinanceiro",
+        JSON.stringify(dados)
+    );
+
+}
+
+function dinheiro(valor) {
+
+    return Number(valor || 0).toLocaleString(
+        "pt-BR",
+        {
+            style: "currency",
+            currency: "BRL"
+        }
+    );
+
+}
+
+function atualizarSaldo() {
+
+    const receita =
+        Number(receitaInput.value) || 0;
+
+    const despesa =
+        Number(despesaInput.value) || 0;
+
+    const saldo =
+        receita - despesa;
+
+    saldoAtual.textContent =
+        dinheiro(saldo);
+
+    saldoAtual.classList.toggle(
+        "negative",
+        saldo < 0
+    );
+
+}
+
+function carregarMesAtual() {
+
+    const dadosMes =
+        dados[`${mesAtual}-${anoAtual}`];
+
+    receitaInput.value =
+        dadosMes.receita || "";
+
+    despesaInput.value =
+        dadosMes.despesa || "";
+
+    atualizarSaldo();
+
+}
+
+function salvarMesAtual() {
+
+    dados[`${mesAtual}-${anoAtual}`] = {
+
+        receita:
+            Number(receitaInput.value) || 0,
+
+        despesa:
+            Number(despesaInput.value) || 0
+
+    };
+
+    salvar();
+
+    atualizarSaldo();
+
+    renderizarTabela();
+
+}
+
+function renderizarTabela() {
+
+    tabela.innerHTML = "";
+
+    const anoSelecionado =
+        filtroAno.value;
+
+    const mesSelecionado =
+        filtroMes.value;
+
+
+    meses.forEach((mes, index) => {
+
+        const chave =
+            `${mes}-${anoSelecionado}`;
+
+        const registro =
+            dados[chave] || {
+                receita: 0,
+                despesa: 0
+            };
+
+
+        if (
+            mesSelecionado !== "todos" &&
+            mesSelecionado !== mes
+        ) {
+
+            return;
+
+        }
+
+
+        const receita =
+            Number(registro.receita) || 0;
+
+        const despesa =
+            Number(registro.despesa) || 0;
+
+        const saldo =
+            receita - despesa;
+
+
+        const tr =
+            document.createElement("tr");
+
+
+        tr.innerHTML = `
+
+            <td>
+                ${nomesMeses[index]}
+            </td>
+
+            <td class="valor-receita">
+                ${dinheiro(receita)}
+            </td>
+
+            <td class="valor-despesa">
+                ${dinheiro(despesa)}
+            </td>
+
+            <td class="${saldo >= 0 ? "positive" : "negative"}">
+                ${dinheiro(saldo)}
+            </td>
+
+        `;
+
+
+        tabela.appendChild(tr);
+
+    });
+
+}
+
+receitaInput.addEventListener(
+    "input",
+    salvarMesAtual
+);
+
+despesaInput.addEventListener(
+    "input",
+    salvarMesAtual
+);
+
+filtroMes.addEventListener(
+    "change",
+    renderizarTabela
+);
+
+filtroAno.addEventListener(
+    "change",
+    renderizarTabela
+);
+
+toggle.addEventListener("click", () => {
+
+    menu.classList.toggle("active");
+
+});
+
+
+document.addEventListener("click", event => {
+
+    const clicouMenu =
+        menu.contains(event.target);
+
+    const clicouBotao =
+        toggle.contains(event.target);
+
+    if (!clicouMenu && !clicouBotao) {
+
+        menu.classList.remove("active");
+
+    }
+
+});
+
+carregarMesAtual();
+renderizarTabela();
+
+</script>
+<script src="../js/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,2207 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-09-28T00:00:00.000Z",
+  "__export_source": "chatgpt.educafinanca",
+  "resources": [
+    {
+      "_id": "wrk_31cf9b6354",
+      "_type": "workspace",
+      "parentId": null,
+      "name": "EducaFinança - API"
+    },
+    {
+      "_id": "env_743671917c",
+      "_type": "environment",
+      "parentId": "wrk_31cf9b6354",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3000",
+        "token_usuario": "COLE_AQUI_O_TOKEN_DO_USUARIO",
+        "token_admin": "COLE_AQUI_O_TOKEN_DO_ADMIN",
+        "usuario_id": 1,
+        "id": 1
+      }
+    },
+    {
+      "_id": "fld_677a33503a",
+      "_type": "request_group",
+      "parentId": "wrk_31cf9b6354",
+      "name": "01 - AUTENTICAÇÃO"
+    },
+    {
+      "_id": "fld_4b3d921e5e",
+      "_type": "request_group",
+      "parentId": "wrk_31cf9b6354",
+      "name": "02 - USUARIO"
+    },
+    {
+      "_id": "fld_75db520fa8",
+      "_type": "request_group",
+      "parentId": "wrk_31cf9b6354",
+      "name": "03 - ADMINISTRADOR"
+    },
+    {
+      "_id": "fld_d282d9fad0",
+      "_type": "request_group",
+      "parentId": "fld_677a33503a",
+      "name": "Conta e Login"
+    },
+    {
+      "_id": "req_77cd6e361b",
+      "_type": "request",
+      "parentId": "fld_d282d9fad0",
+      "name": "Cadastrar usuário",
+      "method": "POST",
+      "url": "http://localhost:3000/usuarios/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Novo Usuário\",\n  \"telefone\": \"19999999999\",\n  \"email\": \"usuario@email.com\",\n  \"senha\": \"123456\"\n}"
+      }
+    },
+    {
+      "_id": "req_b516b4ab1c",
+      "_type": "request",
+      "parentId": "fld_d282d9fad0",
+      "name": "Login usuário",
+      "method": "POST",
+      "url": "http://localhost:3000/usuarios/login",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"usuario@email.com\",\n  \"senha\": \"123456\"\n}"
+      }
+    },
+    {
+      "_id": "req_40d7e207a7",
+      "_type": "request",
+      "parentId": "fld_d282d9fad0",
+      "name": "Login administrador",
+      "method": "POST",
+      "url": "http://localhost:3000/usuarios/login",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"admin@email.com\",\n  \"senha\": \"123456\"\n}"
+      }
+    },
+    {
+      "_id": "fld_9c6c520f76",
+      "_type": "request_group",
+      "parentId": "fld_4b3d921e5e",
+      "name": "Minha conta"
+    },
+    {
+      "_id": "req_f56fd8c3df",
+      "_type": "request",
+      "parentId": "fld_9c6c520f76",
+      "name": "Buscar minha conta",
+      "method": "GET",
+      "url": "http://localhost:3000/usuarios/buscar/{{ usuario_id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_0d9a44567c",
+      "_type": "request",
+      "parentId": "fld_9c6c520f76",
+      "name": "Atualizar minha conta",
+      "method": "PUT",
+      "url": "http://localhost:3000/usuarios/atualizar/{{ usuario_id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Usuário Atualizado\",\n  \"telefone\": \"19988887777\",\n  \"email\": \"novo@email.com\"\n}"
+      }
+    },
+    {
+      "_id": "req_c670b183de",
+      "_type": "request",
+      "parentId": "fld_9c6c520f76",
+      "name": "Excluir minha conta",
+      "method": "DELETE",
+      "url": "http://localhost:3000/usuarios/excluir/{{ usuario_id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_64028bd41a",
+      "_type": "request_group",
+      "parentId": "fld_4b3d921e5e",
+      "name": "Assinaturas"
+    },
+    {
+      "_id": "req_ad508ae0d0",
+      "_type": "request",
+      "parentId": "fld_64028bd41a",
+      "name": "Listar meus registros",
+      "method": "GET",
+      "url": "http://localhost:3000/assinaturas/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_f92d64b67c",
+      "_type": "request",
+      "parentId": "fld_64028bd41a",
+      "name": "Buscar meu registro",
+      "method": "GET",
+      "url": "http://localhost:3000/assinaturas/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_0065d21609",
+      "_type": "request",
+      "parentId": "fld_64028bd41a",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/assinaturas/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"plano\": \"PREMIUM\",\n  \"status\": \"ATIVA\",\n  \"inicio\": \"2026-09-28T10:00:00.000Z\",\n  \"fim\": \"2027-09-28T10:00:00.000Z\"\n}"
+      }
+    },
+    {
+      "_id": "req_21ad29fb86",
+      "_type": "request",
+      "parentId": "fld_64028bd41a",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/assinaturas/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"plano\": \"PREMIUM\",\n  \"status\": \"ATIVA\",\n  \"inicio\": \"2026-09-28T10:00:00.000Z\",\n  \"fim\": \"2027-09-28T10:00:00.000Z\"\n}"
+      }
+    },
+    {
+      "_id": "req_9d467f4b5c",
+      "_type": "request",
+      "parentId": "fld_64028bd41a",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/assinaturas/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_b4c74c116d",
+      "_type": "request_group",
+      "parentId": "fld_4b3d921e5e",
+      "name": "Metas"
+    },
+    {
+      "_id": "req_c42455d875",
+      "_type": "request",
+      "parentId": "fld_b4c74c116d",
+      "name": "Listar meus registros",
+      "method": "GET",
+      "url": "http://localhost:3000/metas/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_a9ddc10779",
+      "_type": "request",
+      "parentId": "fld_b4c74c116d",
+      "name": "Buscar meu registro",
+      "method": "GET",
+      "url": "http://localhost:3000/metas/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_b75c4c771a",
+      "_type": "request",
+      "parentId": "fld_b4c74c116d",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/metas/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Reserva para faculdade\",\n  \"valor_meta\": 5000,\n  \"valor_atual\": 500\n}"
+      }
+    },
+    {
+      "_id": "req_6ebea5603f",
+      "_type": "request",
+      "parentId": "fld_b4c74c116d",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/metas/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Reserva para faculdade\",\n  \"valor_meta\": 5000,\n  \"valor_atual\": 500\n}"
+      }
+    },
+    {
+      "_id": "req_5e1217d467",
+      "_type": "request",
+      "parentId": "fld_b4c74c116d",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/metas/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_5bc6b09201",
+      "_type": "request_group",
+      "parentId": "fld_4b3d921e5e",
+      "name": "Investimentos"
+    },
+    {
+      "_id": "req_f624ce9efd",
+      "_type": "request",
+      "parentId": "fld_5bc6b09201",
+      "name": "Listar meus registros",
+      "method": "GET",
+      "url": "http://localhost:3000/investimentos/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_4c5c08ec53",
+      "_type": "request",
+      "parentId": "fld_5bc6b09201",
+      "name": "Buscar meu registro",
+      "method": "GET",
+      "url": "http://localhost:3000/investimentos/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_1c5c689d91",
+      "_type": "request",
+      "parentId": "fld_5bc6b09201",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/investimentos/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"tipo_investimento_id\": 1,\n  \"nome\": \"Meu CDB\",\n  \"valor_investido\": 1000,\n  \"valor_atual\": 1050,\n  \"rentabilidade\": 5\n}"
+      }
+    },
+    {
+      "_id": "req_58ae0c9afa",
+      "_type": "request",
+      "parentId": "fld_5bc6b09201",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/investimentos/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"tipo_investimento_id\": 1,\n  \"nome\": \"Meu CDB\",\n  \"valor_investido\": 1000,\n  \"valor_atual\": 1050,\n  \"rentabilidade\": 5\n}"
+      }
+    },
+    {
+      "_id": "req_802b331bb7",
+      "_type": "request",
+      "parentId": "fld_5bc6b09201",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/investimentos/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_1a10cbf5d5",
+      "_type": "request_group",
+      "parentId": "fld_4b3d921e5e",
+      "name": "Reserva de emergência"
+    },
+    {
+      "_id": "req_397a9de1aa",
+      "_type": "request",
+      "parentId": "fld_1a10cbf5d5",
+      "name": "Listar meus registros",
+      "method": "GET",
+      "url": "http://localhost:3000/reservas_emergencia/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_c301d05c2b",
+      "_type": "request",
+      "parentId": "fld_1a10cbf5d5",
+      "name": "Buscar meu registro",
+      "method": "GET",
+      "url": "http://localhost:3000/reservas_emergencia/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_ca0ca858db",
+      "_type": "request",
+      "parentId": "fld_1a10cbf5d5",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/reservas_emergencia/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"valor\": 2000\n}"
+      }
+    },
+    {
+      "_id": "req_9b416dd436",
+      "_type": "request",
+      "parentId": "fld_1a10cbf5d5",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/reservas_emergencia/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"valor\": 2000\n}"
+      }
+    },
+    {
+      "_id": "req_bafc18ecc8",
+      "_type": "request",
+      "parentId": "fld_1a10cbf5d5",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/reservas_emergencia/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_b29a0a5386",
+      "_type": "request_group",
+      "parentId": "fld_4b3d921e5e",
+      "name": "Movimentações"
+    },
+    {
+      "_id": "req_038e1a14ca",
+      "_type": "request",
+      "parentId": "fld_b29a0a5386",
+      "name": "Listar meus registros",
+      "method": "GET",
+      "url": "http://localhost:3000/movimentacoes/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_97f026a473",
+      "_type": "request",
+      "parentId": "fld_b29a0a5386",
+      "name": "Buscar meu registro",
+      "method": "GET",
+      "url": "http://localhost:3000/movimentacoes/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_081217d495",
+      "_type": "request",
+      "parentId": "fld_b29a0a5386",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/movimentacoes/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"tipo\": \"RECEITA\",\n  \"valor\": 1500,\n  \"descricao\": \"Salário\",\n  \"data_movimentacao\": \"2026-09-28\"\n}"
+      }
+    },
+    {
+      "_id": "req_c6a39276bf",
+      "_type": "request",
+      "parentId": "fld_b29a0a5386",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/movimentacoes/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"tipo\": \"RECEITA\",\n  \"valor\": 1500,\n  \"descricao\": \"Salário\",\n  \"data_movimentacao\": \"2026-09-28\"\n}"
+      }
+    },
+    {
+      "_id": "req_d8c076d0a2",
+      "_type": "request",
+      "parentId": "fld_b29a0a5386",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/movimentacoes/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_520b971856",
+      "_type": "request_group",
+      "parentId": "fld_4b3d921e5e",
+      "name": "Cursos - consulta"
+    },
+    {
+      "_id": "req_3788c89227",
+      "_type": "request",
+      "parentId": "fld_520b971856",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/cursos/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_a17c0abbdf",
+      "_type": "request",
+      "parentId": "fld_520b971856",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/cursos/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_a81b3ee494",
+      "_type": "request_group",
+      "parentId": "fld_4b3d921e5e",
+      "name": "Quizzes - consulta"
+    },
+    {
+      "_id": "req_e26d00ebf8",
+      "_type": "request",
+      "parentId": "fld_a81b3ee494",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/quizzes/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_8fdbbbed13",
+      "_type": "request",
+      "parentId": "fld_a81b3ee494",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/quizzes/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_2f62b75d12",
+      "_type": "request_group",
+      "parentId": "fld_4b3d921e5e",
+      "name": "Questões - consulta"
+    },
+    {
+      "_id": "req_dab77bb9dd",
+      "_type": "request",
+      "parentId": "fld_2f62b75d12",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/questoes/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_51036e3ed4",
+      "_type": "request",
+      "parentId": "fld_2f62b75d12",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/questoes/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_e1b7a8eb73",
+      "_type": "request_group",
+      "parentId": "fld_4b3d921e5e",
+      "name": "Tipos de investimento - consulta"
+    },
+    {
+      "_id": "req_74029c87bc",
+      "_type": "request",
+      "parentId": "fld_e1b7a8eb73",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/tipos_investimento/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_328c80ac77",
+      "_type": "request",
+      "parentId": "fld_e1b7a8eb73",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/tipos_investimento/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_aaf6001d4f",
+      "_type": "request_group",
+      "parentId": "fld_4b3d921e5e",
+      "name": "Progresso dos cursos - consulta"
+    },
+    {
+      "_id": "req_e5ff4dafd5",
+      "_type": "request",
+      "parentId": "fld_aaf6001d4f",
+      "name": "Listar meu progresso",
+      "method": "GET",
+      "url": "http://localhost:3000/progresso_cursos/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_27459f8c0e",
+      "_type": "request",
+      "parentId": "fld_aaf6001d4f",
+      "name": "Buscar meu progresso",
+      "method": "GET",
+      "url": "http://localhost:3000/progresso_cursos/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_104dca9519",
+      "_type": "request_group",
+      "parentId": "fld_4b3d921e5e",
+      "name": "Resultados dos quizzes"
+    },
+    {
+      "_id": "req_97dcc1c245",
+      "_type": "request",
+      "parentId": "fld_104dca9519",
+      "name": "Listar meus resultados",
+      "method": "GET",
+      "url": "http://localhost:3000/resultados_quiz/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_4400ecb014",
+      "_type": "request",
+      "parentId": "fld_104dca9519",
+      "name": "Buscar meu resultado",
+      "method": "GET",
+      "url": "http://localhost:3000/resultados_quiz/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_f3389696be",
+      "_type": "request",
+      "parentId": "fld_104dca9519",
+      "name": "Excluir meu resultado",
+      "method": "DELETE",
+      "url": "http://localhost:3000/resultados_quiz/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_a0109c08c2",
+      "_type": "request_group",
+      "parentId": "fld_75db520fa8",
+      "name": "Usuários"
+    },
+    {
+      "_id": "req_d7c2d99718",
+      "_type": "request",
+      "parentId": "fld_a0109c08c2",
+      "name": "Listar usuários",
+      "method": "GET",
+      "url": "http://localhost:3000/usuarios/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_777cd0ee78",
+      "_type": "request",
+      "parentId": "fld_a0109c08c2",
+      "name": "Buscar usuário",
+      "method": "GET",
+      "url": "http://localhost:3000/usuarios/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_713fff2b0c",
+      "_type": "request",
+      "parentId": "fld_a0109c08c2",
+      "name": "Cadastrar usuário",
+      "method": "POST",
+      "url": "http://localhost:3000/usuarios/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Usuário\",\n  \"telefone\": \"19999999999\",\n  \"email\": \"novo@email.com\",\n  \"senha\": \"123456\",\n  \"tipo\": \"USUARIO\",\n  \"plano\": \"FREE\",\n  \"status\": true\n}"
+      }
+    },
+    {
+      "_id": "req_2437d4fece",
+      "_type": "request",
+      "parentId": "fld_a0109c08c2",
+      "name": "Atualizar usuário",
+      "method": "PUT",
+      "url": "http://localhost:3000/usuarios/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Atualizado\",\n  \"telefone\": \"19988887777\",\n  \"email\": \"atualizado@email.com\",\n  \"tipo\": \"USUARIO\",\n  \"plano\": \"PREMIUM\",\n  \"status\": true\n}"
+      }
+    },
+    {
+      "_id": "req_b949cf581d",
+      "_type": "request",
+      "parentId": "fld_a0109c08c2",
+      "name": "Excluir usuário",
+      "method": "DELETE",
+      "url": "http://localhost:3000/usuarios/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_6cdf910ec2",
+      "_type": "request_group",
+      "parentId": "fld_75db520fa8",
+      "name": "Assinaturas"
+    },
+    {
+      "_id": "req_7721115cdf",
+      "_type": "request",
+      "parentId": "fld_6cdf910ec2",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/assinaturas/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_1f9e27adbc",
+      "_type": "request",
+      "parentId": "fld_6cdf910ec2",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/assinaturas/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_2698cbbbc8",
+      "_type": "request",
+      "parentId": "fld_6cdf910ec2",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/assinaturas/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"plano\": \"PREMIUM\",\n  \"status\": \"ATIVA\"\n}"
+      }
+    },
+    {
+      "_id": "req_e348f56699",
+      "_type": "request",
+      "parentId": "fld_6cdf910ec2",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/assinaturas/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"plano\": \"PREMIUM\",\n  \"status\": \"ATIVA\"\n}"
+      }
+    },
+    {
+      "_id": "req_a2c42725f4",
+      "_type": "request",
+      "parentId": "fld_6cdf910ec2",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/assinaturas/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_be18c5fe81",
+      "_type": "request_group",
+      "parentId": "fld_75db520fa8",
+      "name": "Cursos"
+    },
+    {
+      "_id": "req_ad8e3d7330",
+      "_type": "request",
+      "parentId": "fld_be18c5fe81",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/cursos/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_4d2f8d9742",
+      "_type": "request",
+      "parentId": "fld_be18c5fe81",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/cursos/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_e3c268c178",
+      "_type": "request",
+      "parentId": "fld_be18c5fe81",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/cursos/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"titulo\": \"Educação Financeira\",\n  \"descricao\": \"Curso básico\",\n  \"conteudo\": \"Conteúdo\",\n  \"exclusivo\": false\n}"
+      }
+    },
+    {
+      "_id": "req_e2f5bac50c",
+      "_type": "request",
+      "parentId": "fld_be18c5fe81",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/cursos/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"titulo\": \"Educação Financeira\",\n  \"descricao\": \"Curso básico\",\n  \"conteudo\": \"Conteúdo\",\n  \"exclusivo\": false\n}"
+      }
+    },
+    {
+      "_id": "req_25178c1f28",
+      "_type": "request",
+      "parentId": "fld_be18c5fe81",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/cursos/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_17c5e4ec3e",
+      "_type": "request_group",
+      "parentId": "fld_75db520fa8",
+      "name": "Progresso dos cursos"
+    },
+    {
+      "_id": "req_3abd78dd00",
+      "_type": "request",
+      "parentId": "fld_17c5e4ec3e",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/progresso_cursos/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_af1d04b985",
+      "_type": "request",
+      "parentId": "fld_17c5e4ec3e",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/progresso_cursos/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_34747d206b",
+      "_type": "request",
+      "parentId": "fld_17c5e4ec3e",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/progresso_cursos/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"curso_id\": 1,\n  \"progresso\": 50,\n  \"concluido\": false\n}"
+      }
+    },
+    {
+      "_id": "req_9b4c7fb855",
+      "_type": "request",
+      "parentId": "fld_17c5e4ec3e",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/progresso_cursos/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"curso_id\": 1,\n  \"progresso\": 50,\n  \"concluido\": false\n}"
+      }
+    },
+    {
+      "_id": "req_63cc0212f7",
+      "_type": "request",
+      "parentId": "fld_17c5e4ec3e",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/progresso_cursos/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_3dc3548087",
+      "_type": "request_group",
+      "parentId": "fld_75db520fa8",
+      "name": "Quizzes"
+    },
+    {
+      "_id": "req_610410a673",
+      "_type": "request",
+      "parentId": "fld_3dc3548087",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/quizzes/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_09b2ff0df8",
+      "_type": "request",
+      "parentId": "fld_3dc3548087",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/quizzes/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_ca063f9ae9",
+      "_type": "request",
+      "parentId": "fld_3dc3548087",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/quizzes/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"curso_id\": 1,\n  \"titulo\": \"Quiz financeiro\",\n  \"descricao\": \"Avaliação\",\n  \"exclusivo\": false\n}"
+      }
+    },
+    {
+      "_id": "req_b7c3ee7387",
+      "_type": "request",
+      "parentId": "fld_3dc3548087",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/quizzes/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"curso_id\": 1,\n  \"titulo\": \"Quiz financeiro\",\n  \"descricao\": \"Avaliação\",\n  \"exclusivo\": false\n}"
+      }
+    },
+    {
+      "_id": "req_bdab04ccbe",
+      "_type": "request",
+      "parentId": "fld_3dc3548087",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/quizzes/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_369caf3af3",
+      "_type": "request_group",
+      "parentId": "fld_75db520fa8",
+      "name": "Questões"
+    },
+    {
+      "_id": "req_ce2af08640",
+      "_type": "request",
+      "parentId": "fld_369caf3af3",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/questoes/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_3e1d3886a9",
+      "_type": "request",
+      "parentId": "fld_369caf3af3",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/questoes/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_32fa4a8554",
+      "_type": "request",
+      "parentId": "fld_369caf3af3",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/questoes/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"quiz_id\": 1,\n  \"pergunta\": \"O que é orçamento?\",\n  \"resposta_correta\": \"Planejamento financeiro\"\n}"
+      }
+    },
+    {
+      "_id": "req_faeb67ccae",
+      "_type": "request",
+      "parentId": "fld_369caf3af3",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/questoes/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"quiz_id\": 1,\n  \"pergunta\": \"O que é orçamento?\",\n  \"resposta_correta\": \"Planejamento financeiro\"\n}"
+      }
+    },
+    {
+      "_id": "req_b5fdf76adb",
+      "_type": "request",
+      "parentId": "fld_369caf3af3",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/questoes/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_16775725d7",
+      "_type": "request_group",
+      "parentId": "fld_75db520fa8",
+      "name": "Resultados dos quizzes"
+    },
+    {
+      "_id": "req_6eebbed189",
+      "_type": "request",
+      "parentId": "fld_16775725d7",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/resultados_quiz/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_208dd7382f",
+      "_type": "request",
+      "parentId": "fld_16775725d7",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/resultados_quiz/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_5b09b2cb52",
+      "_type": "request",
+      "parentId": "fld_16775725d7",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/resultados_quiz/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"quiz_id\": 1,\n  \"pontuacao\": 80\n}"
+      }
+    },
+    {
+      "_id": "req_d843f08a87",
+      "_type": "request",
+      "parentId": "fld_16775725d7",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/resultados_quiz/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"quiz_id\": 1,\n  \"pontuacao\": 80\n}"
+      }
+    },
+    {
+      "_id": "req_89911b9d9f",
+      "_type": "request",
+      "parentId": "fld_16775725d7",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/resultados_quiz/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_2c0e90474f",
+      "_type": "request_group",
+      "parentId": "fld_75db520fa8",
+      "name": "Metas"
+    },
+    {
+      "_id": "req_f6752caae6",
+      "_type": "request",
+      "parentId": "fld_2c0e90474f",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/metas/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_52c0031a65",
+      "_type": "request",
+      "parentId": "fld_2c0e90474f",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/metas/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_13b9e775d9",
+      "_type": "request",
+      "parentId": "fld_2c0e90474f",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/metas/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"nome\": \"Meta\",\n  \"valor_meta\": 5000,\n  \"valor_atual\": 1000\n}"
+      }
+    },
+    {
+      "_id": "req_9caeddaa6c",
+      "_type": "request",
+      "parentId": "fld_2c0e90474f",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/metas/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"nome\": \"Meta\",\n  \"valor_meta\": 5000,\n  \"valor_atual\": 1000\n}"
+      }
+    },
+    {
+      "_id": "req_346c0a487b",
+      "_type": "request",
+      "parentId": "fld_2c0e90474f",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/metas/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_f28c75c07e",
+      "_type": "request_group",
+      "parentId": "fld_75db520fa8",
+      "name": "Tipos de investimento"
+    },
+    {
+      "_id": "req_8fa18341b5",
+      "_type": "request",
+      "parentId": "fld_f28c75c07e",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/tipos_investimento/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_b9de9e915f",
+      "_type": "request",
+      "parentId": "fld_f28c75c07e",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/tipos_investimento/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_e77522bdd1",
+      "_type": "request",
+      "parentId": "fld_f28c75c07e",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/tipos_investimento/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"CDB\",\n  \"descricao\": \"Certificado de Depósito Bancário\"\n}"
+      }
+    },
+    {
+      "_id": "req_2d7c2c4a6b",
+      "_type": "request",
+      "parentId": "fld_f28c75c07e",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/tipos_investimento/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"CDB\",\n  \"descricao\": \"Certificado de Depósito Bancário\"\n}"
+      }
+    },
+    {
+      "_id": "req_5a383845a1",
+      "_type": "request",
+      "parentId": "fld_f28c75c07e",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/tipos_investimento/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_b26ef6fdd9",
+      "_type": "request_group",
+      "parentId": "fld_75db520fa8",
+      "name": "Investimentos"
+    },
+    {
+      "_id": "req_d6627a39a6",
+      "_type": "request",
+      "parentId": "fld_b26ef6fdd9",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/investimentos/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_b5f7cbbe3d",
+      "_type": "request",
+      "parentId": "fld_b26ef6fdd9",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/investimentos/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_7adca6d170",
+      "_type": "request",
+      "parentId": "fld_b26ef6fdd9",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/investimentos/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"tipo_investimento_id\": 1,\n  \"nome\": \"CDB\",\n  \"valor_investido\": 1000,\n  \"valor_atual\": 1050,\n  \"rentabilidade\": 5\n}"
+      }
+    },
+    {
+      "_id": "req_91f5994812",
+      "_type": "request",
+      "parentId": "fld_b26ef6fdd9",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/investimentos/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"tipo_investimento_id\": 1,\n  \"nome\": \"CDB\",\n  \"valor_investido\": 1000,\n  \"valor_atual\": 1050,\n  \"rentabilidade\": 5\n}"
+      }
+    },
+    {
+      "_id": "req_d6371cbc3a",
+      "_type": "request",
+      "parentId": "fld_b26ef6fdd9",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/investimentos/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_d9bbf2b798",
+      "_type": "request_group",
+      "parentId": "fld_75db520fa8",
+      "name": "Reserva de emergência"
+    },
+    {
+      "_id": "req_211a653d76",
+      "_type": "request",
+      "parentId": "fld_d9bbf2b798",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/reservas_emergencia/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_104db9b66d",
+      "_type": "request",
+      "parentId": "fld_d9bbf2b798",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/reservas_emergencia/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_8aabbc5d8c",
+      "_type": "request",
+      "parentId": "fld_d9bbf2b798",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/reservas_emergencia/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"valor\": 2000\n}"
+      }
+    },
+    {
+      "_id": "req_49ebf6b23d",
+      "_type": "request",
+      "parentId": "fld_d9bbf2b798",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/reservas_emergencia/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"valor\": 2000\n}"
+      }
+    },
+    {
+      "_id": "req_eff0c18cf4",
+      "_type": "request",
+      "parentId": "fld_d9bbf2b798",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/reservas_emergencia/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_f00f8f54d1",
+      "_type": "request_group",
+      "parentId": "fld_75db520fa8",
+      "name": "Movimentações"
+    },
+    {
+      "_id": "req_cf3d7eccc4",
+      "_type": "request",
+      "parentId": "fld_f00f8f54d1",
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/movimentacoes/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_8250afb0a5",
+      "_type": "request",
+      "parentId": "fld_f00f8f54d1",
+      "name": "Buscar por ID",
+      "method": "GET",
+      "url": "http://localhost:3000/movimentacoes/buscar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_d95d89da48",
+      "_type": "request",
+      "parentId": "fld_f00f8f54d1",
+      "name": "Cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/movimentacoes/cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"tipo\": \"RECEITA\",\n  \"valor\": 1500,\n  \"descricao\": \"Salário\",\n  \"data_movimentacao\": \"2026-09-28\"\n}"
+      }
+    },
+    {
+      "_id": "req_4bf8246505",
+      "_type": "request",
+      "parentId": "fld_f00f8f54d1",
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/movimentacoes/atualizar/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"usuario_id\": 1,\n  \"tipo\": \"RECEITA\",\n  \"valor\": 1500,\n  \"descricao\": \"Salário\",\n  \"data_movimentacao\": \"2026-09-28\"\n}"
+      }
+    },
+    {
+      "_id": "req_0957c43d57",
+      "_type": "request",
+      "parentId": "fld_f00f8f54d1",
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/movimentacoes/excluir/{{ id }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_admin }}"
+        }
+      ]
+    }
+  ]
+}

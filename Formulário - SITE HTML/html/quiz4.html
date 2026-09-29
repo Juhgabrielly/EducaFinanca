@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz de Matemática Financeira</title>
+
+    <link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/chat.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <div class="quiz-container">
+
+        <h1>Quiz de Matemática Financeira</h1>
+
+        <div class="progresso-area">
+
+            <div class="progresso-texto">
+                <span id="numeroPergunta">Pergunta 1 de 3</span>
+                <span id="porcentagem">33%</span>
+            </div>
+
+            <div class="barra-progresso">
+                <div id="progresso"></div>
+            </div>
+
+        </div>
+
+        <div class="questao ativa">
+
+            <p class="pergunta">
+                1. Qual método é destacado no vídeo para aprender matemática
+                financeira de forma fácil e rápida?
+            </p>
+
+            <div class="opcoes">
+
+                <button class="opcao" data-correta="false">
+                    A: Método de Gauss.
+                </button>
+
+                <button class="opcao" data-correta="true">
+                    B: Método de Curió.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    C: Método de Fibonacci.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    D: Método de Euler.
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="questao">
+
+            <p class="pergunta">
+                2. O vídeo foca em quais conceitos fundamentais da matemática
+                financeira?
+            </p>
+
+            <div class="opcoes">
+
+                <button class="opcao" data-correta="false">
+                    A: Juros compostos e inflação.
+                </button>
+
+                <button class="opcao" data-correta="true">
+                    B: Porcentagem e juros simples.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    C: Análise de investimentos e fluxo de caixa.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    D: Derivadas e integrais aplicadas a finanças.
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="questao">
+
+            <p class="pergunta">
+                3. Qual é o principal objetivo do “CURIÓ METHOD” mencionado
+                no vídeo?
+            </p>
+
+            <div class="opcoes">
+
+                <button class="opcao" data-correta="true">
+                    A: Tornar a matemática complexa mais acessível e de fácil absorção.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    B: Ensinar apenas fórmulas avançadas de matemática financeira.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    C: Focar em aplicações práticas de matemática em engenharia.
+                </button>
+
+                <button class="opcao" data-correta="false">
+                    D: Preparar estudantes para competições olímpicas de matemática.
+                </button>
+
+            </div>
+
+        </div>
+
+        <p id="mensagem"></p>
+
+        <div class="acoes-quiz">
+
+            <button
+                id="proximaPergunta"
+                class="proxima-btn"
+                disabled>
+                Próxima pergunta
+            </button>
+
+            <button
+                id="concluirQuiz"
+                class="finish-btn"
+                type="button"
+                style="display: none;">
+                Concluir Quiz
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const questoes =
+            document.querySelectorAll(".questao");
+
+        const numeroPergunta =
+            document.getElementById("numeroPergunta");
+
+        const porcentagem =
+            document.getElementById("porcentagem");
+
+        const progresso =
+            document.getElementById("progresso");
+
+        const mensagem =
+            document.getElementById("mensagem");
+
+        const botaoProxima =
+            document.getElementById("proximaPergunta");
+
+        const botaoConcluir =
+            document.getElementById("concluirQuiz");
+
+
+        let perguntaAtual = 0;
+        let acertos = 0;
+
+        const usuario =
+            JSON.parse(
+                localStorage.getItem("usuario")
+            );
+
+        if (!usuario) {
+            alert("Faça login para realizar o quiz.");
+            window.location.href = "login.html";
+        }
+
+        questoes.forEach((questao) => {
+
+            const opcoes =
+                questao.querySelectorAll(".opcao");
+
+            opcoes.forEach((opcao) => {
+
+                opcao.addEventListener("click", () => {
+
+                    responderQuestao(
+                        questao,
+                        opcao
+                    );
+
+                });
+
+            });
+
+        });
+
+
+        function responderQuestao(
+            questao,
+            opcaoSelecionada
+        ) {
+
+            const opcoes =
+                questao.querySelectorAll(".opcao");
+
+            const acertou =
+                opcaoSelecionada.dataset.correta
+                === "true";
+
+
+            opcoes.forEach((opcao) => {
+
+                opcao.disabled = true;
+
+                if (
+                    opcao.dataset.correta === "true"
+                ) {
+                    opcao.classList.add("acertou");
+                }
+
+            });
+
+
+            if (acertou) {
+
+                acertos++;
+
+                mensagem.textContent =
+                    "✅ Resposta correta!";
+
+                mensagem.className =
+                    "mensagem-correta";
+
+            } else {
+
+                opcaoSelecionada.classList.add("errou");
+
+                mensagem.textContent =
+                    "❌ Resposta errada. A alternativa correta está destacada.";
+
+                mensagem.className =
+                    "mensagem-errada";
+
+            }
+
+
+            botaoProxima.disabled = false;
+
+
+            if (
+                perguntaAtual ===
+                questoes.length - 1
+            ) {
+
+                botaoProxima.textContent =
+                    "Ver resultado";
+
+            }
+
+        }
+
+        botaoProxima.addEventListener(
+            "click",
+            () => {
+
+                questoes[perguntaAtual]
+                    .classList.remove("ativa");
+
+                perguntaAtual++;
+
+                mensagem.textContent = "";
+                mensagem.className = "";
+
+
+                if (
+                    perguntaAtual <
+                    questoes.length
+                ) {
+
+                    questoes[perguntaAtual]
+                        .classList.add("ativa");
+
+                    atualizarProgresso();
+
+                    botaoProxima.disabled = true;
+
+                    botaoProxima.textContent =
+                        perguntaAtual ===
+                        questoes.length - 1
+                            ? "Ver resultado"
+                            : "Próxima pergunta";
+
+                } else {
+
+                    mostrarResultado();
+
+                }
+
+            }
+        );
+
+        function atualizarProgresso() {
+
+            const numeroAtual =
+                perguntaAtual + 1;
+
+            const percentual =
+                Math.round(
+                    (
+                        numeroAtual /
+                        questoes.length
+                    ) * 100
+                );
+
+            numeroPergunta.textContent =
+                `Pergunta ${numeroAtual} de ${questoes.length}`;
+
+            porcentagem.textContent =
+                `${percentual}%`;
+
+            progresso.style.width =
+                `${percentual}%`;
+
+        }
+
+        function mostrarResultado() {
+
+            document
+                .querySelector(".progresso-area")
+                .style.display = "none";
+
+            const percentualAcertos =
+                Math.round(
+                    (
+                        acertos /
+                        questoes.length
+                    ) * 100
+                );
+
+            mensagem.innerHTML = `
+                <strong>Quiz finalizado!</strong><br>
+                Você acertou ${acertos} de ${questoes.length} perguntas.<br>
+                Sua pontuação foi ${percentualAcertos}%.
+            `;
+
+            mensagem.className =
+                "resultado-final";
+
+            botaoProxima.style.display =
+                "none";
+
+            botaoConcluir.style.display =
+                "inline-flex";
+
+        }
+
+        botaoConcluir.addEventListener(
+            "click",
+            () => {
+
+                localStorage.setItem(
+                    "quiz4Concluido",
+                    "true"
+                );
+
+                alert(
+                    "Quiz concluído com sucesso! 🎉"
+                );
+
+                window.location.href =
+                    "curso4.html";
+
+            }
+        );
+
+
+        atualizarProgresso();
+
+    </script>
+<script src="../js/chat.js"></script>
+</body>
+</html>

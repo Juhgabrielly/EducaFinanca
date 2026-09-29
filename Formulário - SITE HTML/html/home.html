@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Home - Educa Finança</title>
+
+  <link rel="stylesheet" href="../css/home.css">
+<link rel="stylesheet" href="../css/chat.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+  >
+</head>
+
+<body>
+
+  <header>
+
+    <div class="logo">
+      <img
+        src="educa.png"
+        alt="Logo do Educa Finança"
+        class="logo-img"
+      >
+
+      <h2>Educa Finança</h2>
+    </div>
+
+    <button
+      type="button"
+      class="menu-toggle"
+      id="menu-toggle"
+      aria-label="Abrir menu"
+    >
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav class="menu" id="menu">
+
+      <a href="home.html">Home</a>
+
+      <a href="cursos.html">Cursos</a>
+
+      <a href="relatório.html">Relatórios</a>
+
+      <a href="investimento.html">Investimentos</a>
+
+      <a href="usuario.html">Perfil</a>
+      <a href="plano.html">Planos</a>
+      <a href="admin/admin.html" id="painelAdmin" style="display: none;">Painel Admin</a>
+
+    </nav>
+
+  </header>
+
+  <main>
+
+    <section class="jornada">
+
+      <h1>
+        Sua jornada de
+        <span>educação financeira</span>
+      </h1>
+
+      <p class="subtitulo">
+        Escolha uma área e continue evoluindo no controle da sua vida financeira.
+      </p>
+
+      <div class="cards-jornada">
+
+        <a href="cursos.html" class="card-jornada">
+
+          <div class="icone-card">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+
+          <h2>Cursos</h2>
+
+          <p>
+            Aprenda educação financeira de forma simples, prática e organizada.
+          </p>
+
+          <span class="acessar">
+            Acessar cursos
+
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+
+        </a>
+
+        <a href="relatório.html" class="card-jornada">
+
+          <div class="icone-card">
+            <i class="fa-solid fa-chart-pie"></i>
+          </div>
+
+          <h2>Relatórios</h2>
+
+          <p>
+            Acompanhe suas receitas, despesas e resultados financeiros.
+          </p>
+
+          <span class="acessar">
+            Ver relatórios
+
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+
+        </a>
+
+        <a href="investimento.html" class="card-jornada">
+
+          <div class="icone-card">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+
+          <h2>Investimentos</h2>
+
+          <p>
+            Organize seus investimentos e acompanhe suas metas financeiras.
+          </p>
+
+          <span class="acessar">
+            Ver investimentos
+
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
+
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
+  const usuarioLogado = JSON.parse(
+    localStorage.getItem("usuario")
+  );
+
+  const EMAIL_ADMIN = "juliagonzaga062@gmail.com";
+
+  if (
+    usuarioLogado &&
+    usuarioLogado.email === EMAIL_ADMIN
+  ) {
+    document.getElementById("painelAdmin").style.display = "inline-block";
+  }
+  </script>
+<script src="../js/chat.js"></script>
+</body>
+</html>

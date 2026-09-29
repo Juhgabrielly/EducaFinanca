@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Assinar EducaFinança+</title>
+
+  <link rel="stylesheet" href="../css/checkout.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+  >
+
+</head>
+
+<body>
+
+  <header>
+
+    <a href="plano.html" class="voltar">
+      <i class="fa-solid fa-arrow-left"></i>
+      Voltar
+    </a>
+
+    <div class="logo">
+      <h2>Educa Finança<span>+</span></h2>
+    </div>
+
+  </header>
+
+
+  <main class="checkout-container">
+
+    <section class="checkout">
+
+      <div class="formulario-area">
+
+        <span class="mini-titulo">
+          ASSINATURA PREMIUM
+        </span>
+
+        <h1>Finalize sua assinatura</h1>
+
+        <p class="descricao">
+          Preencha os dados abaixo para simular a contratação do EducaFinança+.
+        </p>
+
+
+        <div class="aviso-simulacao">
+
+          <i class="fa-solid fa-circle-info"></i>
+
+          <div>
+
+            <strong>Simulação de pagamento</strong>
+
+            <p>
+              Nenhuma cobrança real será realizada.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <form id="formCheckout">
+
+          <div class="campo">
+
+            <label for="nome">
+              Nome completo
+            </label>
+
+            <input
+              type="text"
+              id="nome"
+              placeholder="Digite seu nome"
+              required
+            >
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="email">
+              E-mail
+            </label>
+
+            <input
+              type="email"
+              id="email"
+              placeholder="seuemail@email.com"
+              required
+            >
+
+          </div>
+
+
+          <div class="formas-pagamento">
+
+            <h3>Forma de pagamento</h3>
+
+
+            <label class="opcao-pagamento">
+
+              <input
+                type="radio"
+                name="pagamento"
+                value="cartao"
+                checked
+              >
+
+              <div>
+
+                <i class="fa-regular fa-credit-card"></i>
+
+                <span>
+                  Cartão de crédito
+                </span>
+
+              </div>
+
+            </label>
+
+
+            <label class="opcao-pagamento">
+
+              <input
+                type="radio"
+                name="pagamento"
+                value="pix"
+              >
+
+              <div>
+
+                <i class="fa-brands fa-pix"></i>
+
+                <span>
+                  PIX
+                </span>
+
+              </div>
+
+            </label>
+
+          </div>
+
+          <div id="areaCartao">
+
+            <div class="campo">
+
+              <label for="numeroCartao">
+                Número do cartão
+              </label>
+
+              <input
+                type="text"
+                id="numeroCartao"
+                maxlength="19"
+                placeholder="0000 0000 0000 0000"
+              >
+
+            </div>
+
+
+            <div class="linha">
+
+              <div class="campo">
+
+                <label for="validade">
+                  Validade
+                </label>
+
+                <input
+                  type="text"
+                  id="validade"
+                  maxlength="5"
+                  placeholder="MM/AA"
+                >
+
+              </div>
+
+
+              <div class="campo">
+
+                <label for="cvv">
+                  CVV
+                </label>
+
+                <input
+                  type="text"
+                  id="cvv"
+                  maxlength="3"
+                  placeholder="123"
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="campo">
+
+              <label for="nomeCartao">
+                Nome no cartão
+              </label>
+
+              <input
+                type="text"
+                id="nomeCartao"
+                placeholder="Nome impresso no cartão"
+              >
+
+            </div>
+
+          </div>
+
+          <div
+            id="areaPix"
+            class="area-pix"
+          >
+
+            <i class="fa-brands fa-pix"></i>
+
+            <h3>Pagamento via PIX</h3>
+
+            <p>
+              Na simulação, basta clicar em confirmar assinatura.
+            </p>
+
+            <div class="pix-falso">
+
+              00020126580014BR.GOV.BCB.PIX
+              EDUCAFINANCA-SIMULACAO
+            </div>
+
+          </div>
+
+          <button
+            type="submit"
+            class="btn-confirmar"
+            id="confirmarPagamento"
+          >
+
+            <i class="fa-solid fa-lock"></i>
+
+            Confirmar assinatura
+
+          </button>
+
+        </form>
+
+      </div>
+
+      <aside class="resumo">
+
+        <div class="card-resumo">
+
+          <span class="badge">
+            PREMIUM
+          </span>
+
+          <h2>
+            EducaFinança+
+          </h2>
+
+          <p class="texto-resumo">
+            Desbloqueie todos os recursos do Educa Finança.
+          </p>
+
+
+          <div class="preco">
+
+            <span class="moeda">
+              R$
+            </span>
+
+            <strong>
+              19,90
+            </strong>
+
+            <span class="mes">
+              /mês
+            </span>
+
+          </div>
+
+
+          <div class="linha-divisoria"></div>
+
+
+          <ul>
+
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Cursos Premium
+            </li>
+
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Conteúdos exclusivos
+            </li>
+
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Recursos avançados
+            </li>
+
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Educa Finança+
+            </li>
+
+          </ul>
+
+
+          <div class="linha-divisoria"></div>
+
+
+          <div class="total">
+
+            <span>
+              Total
+            </span>
+
+            <strong>
+              R$ 19,90
+            </strong>
+
+          </div>
+
+        </div>
+
+      </aside>
+
+    </section>
+
+  </main>
+
+  <div
+    class="modal"
+    id="modalSucesso"
+  >
+
+    <div class="modal-conteudo">
+
+      <div class="icone-sucesso">
+
+        <i class="fa-solid fa-check"></i>
+
+      </div>
+
+      <h2>
+        Assinatura ativada!
+      </h2>
+
+      <p>
+        Seu plano EducaFinança+ foi ativado com sucesso.
+      </p>
+
+      <button
+        id="irPerfil"
+        class="btn-sucesso"
+      >
+        Ir para meu perfil
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    const usuario =
+      JSON.parse(
+        localStorage.getItem("usuario")
+      );
+
+
+    if (!usuario) {
+
+      alert(
+        "Você precisa estar logado para assinar o plano."
+      );
+
+      window.location.href =
+        "login.html";
+
+    }
+
+    const nome =
+      document.getElementById("nome");
+
+    const email =
+      document.getElementById("email");
+
+
+    if (usuario) {
+
+      nome.value =
+        usuario.nome || "";
+
+      email.value =
+        usuario.email || "";
+
+    }
+
+    const pagamentos =
+      document.querySelectorAll(
+        'input[name="pagamento"]'
+      );
+
+    const areaCartao =
+      document.getElementById(
+        "areaCartao"
+      );
+
+    const areaPix =
+      document.getElementById(
+        "areaPix"
+      );
+
+    pagamentos.forEach(
+      pagamento => {
+
+        pagamento.addEventListener(
+          "change",
+          () => {
+
+            if (
+              pagamento.value === "pix" &&
+              pagamento.checked
+            ) {
+
+              areaCartao.style.display =
+                "none";
+
+              areaPix.style.display =
+                "block";
+
+            } else if (
+              pagamento.value === "cartao" &&
+              pagamento.checked
+            ) {
+
+              areaCartao.style.display =
+                "block";
+
+              areaPix.style.display =
+                "none";
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+    const numeroCartao =
+      document.getElementById(
+        "numeroCartao"
+      );
+
+    numeroCartao.addEventListener(
+      "input",
+      () => {
+
+        let valor =
+          numeroCartao.value
+            .replace(/\D/g, "")
+            .substring(0, 16);
+
+        valor =
+          valor.replace(
+            /(\d{4})(?=\d)/g,
+            "$1 "
+          );
+
+        numeroCartao.value =
+          valor;
+
+      }
+    );
+
+    const validade =
+      document.getElementById(
+        "validade"
+      );
+
+
+    validade.addEventListener(
+      "input",
+      () => {
+
+        let valor =
+          validade.value
+            .replace(/\D/g, "")
+            .substring(0, 4);
+
+        if (valor.length >= 3) {
+
+          valor =
+            valor.substring(0, 2) +
+            "/" +
+            valor.substring(2);
+
+        }
+
+        validade.value =
+          valor;
+
+      }
+    );
+
+    const form =
+      document.getElementById(
+        "formCheckout"
+      );
+
+    const modal =
+      document.getElementById(
+        "modalSucesso"
+      );
+
+
+    form.addEventListener(
+      "submit",
+      event => {
+
+        event.preventDefault();
+
+
+        const formaSelecionada =
+          document.querySelector(
+            'input[name="pagamento"]:checked'
+          ).value;
+
+
+        if (
+          formaSelecionada === "cartao"
+        ) {
+
+          const numero =
+            numeroCartao.value
+              .replace(/\s/g, "");
+
+          const cvv =
+            document.getElementById(
+              "cvv"
+            ).value;
+
+          const nomeCartao =
+            document.getElementById(
+              "nomeCartao"
+            ).value.trim();
+
+
+          if (
+            numero.length !== 16 ||
+            validade.value.length !== 5 ||
+            cvv.length !== 3 ||
+            nomeCartao === ""
+          ) {
+
+            alert(
+              "Preencha corretamente os dados do cartão."
+            );
+
+            return;
+
+          }
+
+        }
+
+        const botao =
+          document.getElementById(
+            "confirmarPagamento"
+          );
+
+
+        botao.disabled = true;
+
+        botao.innerHTML =
+          '<i class="fa-solid fa-spinner fa-spin"></i> Processando...';
+
+
+        setTimeout(
+          () => {
+
+            usuario.plano =
+              "PREMIUM";
+
+            usuario.assinaturaAtiva =
+              true;
+
+            usuario.planoValor =
+              19.90;
+
+
+            localStorage.setItem(
+              "usuario",
+              JSON.stringify(usuario)
+            );
+
+
+            modal.style.display =
+              "flex";
+
+
+            botao.disabled =
+              false;
+
+            botao.innerHTML =
+              '<i class="fa-solid fa-lock"></i> Confirmar assinatura';
+
+          },
+          1800
+        );
+
+      }
+    );
+
+    document
+      .getElementById("irPerfil")
+      .addEventListener(
+        "click",
+        () => {
+
+          window.location.href =
+            "usuario.html";
+
+        }
+      );
+
+  </script>
+
+</body>
+
+</html>
