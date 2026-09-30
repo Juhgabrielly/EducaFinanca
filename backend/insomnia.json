@@ -126,6 +126,24 @@
       ]
     },
     {
+      "_id": "req_listar_minha_conta",
+      "_type": "request",
+      "parentId": "fld_9c6c520f76",
+      "name": "Listar minha conta",
+      "method": "GET",
+      "url": "http://localhost:3000/usuarios/listar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token_usuario }}"
+        }
+      ]
+    },
+    {
       "_id": "req_0d9a44567c",
       "_type": "request",
       "parentId": "fld_9c6c520f76",

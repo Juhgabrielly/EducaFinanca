@@ -145,18 +145,38 @@ const login = async (req, res) => {
 
 const listar = async (req, res) => {
     try {
-        const usuarios = await prisma.usuarios.findMany({
-            select: {
-                id: true,
-                nome: true,
-                telefone: true,
-                email: true,
-                tipo: true,
-                plano: true,
-                status: true,
-                criado_em: true
-            }
-        });
+        let usuarios;
+
+        if (req.usuario.tipo === 'ADMIN') {
+            usuarios = await prisma.usuarios.findMany({
+                select: {
+                    id: true,
+                    nome: true,
+                    telefone: true,
+                    email: true,
+                    tipo: true,
+                    plano: true,
+                    status: true,
+                    criado_em: true
+                }
+            });
+        } else {
+            usuarios = await prisma.usuarios.findMany({
+                where: {
+                    id: req.usuario.id
+                },
+                select: {
+                    id: true,
+                    nome: true,
+                    telefone: true,
+                    email: true,
+                    tipo: true,
+                    plano: true,
+                    status: true,
+                    criado_em: true
+                }
+            });
+        }
 
         res.status(200).json(usuarios);
 
