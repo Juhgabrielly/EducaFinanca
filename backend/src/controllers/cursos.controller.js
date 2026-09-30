@@ -101,21 +101,59 @@ const excluir = async (req, res) => {
     try {
         const id = Number(req.params.id);
 
-        await prisma.cursos.delete({
-            where: { id }
+        if (isNaN(id)) {
+            return res.status(400).json({
+                erro: 'ID inválido'
+            });
+        }
+
+        const curso = await prisma.cursos.findUnique({
+            where: {
+                id
+            }
         });
 
-        res.json({
+        if (!curso) {
+            return res.status(404).json({
+                erro: 'Curso não encontrado'
+            });
+        }
+
+        // Excluir progressos relacionados ao curso
+        await prisma.progresso_cursos.deleteMany({
+            where: {
+                curso_id: id
+            }
+        });
+
+        // Excluir quizzes relacionados ao curso
+        await prisma.quizzes.deleteMany({
+            where: {
+                curso_id: id
+            }
+        });
+
+        // Excluir o curso
+        await prisma.cursos.delete({
+            where: {
+                id
+            }
+        });
+
+        res.status(200).json({
             mensagem: 'Curso excluído com sucesso'
         });
 
-    } catch (error) {
+    } catch (erro) {
+        console.error(erro);
+
         res.status(500).json({
             erro: 'Erro ao excluir curso',
-            detalhes: error.message
+            detalhes: erro.message
         });
     }
 };
+
 
 module.exports = {
     cadastrar,

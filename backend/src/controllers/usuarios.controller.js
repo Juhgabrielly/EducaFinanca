@@ -226,7 +226,6 @@ const buscar = async (req, res) => {
     }
 };
 
-
 // ATUALIZAR USUÁRIO
 const atualizar = async (req, res) => {
     try {
@@ -238,6 +237,8 @@ const atualizar = async (req, res) => {
             });
         }
 
+        // USUARIO só pode alterar a própria conta
+        // ADMIN pode alterar qualquer conta
         if (req.usuario.tipo !== 'ADMIN' && req.usuario.id !== id) {
             return res.status(403).json({
                 erro: 'Você só pode atualizar sua própria conta'
@@ -284,20 +285,18 @@ const atualizar = async (req, res) => {
             dados.senha = await bcrypt.hash(senha, 10);
         }
 
-        // Somente ADMIN pode alterar tipo, plano e status
-        if (req.usuario.tipo === 'ADMIN') {
+        // USUARIO pode alterar o próprio plano e status
+        if (plano !== undefined) {
+            dados.plano = plano;
+        }
 
-            if (tipo !== undefined) {
-                dados.tipo = tipo;
-            }
+        if (status !== undefined) {
+            dados.status = status;
+        }
 
-            if (plano !== undefined) {
-                dados.plano = plano;
-            }
-
-            if (status !== undefined) {
-                dados.status = status;
-            }
+        // SOMENTE ADMIN pode alterar o tipo
+        if (req.usuario.tipo === 'ADMIN' && tipo !== undefined) {
+            dados.tipo = tipo;
         }
 
         const usuario = await prisma.usuarios.update({
@@ -329,6 +328,8 @@ const atualizar = async (req, res) => {
         });
     }
 };
+
+
 
 
 // EXCLUIR USUÁRIO
