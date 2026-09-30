@@ -12,7 +12,6 @@ const cadastrar = async (req, res) => {
 
         let usuario_id;
 
-        // ADMIN pode cadastrar investimento para qualquer usuário
         if (req.usuario.tipo === 'ADMIN') {
             usuario_id = Number(req.body.usuario_id);
 
@@ -22,7 +21,6 @@ const cadastrar = async (req, res) => {
                 });
             }
         } else {
-            // USUARIO normal: pega o ID diretamente do token
             usuario_id = req.usuario.id;
         }
 

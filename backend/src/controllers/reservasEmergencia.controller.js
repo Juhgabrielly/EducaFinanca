@@ -24,7 +24,6 @@ const cadastrar = async (req, res) => {
             });
         }
 
-        // Verifica se o usuário já possui uma reserva
         const reservaExistente = await prisma.reservas_emergencia.findUnique({
             where: {
                 usuario_id

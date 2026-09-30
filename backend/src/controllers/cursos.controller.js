@@ -119,21 +119,18 @@ const excluir = async (req, res) => {
             });
         }
 
-        // Excluir progressos relacionados ao curso
         await prisma.progresso_cursos.deleteMany({
             where: {
                 curso_id: id
             }
         });
 
-        // Excluir quizzes relacionados ao curso
         await prisma.quizzes.deleteMany({
             where: {
                 curso_id: id
             }
         });
-
-        // Excluir o curso
+        
         await prisma.cursos.delete({
             where: {
                 id

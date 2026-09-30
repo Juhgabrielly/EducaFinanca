@@ -2,8 +2,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const prisma = require('../data/prisma');
 
-
-// CADASTRAR USUÁRIO
 const cadastrar = async (req, res) => {
     try {
         const {
@@ -66,8 +64,6 @@ const cadastrar = async (req, res) => {
     }
 };
 
-
-// LOGIN
 const login = async (req, res) => {
     try {
         const {
@@ -147,8 +143,6 @@ const login = async (req, res) => {
     }
 };
 
-
-// LISTAR USUÁRIOS
 const listar = async (req, res) => {
     try {
         const usuarios = await prisma.usuarios.findMany({
@@ -175,8 +169,6 @@ const listar = async (req, res) => {
     }
 };
 
-
-// BUSCAR USUÁRIO
 const buscar = async (req, res) => {
     try {
         const id = Number(req.params.id);
@@ -226,7 +218,6 @@ const buscar = async (req, res) => {
     }
 };
 
-// ATUALIZAR USUÁRIO
 const atualizar = async (req, res) => {
     try {
         const id = Number(req.params.id);
@@ -237,8 +228,6 @@ const atualizar = async (req, res) => {
             });
         }
 
-        // USUARIO só pode alterar a própria conta
-        // ADMIN pode alterar qualquer conta
         if (req.usuario.tipo !== 'ADMIN' && req.usuario.id !== id) {
             return res.status(403).json({
                 erro: 'Você só pode atualizar sua própria conta'
@@ -285,7 +274,6 @@ const atualizar = async (req, res) => {
             dados.senha = await bcrypt.hash(senha, 10);
         }
 
-        // USUARIO pode alterar o próprio plano e status
         if (plano !== undefined) {
             dados.plano = plano;
         }
@@ -294,7 +282,6 @@ const atualizar = async (req, res) => {
             dados.status = status;
         }
 
-        // SOMENTE ADMIN pode alterar o tipo
         if (req.usuario.tipo === 'ADMIN' && tipo !== undefined) {
             dados.tipo = tipo;
         }
@@ -329,10 +316,6 @@ const atualizar = async (req, res) => {
     }
 };
 
-
-
-
-// EXCLUIR USUÁRIO
 const excluir = async (req, res) => {
     try {
         const id = Number(req.params.id);
