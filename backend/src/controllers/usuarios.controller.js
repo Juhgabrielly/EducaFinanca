@@ -55,21 +55,18 @@ const cadastrar = async (req, res) => {
             criado_em: usuario.criado_em
         });
 
-    } catch (erro) {
-        console.error(erro);
-
-        res.status(500).json({
-            erro: 'Erro ao cadastrar usuário'
-        });
-    }
+  } catch (erro) {
+  console.error('ERRO NO LOGIN:', erro);
+  return res.status(500).json({
+    erro: erro.message
+  });
+}
 };
+
 
 const login = async (req, res) => {
     try {
-        const {
-            email,
-            senha
-        } = req.body;
+        const { email, senha } = req.body;
 
         if (!email || !senha) {
             return res.status(400).json({
@@ -77,10 +74,16 @@ const login = async (req, res) => {
             });
         }
 
+        if (!process.env.JWT_SECRET) {
+            console.error('JWT_SECRET não está configurado');
+
+            return res.status(500).json({
+                erro: 'Configuração de autenticação ausente'
+            });
+        }
+
         const usuario = await prisma.usuarios.findUnique({
-            where: {
-                email
-            }
+            where: { email }
         });
 
         if (!usuario) {
@@ -115,12 +118,10 @@ const login = async (req, res) => {
                 plano: usuario.plano
             },
             process.env.JWT_SECRET,
-            {
-                expiresIn: '2h'
-            }
+            { expiresIn: '2h' }
         );
 
-        res.status(200).json({
+        return res.status(200).json({
             mensagem: 'Login realizado com sucesso',
             token,
             usuario: {
@@ -135,10 +136,11 @@ const login = async (req, res) => {
         });
 
     } catch (erro) {
-        console.error(erro);
+        console.error('ERRO REAL NO LOGIN:', erro);
 
-        res.status(500).json({
-            erro: 'Erro ao realizar login'
+        return res.status(500).json({
+            erro: 'Erro ao realizar login',
+            detalhe: erro.message
         });
     }
 };

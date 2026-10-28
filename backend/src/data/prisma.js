@@ -1,22 +1,31 @@
+
 require('dotenv').config();
 
 const { PrismaClient } = require('@prisma/client');
 const { PrismaMariaDb } = require('@prisma/adapter-mariadb');
 
-const adapter = new PrismaMariaDb({
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT || 3306),
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    ssl: process.env.DB_SSL_CA
-        ? { ca: process.env.DB_SSL_CA }
-        : true,
-    connectionLimit: 5
-});
+const url = new URL(process.env.DATABASE_URL);
+
+const configuracao = {
+  host: url.hostname,
+  port: Number(url.port || 3306),
+  user: decodeURIComponent(url.username),
+  password: decodeURIComponent(url.password),
+  database: url.pathname.replace(/^\//, ''),
+  connectionLimit: 5,
+  connectTimeout: 10000
+};
+
+if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') {
+  configuracao.ssl = false;
+} else {
+  configuracao.ssl = true;
+}
+
+const adapter = new PrismaMariaDb(configuracao);
 
 const prisma = new PrismaClient({
-    adapter
+  adapter
 });
 
 module.exports = prisma;
