@@ -1,6 +1,4 @@
 const admin = (req, res, next) => {
-    console.log('TIPO NO TOKEN:', req.usuario.tipo);
-
     if (!req.usuario) {
         return res.status(401).json({
             erro: 'Usuário não autenticado'

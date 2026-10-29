@@ -55,11 +55,13 @@ const cadastrar = async (req, res) => {
 const listar = async (req, res) => {
     try {
         const movimentacoes = req.usuario.tipo === 'ADMIN'
-            ? await prisma.movimentacoes.findMany()
+            ? await prisma.movimentacoes.findMany({
+                include: { usuario: { select: { id: true, nome: true, email: true } } },
+                orderBy: { data_movimentacao: 'desc' }
+            })
             : await prisma.movimentacoes.findMany({
-                where: {
-                    usuario_id: req.usuario.id
-                }
+                where: { usuario_id: req.usuario.id },
+                orderBy: { data_movimentacao: 'desc' }
             });
 
         res.json(movimentacoes);

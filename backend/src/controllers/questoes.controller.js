@@ -29,14 +29,29 @@ const cadastrar = async (req, res) => {
 const listar = async (req, res) => {
     try {
         const questoes = await prisma.questoes.findMany();
-
-        res.json(questoes);
-
+        return res.json(req.usuario.tipo === 'ADMIN'
+            ? questoes
+            : questoes.map(({ resposta_correta, ...questao }) => questao));
     } catch (error) {
-        res.status(500).json({
-            erro: 'Erro ao listar questões',
-            detalhes: error.message
+        return res.status(500).json({ erro: 'Erro ao listar questões', detalhes: error.message });
+    }
+};
+
+const listarPorQuiz = async (req, res) => {
+    try {
+        const quizId = Number(req.params.quizId);
+        if (!Number.isInteger(quizId) || quizId <= 0) {
+            return res.status(400).json({ erro: 'ID do quiz inválido' });
+        }
+        const quiz = await prisma.quizzes.findUnique({ where: { id: quizId } });
+        if (!quiz) return res.status(404).json({ erro: 'Quiz não encontrado' });
+        const questoes = await prisma.questoes.findMany({
+            where: { quiz_id: quizId },
+            select: { id: true, quiz_id: true, pergunta: true }
         });
+        return res.json(questoes);
+    } catch (error) {
+        return res.status(500).json({ erro: 'Erro ao listar questões do quiz', detalhes: error.message });
     }
 };
 
@@ -54,7 +69,11 @@ const buscar = async (req, res) => {
             });
         }
 
-        res.json(questao);
+        if (req.usuario.tipo !== 'ADMIN') {
+            const { resposta_correta, ...questaoPublica } = questao;
+            return res.json(questaoPublica);
+        }
+        return res.json(questao);
 
     } catch (error) {
         res.status(500).json({
@@ -116,6 +135,7 @@ const excluir = async (req, res) => {
 module.exports = {
     cadastrar,
     listar,
+    listarPorQuiz,
     buscar,
     atualizar,
     excluir

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Relatórios - Educa Finança</title>
+
+    <link rel="stylesheet" href="../css/relatorio.css">
+<link rel="stylesheet" href="../css/chat.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+
+        <img
+            src="educa.png"
+            alt="Logo do Educa Finança"
+            class="logo-img">
+
+        <h2>Educa Finança</h2>
+
+    </div>
+
+    <button
+        type="button"
+        class="menu-toggle"
+        id="menu-toggle">
+
+        <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+    <nav class="menu" id="menu">
+
+        <a href="home.html">Home</a>
+        <a href="cursos.html">Cursos</a>
+        <a href="relatório.html" class="ativo">Relatórios</a>
+        <a href="investimento.html">Investimentos</a>
+        <a href="usuario.html">Perfil</a>
+        <a href="plano.html">Planos</a>
+
+    </nav>
+
+</header>
+
+
+<main class="reports-page">
+
+    <section class="reports-header">
+
+        <span class="mini-title">
+            CONTROLE FINANCEIRO
+        </span>
+
+        <h1>
+            Resultados
+            <span>Financeiros</span>
+        </h1>
+
+        <p class="description">
+            Acompanhe suas receitas, despesas e resultados
+            financeiros de forma simples e organizada.
+        </p>
+
+    </section>
+
+    <section class="stats-grid">
+
+        <article class="stat-card">
+
+            <div class="stat-icon receita-icon">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    Receita do mês
+                </span>
+
+                <input
+                    type="number"
+                    id="receitaInput"
+                    class="valor-input"
+                    placeholder="Digite o valor"
+                    min="0"
+                    step="0.01">
+
+                <p>
+                    Total de receitas registradas no mês
+                </p>
+
+            </div>
+
+        </article>
+
+        <article class="stat-card">
+
+            <div class="stat-icon despesa-icon">
+                <i class="fa-solid fa-arrow-trend-down"></i>
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    Despesa do mês
+                </span>
+
+                <input
+                    type="number"
+                    id="despesaInput"
+                    class="valor-input"
+                    placeholder="Digite o valor"
+                    min="0"
+                    step="0.01">
+
+                <p>
+                    Total de despesas registradas no mês
+                </p>
+
+            </div>
+
+        </article>
+
+        <article class="stat-card">
+
+            <div class="stat-icon saldo-icon">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    Saldo do mês
+                </span>
+
+                <h2 id="saldoAtual">
+                    R$ 0,00
+                </h2>
+
+                <p>
+                    Receita menos despesas
+                </p>
+
+            </div>
+
+        </article>
+
+    </section>
+
+    <section class="acoes-relatorio" aria-label="Ações de movimentações">
+      <button type="button" class="btn-relatorio btn-principal" id="abrirCadastro"><i class="fa-solid fa-plus"></i> Cadastrar movimentação</button>
+      <button type="button" class="btn-relatorio btn-secundario" id="alternarRegistros" aria-expanded="false"><i class="fa-solid fa-list"></i> Ver receitas e despesas</button>
+    </section>
+
+    <section class="table-card" id="cardCadastro" style="margin-bottom:24px;display:none">
+      <div class="table-header"><div class="table-title"><span>NOVO REGISTRO</span><h2 id="tituloFormulario">Cadastrar movimentação</h2></div></div>
+      <form id="formMovimentacao" class="form-movimentacao">
+        <select id="movTipo" required><option value="RECEITA">Receita</option><option value="DESPESA">Despesa</option></select>
+        <input id="movDescricao" maxlength="255" placeholder="Descrição" required>
+        <input id="movValor" type="number" min="0.01" step="0.01" placeholder="Valor (R$)" required>
+        <input id="movData" type="date" required>
+        <button type="submit" class="btn-curso" id="salvarMovimentacao">Adicionar movimentação</button>
+      </form>
+    </section>
+
+    <section class="table-card" id="cardRegistros" style="margin-bottom:24px;display:none">
+      <div class="table-header"><div class="table-title"><span>REGISTROS DO BACKEND</span><h2>Receitas e despesas cadastradas</h2></div></div>
+      <p id="mensagemMovimentacao" style="padding:0 0 16px"></p>
+      <div class="table-responsive"><table><thead><tr><th>Data</th><th>Tipo</th><th>Descrição</th><th>Valor</th><th class="coluna-usuario" hidden>Usuário</th><th>Ações</th></tr></thead><tbody id="listaMovimentacoes"><tr><td colspan="6">Carregando...</td></tr></tbody></table></div>
+    </section>
+
+    <section class="table-card">
+
+        <div class="table-header">
+
+            <div class="table-title">
+
+                <span>
+                    RESUMO MENSAL
+                </span>
+
+                <h2>
+                    Histórico Financeiro
+                </h2>
+
+            </div>
+
+            <div class="table-filters">
+
+                <label>
+
+                    <span>
+                        Mês
+                    </span>
+
+                    <select id="filtroMes">
+
+                        <option value="todos">
+                            Todos
+                        </option>
+
+                        <option value="janeiro">
+                            Janeiro
+                        </option>
+
+                        <option value="fevereiro">
+                            Fevereiro
+                        </option>
+
+                        <option value="marco">
+                            Março
+                        </option>
+
+                        <option value="abril">
+                            Abril
+                        </option>
+
+                        <option value="maio">
+                            Maio
+                        </option>
+
+                        <option value="junho">
+                            Junho
+                        </option>
+
+                        <option value="julho">
+                            Julho
+                        </option>
+
+                        <option value="agosto">
+                            Agosto
+                        </option>
+
+                        <option value="setembro">
+                            Setembro
+                        </option>
+
+                        <option value="outubro">
+                            Outubro
+                        </option>
+
+                        <option value="novembro">
+                            Novembro
+                        </option>
+
+                        <option value="dezembro">
+                            Dezembro
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+                <label>
+
+                    <span>
+                        Ano
+                    </span>
+
+                    <select id="filtroAno">
+
+                        <option value="2026">
+                            2026
+                        </option>
+
+                        <option value="2025">
+                            2025
+                        </option>
+
+                    </select>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Mês</th>
+                        <th>Receita</th>
+                        <th>Despesas</th>
+                        <th>Resultado</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tabelaFinanceira"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="../js/chat.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/relatorios-api.js"></script>
+<script src="../js/integracao-api.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const botaoMenu = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+
+    if (botaoMenu && menu) {
+        botaoMenu.setAttribute('aria-expanded', 'false');
+        botaoMenu.setAttribute('aria-label', 'Abrir menu');
+
+        botaoMenu.addEventListener('click', () => {
+            const aberto = menu.classList.toggle('active');
+
+            botaoMenu.setAttribute('aria-expanded', String(aberto));
+            botaoMenu.setAttribute(
+                'aria-label',
+                aberto ? 'Fechar menu' : 'Abrir menu'
+            );
+        });
+
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                botaoMenu.setAttribute('aria-expanded', 'false');
+                botaoMenu.setAttribute('aria-label', 'Abrir menu');
+            });
+        });
+    }
+});
+</script>
+
+</body>
+</html>

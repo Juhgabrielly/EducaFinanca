@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Curso | Educa Finança</title>
+
+    <link rel="stylesheet" href="../css/cursosht.css">
+    <link rel="stylesheet" href="../css/chat.css">
+
+    <style>
+        .pagina-dados {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: calc(100% - 40px);
+            max-width: 950px;
+            margin: 35px auto;
+            padding: 24px;
+            box-sizing: border-box;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 5px 24px #00000010;
+        }
+
+        #conteudo:not([hidden]) {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+            width: 100%;
+        }
+
+        #conteudo h1,
+        #conteudo h2,
+        #conteudo p {
+            margin: 0;
+        }
+
+        #categoria {
+            align-self: flex-start;
+        }
+
+        .barra {
+            width: 100%;
+            height: 10px;
+            background: #e6e6e6;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .barra div {
+            height: 100%;
+            background: #2f806a;
+            transition: width 0.3s ease;
+        }
+
+        .texto {
+            width: 100%;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            line-height: 1.7;
+        }
+
+        #quizzes {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .btn-primario {
+            display: block;
+            width: 100%;
+            max-width: 350px;
+            box-sizing: border-box;
+            padding: 12px 18px;
+            margin: 0;
+            background: #2f806a;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primario:hover {
+            background: #246653;
+        }
+
+        .btn-primario:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #estado {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .pagina-dados {
+                width: calc(100% - 24px);
+                margin: 16px auto;
+                padding: 18px;
+            }
+
+            .btn-primario {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img
+                src="educa.png"
+                alt="Educa Finança"
+                class="logo-img"
+            >
+            <h2>Educa Finança</h2>
+        </div>
+
+        <nav class="menu" id="menu">
+            <a href="home.html">Home</a>
+            <a href="cursos.html">Cursos</a>
+            <a href="relatorio.html">Relatórios</a>
+            <a href="investimento.html">Investimentos</a>
+            <a href="usuario.html">Perfil</a>
+        </nav>
+    </header>
+
+    <main class="pagina-dados">
+        <p id="estado">Carregando curso...</p>
+
+        <section id="conteudo" hidden>
+            <span id="categoria"></span>
+
+            <h1 id="titulo"></h1>
+
+            <p id="descricao"></p>
+
+            <div class="barra">
+                <div
+                    id="barraProgresso"
+                    style="width: 0%"
+                ></div>
+            </div>
+
+            <p id="textoProgresso">Progresso: 0%</p>
+
+            <h2>Conteúdo</h2>
+
+            <div id="texto" class="texto"></div>
+
+            <h2>Quizzes deste curso</h2>
+
+            <div id="quizzes"></div>
+
+            <button
+                id="marcarEstudo"
+                class="btn-primario"
+                type="button"
+            >
+                Registrar estudo (50%)
+            </button>
+        </section>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/curso-api.js"></script>
+</body>
+</html>

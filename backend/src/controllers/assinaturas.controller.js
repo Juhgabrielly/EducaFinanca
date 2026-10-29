@@ -2,43 +2,25 @@ const prisma = require('../data/prisma');
 
 const cadastrar = async (req, res) => {
     try {
-        const { plano, status, inicio, fim } = req.body;
-
-        const usuario_id = req.usuario.tipo === 'ADMIN'
+        const plano = req.body.plano;
+        if (!['FREE', 'PREMIUM'].includes(plano)) {
+            return res.status(400).json({ erro: 'Plano inválido' });
+        }
+        const usuario_id = req.usuario.tipo === 'ADMIN' && req.body.usuario_id
             ? Number(req.body.usuario_id)
             : req.usuario.id;
-
-        if (!usuario_id || isNaN(usuario_id)) {
-            return res.status(400).json({
-                erro: 'ID do usuário inválido'
-            });
+        if (req.usuario.tipo !== 'ADMIN' && plano !== 'PREMIUM') {
+            return res.status(400).json({ erro: 'Usuários podem registrar apenas a ativação Premium' });
         }
-
-        if (!plano) {
-            return res.status(400).json({
-                erro: 'Plano é obrigatório'
-            });
-        }
-
         const assinatura = await prisma.assinaturas.create({
-            data: {
-                usuario_id: usuario_id,
-                plano: plano,
-                status: status || 'ATIVA',
-                inicio: inicio ? new Date(inicio) : new Date(),
-                fim: fim ? new Date(fim) : null
-            }
+            data: { usuario_id, plano, status: 'ATIVA', inicio: new Date(), fim: null }
         });
-
-        res.status(201).json(assinatura);
-
+        if (plano === 'PREMIUM') {
+            await prisma.usuarios.update({ where: { id: usuario_id }, data: { plano: 'PREMIUM' } });
+        }
+        return res.status(201).json(assinatura);
     } catch (error) {
-        console.error('ERRO AO CADASTRAR ASSINATURA:', error);
-
-        res.status(500).json({
-            erro: 'Erro ao cadastrar assinatura',
-            detalhes: error.message
-        });
+        return res.status(500).json({ erro: 'Erro ao cadastrar assinatura', detalhes: error.message });
     }
 };
 
@@ -104,57 +86,33 @@ const buscar = async (req, res) => {
 const atualizar = async (req, res) => {
     try {
         const id = Number(req.params.id);
-
-        if (isNaN(id)) {
-            return res.status(400).json({
-                erro: 'ID inválido'
-            });
+        const existente = await prisma.assinaturas.findUnique({ where: { id } });
+        if (!existente) return res.status(404).json({ erro: 'Assinatura não encontrada' });
+        if (req.usuario.tipo !== 'ADMIN' && existente.usuario_id !== req.usuario.id) {
+            return res.status(403).json({ erro: 'Você só pode alterar sua própria assinatura' });
         }
-
-        const assinaturaExistente =
-            await prisma.assinaturas.findUnique({
-                where: { id }
-            });
-
-        if (!assinaturaExistente) {
-            return res.status(404).json({
-                erro: 'Assinatura não encontrada'
-            });
-        }
-
-        if (
-            req.usuario.tipo !== 'ADMIN' &&
-            assinaturaExistente.usuario_id !== req.usuario.id
-        ) {
-            return res.status(403).json({
-                erro: 'Você só pode alterar sua própria assinatura'
-            });
-        }
-
-        const {
-            plano,
-            status,
-            inicio,
-            fim
-        } = req.body;
-
-        const assinatura = await prisma.assinaturas.update({
-            where: { id },
-            data: {
-                plano: plano || undefined,
-                status: status || undefined,
-                inicio: inicio ? new Date(inicio) : undefined,
-                fim: fim ? new Date(fim) : undefined
+        let dados;
+        if (req.usuario.tipo === 'ADMIN') {
+            dados = {
+                plano: req.body.plano || undefined,
+                status: req.body.status || undefined,
+                inicio: req.body.inicio ? new Date(req.body.inicio) : undefined,
+                fim: req.body.fim ? new Date(req.body.fim) : undefined
+            };
+        } else {
+            if (req.body.status !== 'CANCELADA') {
+                return res.status(400).json({ erro: 'Usuários só podem cancelar a própria assinatura' });
             }
-        });
-
-        res.json(assinatura);
-
+            dados = { status: 'CANCELADA', fim: new Date() };
+        }
+        const assinatura = await prisma.assinaturas.update({ where: { id }, data: dados });
+        if (req.usuario.tipo === 'ADMIN' && req.body.status === 'CANCELADA' || req.usuario.tipo !== 'ADMIN') {
+            const outraAtiva = await prisma.assinaturas.findFirst({ where: { usuario_id: existente.usuario_id, status: 'ATIVA', id: { not: id } } });
+            if (!outraAtiva) await prisma.usuarios.update({ where: { id: existente.usuario_id }, data: { plano: 'FREE' } });
+        }
+        return res.json(assinatura);
     } catch (error) {
-        res.status(500).json({
-            erro: 'Erro ao atualizar assinatura',
-            detalhes: error.message
-        });
+        return res.status(500).json({ erro: 'Erro ao atualizar assinatura', detalhes: error.message });
     }
 };
 

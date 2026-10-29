@@ -1,3 +1,4 @@
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const prisma = require('../data/prisma');
@@ -15,6 +16,12 @@ const cadastrar = async (req, res) => {
         if (!nome || !email || !senha) {
             return res.status(400).json({
                 erro: 'Nome, email e senha são obrigatórios'
+            });
+        }
+
+        if (tipo !== undefined && !['ADMIN', 'USUARIO'].includes(tipo)) {
+            return res.status(400).json({
+                erro: 'Tipo de usuário inválido'
             });
         }
 
@@ -44,7 +51,7 @@ const cadastrar = async (req, res) => {
             }
         });
 
-        res.status(201).json({
+        return res.status(201).json({
             id: usuario.id,
             nome: usuario.nome,
             telefone: usuario.telefone,
@@ -55,12 +62,13 @@ const cadastrar = async (req, res) => {
             criado_em: usuario.criado_em
         });
 
-  } catch (erro) {
-  console.error('ERRO NO LOGIN:', erro);
-  return res.status(500).json({
-    erro: erro.message
-  });
-}
+    } catch (erro) {
+        console.error('Erro ao cadastrar usuário:', erro);
+
+        return res.status(500).json({
+            erro: 'Erro ao cadastrar usuário'
+        });
+    }
 };
 
 
@@ -145,6 +153,7 @@ const login = async (req, res) => {
     }
 };
 
+
 const listar = async (req, res) => {
     try {
         let usuarios;
@@ -180,16 +189,17 @@ const listar = async (req, res) => {
             });
         }
 
-        res.status(200).json(usuarios);
+        return res.status(200).json(usuarios);
 
     } catch (erro) {
         console.error(erro);
 
-        res.status(500).json({
+        return res.status(500).json({
             erro: 'Erro ao listar usuários'
         });
     }
 };
+
 
 const buscar = async (req, res) => {
     try {
@@ -229,16 +239,17 @@ const buscar = async (req, res) => {
             });
         }
 
-        res.status(200).json(usuario);
+        return res.status(200).json(usuario);
 
     } catch (erro) {
         console.error(erro);
 
-        res.status(500).json({
+        return res.status(500).json({
             erro: 'Erro ao buscar usuário'
         });
     }
 };
+
 
 const atualizar = async (req, res) => {
     try {
@@ -273,9 +284,9 @@ const atualizar = async (req, res) => {
             telefone,
             email,
             senha,
-            tipo,
             plano,
-            status
+            status,
+            tipo
         } = req.body;
 
         const dados = {};
@@ -296,16 +307,38 @@ const atualizar = async (req, res) => {
             dados.senha = await bcrypt.hash(senha, 10);
         }
 
-        if (plano !== undefined) {
-            dados.plano = plano;
+        if (req.usuario.tipo === 'ADMIN') {
+            if (plano !== undefined) {
+                dados.plano = plano;
+            }
+
+            if (status !== undefined) {
+                dados.status = status;
+            }
+
+            if (tipo !== undefined) {
+                if (!['ADMIN', 'USUARIO'].includes(tipo)) {
+                    return res.status(400).json({
+                        erro: 'Tipo de usuário inválido'
+                    });
+                }
+
+                dados.tipo = tipo;
+            }
         }
 
-        if (status !== undefined) {
-            dados.status = status;
-        }
+        if (email !== undefined && email !== usuarioExistente.email) {
+            const emailExistente = await prisma.usuarios.findUnique({
+                where: {
+                    email
+                }
+            });
 
-        if (req.usuario.tipo === 'ADMIN' && tipo !== undefined) {
-            dados.tipo = tipo;
+            if (emailExistente) {
+                return res.status(400).json({
+                    erro: 'Email já cadastrado'
+                });
+            }
         }
 
         const usuario = await prisma.usuarios.update({
@@ -315,7 +348,7 @@ const atualizar = async (req, res) => {
             data: dados
         });
 
-        res.status(200).json({
+        return res.status(200).json({
             mensagem: 'Usuário atualizado com sucesso',
             usuario: {
                 id: usuario.id,
@@ -330,13 +363,14 @@ const atualizar = async (req, res) => {
         });
 
     } catch (erro) {
-        console.error(erro);
+        console.error('Erro ao atualizar usuário:', erro);
 
-        res.status(500).json({
+        return res.status(500).json({
             erro: 'Erro ao atualizar usuário'
         });
     }
 };
+
 
 const excluir = async (req, res) => {
     try {
@@ -372,14 +406,14 @@ const excluir = async (req, res) => {
             }
         });
 
-        res.status(200).json({
+        return res.status(200).json({
             mensagem: 'Usuário excluído com sucesso'
         });
 
     } catch (erro) {
-        console.error(erro);
+        console.error('Erro ao excluir usuário:', erro);
 
-        res.status(500).json({
+        return res.status(500).json({
             erro: 'Erro ao excluir usuário'
         });
     }

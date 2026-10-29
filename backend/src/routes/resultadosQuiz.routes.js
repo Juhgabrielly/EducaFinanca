@@ -7,7 +7,7 @@ const controller = require('../controllers/resultadosQuiz.controller');
 const autenticar = require('../middleware/autenticar');
 const admin = require('../middleware/admin');
 
-router.post('/cadastrar', autenticar, admin, controller.cadastrar);
+router.post('/cadastrar', autenticar, controller.cadastrar);
 router.get('/listar', autenticar, controller.listar);
 router.get('/buscar/:id', autenticar, controller.buscar);
 router.put('/atualizar/:id', autenticar, admin, controller.atualizar);
