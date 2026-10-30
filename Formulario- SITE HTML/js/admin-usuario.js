@@ -1,129 +1,71 @@
-const API = "http://localhost:3000";
-
 let usuarios = [];
 
-const usuarioLogado =
-    JSON.parse(
-        localStorage.getItem("usuario")
-    );
-
+const usuarioLogado = obterUsuario();
 
 if (!usuarioLogado) {
-
-    window.location.href =
-        "../login.html";
-
+    window.location.href = "../login.html";
 }
 
-const nomeAdmin =
-    document.getElementById(
-        "nomeAdmin"
-    );
+const nomeAdmin = document.getElementById("nomeAdmin");
 
-
-if (usuarioLogado) {
-
+if (usuarioLogado && nomeAdmin) {
     nomeAdmin.textContent =
         usuarioLogado.nome ||
         usuarioLogado.email ||
         "Administrador";
-
 }
 
 async function carregarUsuarios() {
-
     try {
+        const resposta = await requisicaoAPI("/usuarios/listar");
 
-        const usuariosResposta =
-            await requisicaoAPI("/usuarios/listar");
-        const resposta = { ok: true, json: async () => usuariosResposta };
+        // TESTE DA RESPOSTA DA API
+        console.log("RESPOSTA DA API:", resposta);
+        console.log("TOKEN EXISTE:", !!obterToken());
 
+        usuarios = Array.isArray(resposta)
+            ? resposta
+            : Array.isArray(resposta.usuarios)
+                ? resposta.usuarios
+                : [];
 
-        if (!resposta.ok) {
-
-            throw new Error(
-                "Erro ao buscar usuários"
-            );
-
-        }
-
-        usuarios =
-            await resposta.json();
-
+        // TESTE DOS USUÁRIOS RECEBIDOS
+        console.log("USUÁRIOS RECEBIDOS:", usuarios);
 
         atualizarCards();
-
-        mostrarUsuarios(
-            usuarios
-        );
-
+        mostrarUsuarios(usuarios);
 
     } catch (erro) {
+        console.error("Erro ao carregar usuários:", erro);
 
-        console.error(
-            "Erro:",
-            erro
-        );
-
-
-        document.getElementById(
-            "tabelaUsuarios"
-        ).innerHTML = `
-
+        document.getElementById("tabelaUsuarios").innerHTML = `
             <tr>
-
                 <td colspan="6">
-
                     Não foi possível carregar os usuários.
-
                 </td>
-
             </tr>
-
         `;
-
     }
-
 }
 
 function atualizarCards() {
-    const total =
-        usuarios.length;
+    const total = usuarios.length;
 
-    const premium =
-        usuarios.filter(
-            usuario =>
-                usuario.plano ===
-                "PREMIUM"
-        ).length;
+    const premium = usuarios.filter(
+        item => item.plano === "PREMIUM"
+    ).length;
 
-    const free =
-        usuarios.filter(
-            usuario =>
-                usuario.plano ===
-                "FREE"
-        ).length;
+    const free = usuarios.filter(
+        item => item.plano === "FREE"
+    ).length;
 
-    document.getElementById(
-        "totalUsuarios"
-    ).textContent =
-        total;
-
-    document.getElementById(
-        "totalPremium"
-    ).textContent =
-        premium;
-
-    document.getElementById(
-        "totalFree"
-    ).textContent =
-        free;
+    document.getElementById("totalUsuarios").textContent = total;
+    document.getElementById("totalPremium").textContent = premium;
+    document.getElementById("totalFree").textContent = free;
 }
+
 function mostrarUsuarios(lista) {
-    const tabela =
-        document.getElementById(
-            "tabelaUsuarios"
-        );
+    const tabela = document.getElementById("tabelaUsuarios");
 
     tabela.innerHTML = "";
 
@@ -137,396 +79,202 @@ function mostrarUsuarios(lista) {
         `;
         return;
     }
+
     lista.forEach(usuario => {
-        const linha =
-            document.createElement(
-                "tr"
-            );
-        const plano =
-            usuario.plano ||
-            "REE";
-        const tipo =
-            usuario.tipo ||
-            "USUARIO";
+        const linha = document.createElement("tr");
+
+        const plano = usuario.plano || "FREE";
+        const tipo = usuario.tipo || "USUARIO";
+
         linha.innerHTML = `
-            <td>
-                #${usuario.id}
-            </td>
+            <td>#${usuario.id}</td>
+
             <td>
                 <div class="usuario-tabela">
                     <div class="avatar-admin">
                         ${usuario.nome
-                ? usuario.nome
-                    .charAt(0)
-                    .toUpperCase()
-                : "U"
-            }
+                            ? usuario.nome.charAt(0).toUpperCase()
+                            : "U"}
                     </div>
-                    <div>
-                        <strong>
-                            ${usuario.nome || "Usuário"}
-                        </strong>
 
+                    <div>
+                        <strong>${usuario.nome || "Usuário"}</strong>
                     </div>
                 </div>
             </td>
-            <td>
-                ${usuario.email}
-            </td>
+
+            <td>${usuario.email || "-"}</td>
 
             <td>
-
-                <span
-                    class="badge-plano ${plano === "PREMIUM"
-                ? "premium"
-                : "free"
-            }"
-                >
-
-                    ${plano === "PREMIUM"
-                ? "⭐ PREMIUM"
-                : "FREE"
-            }
-
+                <span class="badge-plano ${plano === "PREMIUM" ? "premium" : "free"}">
+                    ${plano === "PREMIUM" ? "⭐ PREMIUM" : "FREE"}
                 </span>
-
             </td>
 
-
             <td>
-
-                <span class="badge-tipo">
-
-                    ${tipo}
-
-                </span>
-
+                <span class="badge-tipo">${tipo}</span>
             </td>
 
-
             <td>
-
                 <div class="acoes-admin">
 
                     <button
                         class="btn-ver"
-                        onclick="verUsuario(${usuario.id})"
+                        onclick="verUsuario(${Number(usuario.id)})"
                         title="Ver usuário"
                     >
-
                         <i class="fa-solid fa-eye"></i>
-
                     </button>
 
-
                     ${tipo !== "ADMIN"
-                ? plano === "PREMIUM"
-
-                    ? `
-
-                                    <button
-                                        class="btn-remover-premium"
-                                        onclick="alterarPlano(${usuario.id}, 'FREE')"
-                                    >
-
-                                        Remover Premium
-
-                                    </button>
-
-                                `
-
-                    : `
-
-                                    <button
-                                        class="btn-premium"
-                                        onclick="alterarPlano(${usuario.id}, 'PREMIUM')"
-                                    >
-
-                                        Tornar Premium
-
-                                    </button>
-
-                                `
-                : `
-                                <span class="admin-protegido">
-                                    Administrador
-                                </span>
+                        ? plano === "PREMIUM"
+                            ? `
+                                <button
+                                    class="btn-remover-premium"
+                                    onclick="alterarPlano(${Number(usuario.id)}, 'FREE')"
+                                >
+                                    Remover Premium
+                                </button>
                             `
-            }
+                            : `
+                                <button
+                                    class="btn-premium"
+                                    onclick="alterarPlano(${Number(usuario.id)}, 'PREMIUM')"
+                                >
+                                    Tornar Premium
+                                </button>
+                            `
+                        : `
+                            <span class="admin-protegido">
+                                Administrador
+                            </span>
+                        `
+                    }
 
                 </div>
-
             </td>
-
         `;
 
-
-        tabela.appendChild(
-            linha
-        );
-
+        tabela.appendChild(linha);
     });
-
 }
 
-document
-    .getElementById(
-        "pesquisarUsuario"
-    )
-    .addEventListener(
-        "input",
-        event => {
+document.getElementById("pesquisarUsuario").addEventListener(
+    "input",
+    event => {
+        const pesquisa = event.target.value.toLowerCase().trim();
 
-            const pesquisa =
-                event.target.value
-                    .toLowerCase()
-                    .trim();
+        const filtrados = usuarios.filter(usuario => {
+            const nome = usuario.nome?.toLowerCase() || "";
+            const email = usuario.email?.toLowerCase() || "";
 
-
-            const filtrados =
-                usuarios.filter(
-                    usuario => {
-
-                        const nome =
-                            usuario.nome
-                                ?.toLowerCase() ||
-                            "";
-
-
-                        const email =
-                            usuario.email
-                                ?.toLowerCase() ||
-                            "";
-
-
-                        return (
-                            nome.includes(
-                                pesquisa
-                            ) ||
-                            email.includes(
-                                pesquisa
-                            )
-                        );
-
-                    }
-                );
-
-
-            mostrarUsuarios(
-                filtrados
-            );
-
-        }
-    );
-
-
-async function alterarPlano(
-    id,
-    novoPlano
-) {
-
-    let mensagem;
-
-
-    if (
-        novoPlano ===
-        "PREMIUM"
-    ) {
-
-        mensagem =
-            "Deseja tornar este usuário Premium?";
-
-    } else {
-
-        mensagem =
-            "Deseja remover o Premium deste usuário?";
-
-    }
-
-
-    const confirmar =
-        confirm(mensagem);
-
-
-    if (!confirmar) {
-
-        return;
-
-    }
-
-
-    try {
-
-        const dados = await requisicaoAPI(`/usuarios/atualizar/${id}`, {
-            method: "PUT",
-            body: JSON.stringify({ plano: novoPlano })
+            return nome.includes(pesquisa) || email.includes(pesquisa);
         });
 
+        mostrarUsuarios(filtrados);
+    }
+);
+
+async function alterarPlano(id, novoPlano) {
+    const mensagem = novoPlano === "PREMIUM"
+        ? "Deseja tornar este usuário Premium?"
+        : "Deseja remover o Premium deste usuário?";
+
+    const confirmar = confirm(mensagem);
+
+    if (!confirmar) {
+        return;
+    }
+
+    try {
+        await requisicaoAPI(`/usuarios/atualizar/${id}`, {
+            method: "PUT",
+            body: JSON.stringify({
+                plano: novoPlano
+            })
+        });
 
         alert(
             novoPlano === "PREMIUM"
-                ? "⭐ Premium ativado!"
+                ? "Premium ativado!"
                 : "Premium removido."
         );
 
-
-        carregarUsuarios();
-
+        await carregarUsuarios();
 
     } catch (erro) {
+        console.error("Erro ao alterar plano:", erro);
 
-        console.error(
-            erro
-        );
-
-
-        alert(
-            "Não foi possível alterar o plano."
-        );
-
+        alert("Não foi possível alterar o plano: " + erro.message);
     }
-
 }
 
 function verUsuario(id) {
-
-    const usuario =
-        usuarios.find(
-            usuario =>
-                usuario.id === id
-        );
-
+    const usuario = usuarios.find(
+        item => Number(item.id) === Number(id)
+    );
 
     if (!usuario) {
-
         return;
-
     }
 
-
-    const detalhes =
-        document.getElementById(
-            "detalhesUsuario"
-        );
-
+    const detalhes = document.getElementById("detalhesUsuario");
 
     detalhes.innerHTML = `
-
         <div class="detalhe-linha">
-
             <span>Nome</span>
-
-            <strong>
-                ${usuario.nome || "-"}
-            </strong>
-
+            <strong>${usuario.nome || "-"}</strong>
         </div>
 
-
         <div class="detalhe-linha">
-
             <span>E-mail</span>
-
-            <strong>
-                ${usuario.email || "-"}
-            </strong>
-
+            <strong>${usuario.email || "-"}</strong>
         </div>
 
-
         <div class="detalhe-linha">
-
             <span>Telefone</span>
-
-            <strong>
-                ${usuario.telefone || "-"}
-            </strong>
-
+            <strong>${usuario.telefone || "-"}</strong>
         </div>
 
-
         <div class="detalhe-linha">
-
             <span>Cidade</span>
-
-            <strong>
-                ${usuario.cidade || "-"}
-            </strong>
-
+            <strong>${usuario.cidade || "-"}</strong>
         </div>
 
-
         <div class="detalhe-linha">
-
             <span>Área de interesse</span>
-
-            <strong>
-                ${usuario.areaInteresse || "-"}
-            </strong>
-
+            <strong>${usuario.areaInteresse || "-"}</strong>
         </div>
 
-
         <div class="detalhe-linha">
-
             <span>Plano</span>
-
-            <strong>
-                ${usuario.plano || "FREE"}
-            </strong>
-
+            <strong>${usuario.plano || "FREE"}</strong>
         </div>
-
 
         <div class="detalhe-linha">
-
             <span>Tipo</span>
-
-            <strong>
-                ${usuario.tipo || "USUARIO"}
-            </strong>
-
+            <strong>${usuario.tipo || "USUARIO"}</strong>
         </div>
-
     `;
 
-
-    document.getElementById(
-        "modalUsuario"
-    ).style.display =
-        "flex";
-
+    document.getElementById("modalUsuario").style.display = "flex";
 }
 
-document
-    .getElementById(
-        "fecharModal"
-    )
-    .addEventListener(
-        "click",
-        () => {
+document.getElementById("fecharModal").addEventListener(
+    "click",
+    () => {
+        document.getElementById("modalUsuario").style.display = "none";
+    }
+);
 
-            document.getElementById(
-                "modalUsuario"
-            ).style.display =
-                "none";
+document.getElementById("sair").addEventListener(
+    "click",
+    () => {
+        encerrarSessao();
+        window.location.href = "../login.html";
+    }
+);
 
-        }
-    );
-document
-    .getElementById("sair")
-    .addEventListener(
-        "click",
-        () => {
-
-            localStorage.removeItem(
-                "usuario"
-            );
-
-
-            window.location.href =
-                "../login.html";
-
-        }
-    );
-carregarUsuarios();
+if (usuarioLogado) {
+    carregarUsuarios();
+}

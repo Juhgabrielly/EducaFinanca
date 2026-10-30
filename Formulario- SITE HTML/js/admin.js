@@ -1,21 +1,14 @@
-const usuario = obterUsuario();
+const usuarioAdmin = obterUsuario();
 
-if (!usuario) {
+if (!usuarioAdmin) {
     window.location.href = "../login.html";
 }
 
 async function carregarDashboard() {
-
     try {
-
-        const [usuarios, cursos, progressos] = await Promise.all([
-
+        const [usuarios, cursos] = await Promise.all([
             requisicaoAPI("/usuarios/listar"),
-
-            requisicaoAPI("/cursos/listar"),
-
-            requisicaoAPI("/progressoCursos/listar")
-
+            requisicaoAPI("/cursos/listar")
         ]);
 
         const listaUsuarios = Array.isArray(usuarios)
@@ -26,79 +19,95 @@ async function carregarDashboard() {
             ? cursos
             : cursos.cursos || [];
 
-        const listaProgressos = Array.isArray(progressos)
-            ? progressos
-            : progressos.progressos || [];
-
+        // Total de usuários
         document.getElementById("totalUsuarios").textContent =
             listaUsuarios.length;
 
+        // Total de usuários Premium
         const premium = listaUsuarios.filter(
-            usuario => usuario.plano === "PREMIUM"
+            item => item.plano === "PREMIUM"
         );
 
         document.getElementById("totalPremium").textContent =
             premium.length;
 
+        // Total de cursos
         document.getElementById("totalCursos").textContent =
             listaCursos.length;
 
-        const concluidos = listaProgressos.filter(
-            progresso =>
-                progresso.concluido === true ||
-                progresso.concluido === 1
-        );
-
-        document.getElementById("totalConcluidos").textContent =
-            concluidos.length;
-
+        // Nome do administrador
         document.getElementById("nomeAdmin").textContent =
-            usuario.nome;
+            usuarioAdmin.nome || "Administrador";
+
+        // Usuários  recentes
+        const recentes = [...listaUsuarios].sort((a, b) => {
+            return new Date(b.criado_em) - new Date(a.criado_em);
+        }).slice(0, 5);
 
         const tabela = document.getElementById("tabelaUsuarios");
 
         tabela.innerHTML = "";
 
-        listaUsuarios.slice(0, 5).forEach(usuario => {
-
+        recentes.forEach(item => {
             const linha = document.createElement("tr");
 
             const nome = document.createElement("td");
-            nome.textContent = usuario.nome;
+            nome.textContent = item.nome;
 
             const email = document.createElement("td");
-            email.textContent = usuario.email;
+            email.textContent = item.email;
 
             const plano = document.createElement("td");
-            plano.textContent = usuario.plano;
+            plano.textContent = item.plano;
 
             const tipo = document.createElement("td");
-            tipo.textContent = usuario.tipo;
+            tipo.textContent = item.tipo;
 
             linha.append(nome, email, plano, tipo);
 
             tabela.appendChild(linha);
-
         });
 
-    } catch (erro) {
+        // Cursos concluídos
+        try {
+            const progressos = await requisicaoAPI(
+                "/progressoCursos/listar"
+            );
 
+            const listaProgressos = Array.isArray(progressos)
+                ? progressos
+                : progressos.progressos || [];
+
+            const concluidos = listaProgressos.filter(item =>
+                item.concluido === true ||
+                Number(item.concluido) === 1 ||
+                Number(item.progresso) >= 100
+            );
+
+            document.getElementById("totalConcluidos").textContent =
+                concluidos.length;
+
+        } catch (erro) {
+            console.warn(
+                "Não foi possível carregar os cursos concluídos:",
+                erro.message
+            );
+
+            document.getElementById("totalConcluidos").textContent = "—";
+        }
+
+    } catch (erro) {
         console.error("Erro ao carregar dashboard:", erro);
 
         alert("Erro ao carregar os dados: " + erro.message);
-
     }
-
 }
 
-if (usuario) {
+if (usuarioAdmin) {
     carregarDashboard();
 }
 
 document.getElementById("sair").addEventListener("click", () => {
-
     encerrarSessao();
-
     window.location.href = "../login.html";
-
 });

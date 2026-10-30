@@ -1,31 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Usuários - Educa Finança Admin</title>
 
-    <link
-        rel="stylesheet"
-        href="../../css/admin.css"
-    >
+    <link rel="stylesheet" href="../../css/admin.css">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -39,9 +25,7 @@
 </head>
 
 <body>
-
-    <!-- MENU LATERAL -->
-
+    
     <aside class="sidebar">
 
         <div class="logo">
@@ -56,10 +40,7 @@
                 Dashboard
             </a>
 
-            <a
-                href="usuarios.html"
-                class="ativo"
-            >
+            <a href="usuarios.html" class="ativo">
                 <i class="fa-solid fa-users"></i>
                 Usuários
             </a>
@@ -75,40 +56,26 @@
             </a>
 
             <button id="sair">
-
                 <i class="fa-solid fa-right-from-bracket"></i>
-
                 Sair
-
             </button>
 
         </nav>
 
     </aside>
 
-
-    <!-- CONTEÚDO -->
-
     <main>
 
         <header class="topo">
 
             <div>
-
                 <p>Painel Administrativo</p>
-
                 <h1>Usuários</h1>
-
             </div>
 
             <div class="admin-info">
-
                 <i class="fa-solid fa-circle-user"></i>
-
-                <span id="nomeAdmin">
-                    Administrador
-                </span>
-
+                <span id="nomeAdmin">Administrador</span>
             </div>
 
         </header>
@@ -121,19 +88,12 @@
             <div class="card">
 
                 <div class="card-icon">
-
                     <i class="fa-solid fa-users"></i>
-
                 </div>
 
                 <div>
-
                     <span>Total de usuários</span>
-
-                    <h2 id="totalUsuarios">
-                        0
-                    </h2>
-
+                    <h2 id="totalUsuarios">0</h2>
                 </div>
 
             </div>
@@ -142,19 +102,12 @@
             <div class="card">
 
                 <div class="card-icon">
-
                     <i class="fa-solid fa-user"></i>
-
                 </div>
 
                 <div>
-
                     <span>Plano Free</span>
-
-                    <h2 id="totalFree">
-                        0
-                    </h2>
-
+                    <h2 id="totalFree">0</h2>
                 </div>
 
             </div>
@@ -163,19 +116,12 @@
             <div class="card">
 
                 <div class="card-icon">
-
                     <i class="fa-solid fa-crown"></i>
-
                 </div>
 
                 <div>
-
                     <span>Premium</span>
-
-                    <h2 id="totalPremium">
-                        0
-                    </h2>
-
+                    <h2 id="totalPremium">0</h2>
                 </div>
 
             </div>
@@ -183,24 +129,16 @@
         </section>
 
 
-        <!-- LISTA -->
+        <!-- LISTA DE USUÁRIOS -->
 
         <section class="painel">
 
             <div class="cabecalho-tabela">
 
                 <div>
-
-                    <h2>
-                        Usuários cadastrados
-                    </h2>
-
-                    <p>
-                        Gerencie os usuários do Educa Finança.
-                    </p>
-
+                    <h2>Usuários cadastrados</h2>
+                    <p>Gerencie os usuários do Educa Finança.</p>
                 </div>
-
 
                 <div class="pesquisa">
 
@@ -222,36 +160,22 @@
                 <table>
 
                     <thead>
-
                         <tr>
-
                             <th>ID</th>
-
                             <th>Usuário</th>
-
                             <th>E-mail</th>
-
                             <th>Plano</th>
-
                             <th>Tipo</th>
-
                             <th>Ações</th>
-
                         </tr>
-
                     </thead>
-
 
                     <tbody id="tabelaUsuarios">
 
                         <tr>
-
                             <td colspan="6">
-
                                 Carregando usuários...
-
                             </td>
-
                         </tr>
 
                     </tbody>
@@ -264,13 +188,7 @@
 
     </main>
 
-
-    <!-- MODAL -->
-
-    <div
-        class="modal-admin"
-        id="modalUsuario"
-    >
+    <div class="modal-admin" id="modalUsuario">
 
         <div class="modal-admin-conteudo">
 
@@ -282,22 +200,17 @@
                 ✕
             </button>
 
-            <h2>
-                Informações do usuário
-            </h2>
+            <h2>Informações do usuário</h2>
 
-            <div id="detalhesUsuario">
-            </div>
+            <div id="detalhesUsuario"></div>
 
         </div>
 
     </div>
 
+<script src="../../js/api.js"></script>
+<script src="../../js/integracao-api.js"></script>
+<script src="../../js/admin-usuario.js"></script>
 
-    <script src="../../js/admin-usuarios.js"></script>
-
-  <script src="../../js/api.js"></script>
-  <script src="../../js/integracao-api.js"></script>
 </body>
-
 </html>
