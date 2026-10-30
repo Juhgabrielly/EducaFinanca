@@ -31,17 +31,17 @@
         Dashboard
       </a>
 
-      <a href="usuarios.html">
+      <a href="admin/usuarios.html">
         <i class="fa-solid fa-users"></i>
         Usuários
       </a>
 
-      <a href="cursos.html">
+      <a href="admin/curso.html">
         <i class="fa-solid fa-graduation-cap"></i>
         Cursos
       </a>
 
-      <a href="resultados.html">
+      <a href="admin/resultados.html">
         <i class="fa-solid fa-square-poll-vertical"></i>
         Resultados
       </a>
@@ -54,7 +54,6 @@
     </nav>
 
   </aside>
-
 
   <main>
 
@@ -71,7 +70,6 @@
 
     </header>
 
-
     <section class="cards">
 
       <div class="card">
@@ -87,7 +85,6 @@
 
       </div>
 
-
       <div class="card">
 
         <div class="card-icon">
@@ -101,7 +98,6 @@
 
       </div>
 
-
       <div class="card">
 
         <div class="card-icon">
@@ -114,7 +110,6 @@
         </div>
 
       </div>
-
 
       <div class="card">
 
@@ -130,7 +125,6 @@
       </div>
 
     </section>
-
 
     <section class="painel">
 
@@ -157,32 +151,38 @@
     </section>
 
   </main>
-<script>
-  const usuario = JSON.parse(
-    localStorage.getItem("usuario")
-  );
 
-  const EMAIL_ADMIN = "SEU_EMAIL_AQUI";
+  <script>
+    const usuario = JSON.parse(
+      localStorage.getItem("usuario")
+    );
 
-  if (!usuario) {
+    if (!usuario) {
 
-    alert("Faça login primeiro.");
+      alert("Faça login primeiro.");
 
-    window.location.href = "../login.html";
+      window.location.href = "../login.html";
 
-  } else if (usuario.email !== "juliagonzaga062@gmail.com") {
+    } else if (![
+      "juliagonzaga@email.com",
+      "sayuryaraujo@email.com",
+      "mire@email.com"
+    ].includes(usuario.email)) {
 
-    alert("Você não tem permissão para acessar o painel administrativo.");
+      alert("Você não tem permissão para acessar o painel administrativo.");
 
-    window.location.href = "../home.html";
+      window.location.href = "../home.html";
 
-  }
-</script>
+    }
+  </script>
 
-  <script src="../../js/admin.js"></script>
-
+  <!-- Conexão com o backend -->
   <script src="../../js/api.js"></script>
   <script src="../../js/integracao-api.js"></script>
+
+  <!-- Dashboard administrativo -->
+  <script src="../../js/admin.js"></script>
+
 </body>
 
 </html>

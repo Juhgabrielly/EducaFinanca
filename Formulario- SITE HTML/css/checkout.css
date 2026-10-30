@@ -574,7 +574,6 @@ header {
     font-size: 28px;
 }
 
-
 .modal-conteudo p {
     color: #777;
 
@@ -582,7 +581,6 @@ header {
 
     margin: 10px 0 25px;
 }
-
 
 .btn-sucesso {
     width: 100%;
@@ -606,7 +604,6 @@ header {
     cursor: pointer;
 }
 
-
 @media (max-width: 850px) {
 
     .checkout {
@@ -622,7 +619,6 @@ header {
     }
 
 }
-
 
 @media (max-width: 550px) {
 

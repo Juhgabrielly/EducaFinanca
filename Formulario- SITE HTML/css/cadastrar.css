@@ -1,11 +1,9 @@
-/* RESET */
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* BODY */
 body{
   min-height: 100vh;
 
@@ -29,7 +27,6 @@ body{
   position: relative;
 }
 
-/* EFEITOS */
 body::before{
   content: "";
 
@@ -66,7 +63,6 @@ body::after{
   filter: blur(90px);
 }
 
-/* CONTAINER */
 .meta-container{
   width: 100%;
   max-width: 700px;
@@ -76,7 +72,6 @@ body::after{
   z-index: 5;
 }
 
-/* CARD */
 .meta-card{
   background: rgba(255,255,255,0.82);
 
@@ -91,7 +86,6 @@ body::after{
   box-shadow: 0 15px 40px rgba(109,40,217,0.12);
 }
 
-/* TITULO */
 .meta-card h1{
   font-family: 'Playfair Display', serif;
 
@@ -110,7 +104,6 @@ body::after{
   line-height: 1.6;
 }
 
-/* FORM */
 .form-area{
   display: flex;
   flex-direction: column;
@@ -118,7 +111,6 @@ body::after{
   gap: 22px;
 }
 
-/* INPUT */
 .input-box{
   display: flex;
   flex-direction: column;
@@ -160,7 +152,6 @@ body::after{
   box-shadow: 0 0 0 4px rgba(139,92,246,0.15);
 }
 
-/* BOTÃO */
 .save-btn{
   height: 60px;
 
@@ -195,7 +186,6 @@ body::after{
   box-shadow: 0 14px 30px rgba(109,40,217,0.35);
 }
 
-/* RESPONSIVO */
 @media(max-width: 700px){
 
   .meta-card{

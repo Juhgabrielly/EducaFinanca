@@ -1,114 +1,104 @@
-const API = "http://localhost:3000";
+const usuario = obterUsuario();
 
-const usuario = JSON.parse(
-    localStorage.getItem("usuario")
-);
-
-// Se não estiver logado
 if (!usuario) {
     window.location.href = "../login.html";
 }
-
-
-// ==============================
-// CARREGAR DASHBOARD
-// ==============================
 
 async function carregarDashboard() {
 
     try {
 
-        const usuarios =
-            await requisicaoAPI("/usuarios/listar");
+        const [usuarios, cursos, progressos] = await Promise.all([
 
+            requisicaoAPI("/usuarios/listar"),
 
-        document.getElementById(
-            "totalUsuarios"
-        ).textContent =
-            usuarios.length;
+            requisicaoAPI("/cursos/listar"),
 
+            requisicaoAPI("/progressoCursos/listar")
 
-        const premium =
-            usuarios.filter(
-                usuario =>
-                    usuario.plano === "PREMIUM"
-            );
+        ]);
 
+        const listaUsuarios = Array.isArray(usuarios)
+            ? usuarios
+            : usuarios.usuarios || [];
 
-        document.getElementById(
-            "totalPremium"
-        ).textContent =
+        const listaCursos = Array.isArray(cursos)
+            ? cursos
+            : cursos.cursos || [];
+
+        const listaProgressos = Array.isArray(progressos)
+            ? progressos
+            : progressos.progressos || [];
+
+        document.getElementById("totalUsuarios").textContent =
+            listaUsuarios.length;
+
+        const premium = listaUsuarios.filter(
+            usuario => usuario.plano === "PREMIUM"
+        );
+
+        document.getElementById("totalPremium").textContent =
             premium.length;
 
+        document.getElementById("totalCursos").textContent =
+            listaCursos.length;
 
-        const tabela =
-            document.getElementById(
-                "tabelaUsuarios"
-            );
+        const concluidos = listaProgressos.filter(
+            progresso =>
+                progresso.concluido === true ||
+                progresso.concluido === 1
+        );
 
+        document.getElementById("totalConcluidos").textContent =
+            concluidos.length;
+
+        document.getElementById("nomeAdmin").textContent =
+            usuario.nome;
+
+        const tabela = document.getElementById("tabelaUsuarios");
 
         tabela.innerHTML = "";
 
+        listaUsuarios.slice(0, 5).forEach(usuario => {
 
-        usuarios
-            .slice(0, 5)
-            .forEach(usuario => {
+            const linha = document.createElement("tr");
 
-                const linha =
-                    document.createElement("tr");
+            const nome = document.createElement("td");
+            nome.textContent = usuario.nome;
 
+            const email = document.createElement("td");
+            email.textContent = usuario.email;
 
-                linha.innerHTML = `
-                    <td>${usuario.nome}</td>
+            const plano = document.createElement("td");
+            plano.textContent = usuario.plano;
 
-                    <td>${usuario.email}</td>
+            const tipo = document.createElement("td");
+            tipo.textContent = usuario.tipo;
 
-                    <td>
-                        ${usuario.plano}
-                    </td>
+            linha.append(nome, email, plano, tipo);
 
-                    <td>
-                        ${usuario.tipo}
-                    </td>
-                `;
+            tabela.appendChild(linha);
 
-
-                tabela.appendChild(linha);
-
-            });
-
+        });
 
     } catch (erro) {
 
-        console.error(
-            "Erro ao carregar dashboard:",
-            erro
-        );
+        console.error("Erro ao carregar dashboard:", erro);
+
+        alert("Erro ao carregar os dados: " + erro.message);
 
     }
 
 }
 
+if (usuario) {
+    carregarDashboard();
+}
 
-carregarDashboard();
+document.getElementById("sair").addEventListener("click", () => {
 
+    encerrarSessao();
 
-// ==============================
-// SAIR
-// ==============================
+    window.location.href = "../login.html";
 
-document
-    .getElementById("sair")
-    .addEventListener(
-        "click",
-        () => {
-
-            localStorage.removeItem(
-                "usuario"
-            );
-
-            window.location.href =
-                "../login.html";
-
-        }
-    );
+});

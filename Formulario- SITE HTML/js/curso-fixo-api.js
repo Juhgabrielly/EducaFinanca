@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', async () => {
     const correspondencia = location.pathname.match(/curso(\d+)\.html/i);
     const numero = Number(correspondencia?.[1]);
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             Number(item.curso_id) === Number(curso.id)
         );
 
-        const porcentagem = Math.max(
+        let porcentagem = Math.max(
             0,
             Math.min(100, Number(progressoSalvo?.progresso || 0))
         );
@@ -90,27 +89,23 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             );
 
-            const progressoAtualizado = Math.max(
+            porcentagem = Math.max(
                 0,
-                Math.min(100, Number(resposta.progresso || 0))
+                Math.min(100, Number(resposta.progresso ?? valor))
             );
 
             const texto = document.getElementById('progressoCursoTexto');
             const barra = document.getElementById('progressoCursoBarra');
 
             if (texto) {
-                texto.textContent =
-                    `${progressoAtualizado}% concluído — salvo na sua conta`;
+                texto.textContent = `${porcentagem}% concluído`;
             }
 
             if (barra) {
-                barra.style.width = `${progressoAtualizado}%`;
+                barra.style.width = `${porcentagem}%`;
             }
-
-            aviso('Progresso sincronizado com o banco de dados.');
         }
 
-        // Registra o início do estudo sem diminuir um progresso já salvo.
         if (porcentagem < 10) {
             await salvarProgresso(10, false);
         }
@@ -122,28 +117,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                 botao.disabled = true;
 
                 try {
-                    const texto = document.getElementById(
-                        'progressoCursoTexto'
-                    );
-
-                    const progressoAtual = Number(
-                        texto?.textContent.match(/\d+/)?.[0] || 0
-                    );
-
                     await salvarProgresso(
-                        Math.max(50, progressoAtual),
+                        Math.max(50, porcentagem),
                         false
                     );
                 } catch (erro) {
-                    aviso(
-                        `Não foi possível salvar o estudo: ${erro.message}`
-                    );
+                    aviso(`Não foi possível salvar o estudo: ${erro.message}`);
                 } finally {
                     botao.disabled = false;
                 }
             });
 
-        // Libera a conclusão somente após a realização do quiz original.
         if (quizOriginal) {
             const resultadoFeito = (resultados || []).some(item =>
                 Number(item.quiz_id) === Number(quizOriginal.id) &&
@@ -180,6 +164,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             aviso(
                                 `Não foi possível salvar o progresso: ${erro.message}`
                             );
+
                             botaoConcluir.disabled = false;
                         }
                     },
@@ -187,6 +172,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 );
             }
         }
+
     } catch (erro) {
         mostrarAviso(
             'O conteúdo do curso continua disponível, mas a sincronização ' +
@@ -195,31 +181,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
+
 function criarPainelProgresso(porcentagem) {
     const painel = document.createElement('section');
     painel.className = 'content-card';
 
     painel.innerHTML = `
-        <h2>Seu progresso</h2>
-
         <p id="progressoCursoTexto">
-            ${porcentagem}% concluído — salvo na sua conta
+            ${porcentagem}% concluído
         </p>
 
-        <div
-            style="
-                height: 10px;
-                background: #e7e7e7;
-                border-radius: 8px;
-                overflow: hidden;
-            "
-        >
+        <div style="
+            height: 10px;
+            background: #e7e7e7;
+            border-radius: 8px;
+            overflow: hidden;
+        ">
             <div
                 id="progressoCursoBarra"
                 style="
                     height: 100%;
                     width: ${porcentagem}%;
                     background: #2f806a;
+                    transition: width 0.3s;
                 "
             ></div>
         </div>
@@ -228,12 +212,21 @@ function criarPainelProgresso(porcentagem) {
             type="button"
             id="registrarEstudoAPI"
             class="quiz-btn"
-            style="margin-top: 12px"
+            style="
+                margin-top: 12px;
+                background: linear-gradient(120deg, #8952f5, #7025d9);
+                color: white;
+                border: none;
+                cursor: pointer;
+            "
         >
-            Marcar conteúdo estudado (50%)
+            Marcar conteúdo estudado
         </button>
 
-        <p id="progressoCursoAviso" aria-live="polite"></p>
+        <p
+            id="progressoCursoAviso"
+            aria-live="polite"
+        ></p>
     `;
 
     const principal = document.querySelector('main');
@@ -246,6 +239,7 @@ function criarPainelProgresso(porcentagem) {
     }
 }
 
+
 function normalizarCurso(valor) {
     return String(valor || '')
         .normalize('NFD')
@@ -254,6 +248,7 @@ function normalizarCurso(valor) {
         .replace(/[^a-z0-9]+/g, ' ')
         .trim();
 }
+
 
 function mostrarAviso(texto) {
     const principal = document.querySelector('main');

@@ -1,11 +1,9 @@
-/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* FUNDO DA PÁGINA */
 body {
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
@@ -18,12 +16,10 @@ body {
   );
 }
 
-/* CONTEÚDO PRINCIPAL */
 main {
   padding-top: 100px;
 }
 
-/* SEÇÃO DA JORNADA */
 .jornada {
   min-height: calc(100vh - 100px);
   padding: 70px 6%;
@@ -31,7 +27,6 @@ main {
   background: rgba(255, 255, 255, 0.28);
 }
 
-/* TÍTULO PRINCIPAL */
 .jornada h1 {
   max-width: 1000px;
   margin-bottom: 15px;
@@ -43,12 +38,10 @@ main {
   line-height: 1.1;
 }
 
-/* PARTE ROXA DO TÍTULO */
 .jornada h1 span {
   color: #8b5cf6;
 }
 
-/* SUBTÍTULO */
 .subtitulo {
   max-width: 650px;
   margin-bottom: 45px;
@@ -59,14 +52,12 @@ main {
   line-height: 1.7;
 }
 
-/* GRADE DOS CARDS */
 .cards-jornada {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
 }
 
-/* CARD */
 .card-jornada {
   display: flex;
   flex-direction: column;
@@ -89,7 +80,6 @@ main {
   transition: 0.3s ease;
 }
 
-/* HOVER DO CARD */
 .card-jornada:hover {
   transform: translateY(-8px);
 
@@ -100,7 +90,6 @@ main {
   box-shadow: 0 20px 45px rgba(109, 40, 217, 0.16);
 }
 
-/* FUNDO DO ÍCONE */
 .icone-card {
   display: flex;
   justify-content: center;
@@ -119,7 +108,6 @@ main {
   font-size: 26px;
 }
 
-/* TÍTULO DOS CARDS */
 .card-jornada h2 {
   margin-bottom: 14px;
 
@@ -128,7 +116,6 @@ main {
   font-size: 30px;
 }
 
-/* TEXTO DOS CARDS */
 .card-jornada p {
   margin-bottom: 30px;
 
@@ -138,7 +125,6 @@ main {
   line-height: 1.7;
 }
 
-/* LINK INFERIOR DO CARD */
 .acessar {
   display: flex;
   align-items: center;
@@ -152,17 +138,14 @@ main {
   font-weight: 600;
 }
 
-/* ÍCONE DA SETA */
 .acessar i {
   transition: 0.3s;
 }
 
-/* MOVIMENTO DA SETA */
 .card-jornada:hover .acessar i {
   transform: translateX(6px);
 }
 
-/* HEADER */
 header {
   width: 98%;
   height: 72px;
@@ -191,7 +174,6 @@ header {
   z-index: 1000;
 }
 
-/* LOGO */
 .logo {
   display: flex;
   align-items: center;
@@ -212,7 +194,6 @@ header {
   font-size: 22px;
 }
 
-/* MENU HAMBÚRGUER */
 .menu-toggle {
   border: none;
 
@@ -230,7 +211,6 @@ header {
   transform: scale(1.1);
 }
 
-/* MENU BOX */
 .menu {
   width: 280px;
 
@@ -261,7 +241,6 @@ header {
   animation: aparecer 0.3s ease;
 }
 
-/* LINKS DO MENU */
 .menu a {
   padding: 14px;
 
@@ -282,7 +261,6 @@ header {
   transform: translateX(4px);
 }
 
-/* ANIMAÇÃO DO MENU */
 @keyframes aparecer {
   from {
     opacity: 0;
@@ -295,7 +273,6 @@ header {
   }
 }
 
-/* RESPONSIVO */
 @media (max-width: 950px) {
   .cards-jornada {
     grid-template-columns: 1fr;

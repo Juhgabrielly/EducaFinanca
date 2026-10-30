@@ -2,6 +2,14 @@ const jwt = require('jsonwebtoken');
 
 const autenticar = (req, res, next) => {
     try {
+        if (!process.env.JWT_SECRET) {
+            console.error('JWT_SECRET não está configurado');
+
+            return res.status(500).json({
+                erro: 'Configuração de autenticação ausente'
+            });
+        }
+
         const cabecalho = req.headers.authorization;
 
         if (!cabecalho) {
@@ -12,7 +20,7 @@ const autenticar = (req, res, next) => {
 
         const partes = cabecalho.split(' ');
 
-        if (partes.length !== 2 || partes[0] !== 'Bearer') {
+        if (partes.length !== 2 || partes[0] !== 'Bearer' || !partes[1]) {
             return res.status(401).json({
                 erro: 'Formato do token inválido'
             });
@@ -30,6 +38,8 @@ const autenticar = (req, res, next) => {
         next();
 
     } catch (erro) {
+        console.error('Erro na autenticação:', erro.message);
+
         return res.status(401).json({
             erro: 'Token inválido ou expirado'
         });

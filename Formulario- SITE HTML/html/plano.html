@@ -26,7 +26,7 @@
     <nav class="menu" id="menu">
       <a href="home.html">Home</a>
       <a href="cursos.html">Cursos</a>
-      <a href="relatório.html">Relatórios</a>
+      <a href="relatorio.html">Relatórios</a>
       <a href="investimento.html">Investimentos</a>
       <a href="usuario.html">Perfil</a>
       <a href="plano.html" class="ativo">Planos</a>
@@ -134,12 +134,10 @@
     const btnFree = document.getElementById("btnFree");
     const btnPremium = document.getElementById("assinarPremium");
 
-    // Abrir e fechar o menu.
     toggle.addEventListener("click", () => {
       menu.classList.toggle("active");
     });
 
-    // Ler os dados do usuário sem apagar a sessão.
     let usuario = null;
 
     try {
@@ -152,7 +150,6 @@
       console.error("Erro ao ler os dados do usuário:", erro);
     }
 
-    // Atualizar a apresentação dos planos conforme os dados locais.
     if (usuario && usuario.plano === "PREMIUM") {
       btnFree.textContent = "Plano gratuito";
 
@@ -164,8 +161,6 @@
       btnFree.textContent = "✓ Seu plano atual";
     }
 
-    // A contratação deve acontecer pelo checkout.
-    // Não ativar o Premium apenas alterando o localStorage.
     btnPremium.addEventListener("click", (evento) => {
       if (usuario && usuario.plano === "PREMIUM") {
         evento.preventDefault();

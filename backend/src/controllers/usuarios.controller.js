@@ -1,4 +1,3 @@
-
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const prisma = require('../data/prisma');
@@ -126,7 +125,7 @@ const login = async (req, res) => {
                 plano: usuario.plano
             },
             process.env.JWT_SECRET,
-            { expiresIn: '2h' }
+            { expiresIn: '7d' }
         );
 
         return res.status(200).json({

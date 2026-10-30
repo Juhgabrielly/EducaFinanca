@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const correspondencia = window.location.pathname.match(/quiz(\d+)\.html$/i);
     const numero = correspondencia ? Number(correspondencia[1]) : 0;
@@ -73,24 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const curso = (cursos || []).find(item =>
                 normalizarQuiz(item.titulo) ===
                 normalizarQuiz(nomes[numero]) &&
-                (numero !== 4 || Number(item.id) === 3)
+                (numero !== 4 || Number(item.id) === 2)
             );
 
             if (!curso) {
                 throw new Error('Curso não encontrado no backend.');
             }
 
-            // O quiz de Matemática Financeira está cadastrado com ID 7.
-            const idQuiz = numero === 4
-                ? 7
-                : Number(
-                    (quizzes || []).find(item =>
-                        Number(item.curso_id) === Number(curso.id)
-                    )?.id
-                );
-
             const quiz = (quizzes || []).find(item =>
-                Number(item.id) === idQuiz &&
                 Number(item.curso_id) === Number(curso.id)
             );
 
@@ -139,19 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mensagem) {
                 mensagem.textContent = textoResultado;
             }
-
-            let aviso = document.getElementById('avisoResultadoBackend');
-
-            if (!aviso) {
-                aviso = document.createElement('p');
-                aviso.id = 'avisoResultadoBackend';
-                aviso.style.cssText =
-                    'padding:12px;background:#e8f5e9;border-radius:8px;margin-top:12px';
-                botao.insertAdjacentElement('afterend', aviso);
-            }
-
-            aviso.textContent =
-                `Resultado registrado na sua conta: ${textoResultado}`;
 
             await EducaAPI.post('/progressoCursos/cadastrar', {
                 curso_id: curso.id,

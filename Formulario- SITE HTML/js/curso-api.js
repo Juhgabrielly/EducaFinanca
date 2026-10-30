@@ -38,4 +38,4 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   function atualizarBarra(valor) { document.getElementById('barraProgresso').style.width = `${valor}%`; document.getElementById('textoProgresso').textContent = `Progresso salvo: ${valor}%`; }
 });
-function escapar(valor) { return String(valor ?? '').replace(/[&<>"']/g, caractere => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[caractere])); }
+function escapar(valor) { return String(valor ?? '').replace(/[&<>"']/g, caractere => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[caractere])); }

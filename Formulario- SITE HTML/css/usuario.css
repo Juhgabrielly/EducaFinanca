@@ -1,11 +1,9 @@
-/* RESET */
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* BODY */
 body{
   font-family: 'Poppins', sans-serif;
 
@@ -21,7 +19,6 @@ body{
   color: #2d1457;
 }
 
-/* HEADER */
 header{
   width: 98%;
   height: 72px;
@@ -50,7 +47,6 @@ header{
   z-index: 1000;
 }
 
-/* LOGO */
 .logo{
   display: flex;
   align-items: center;
@@ -69,7 +65,6 @@ header{
   font-family: 'Playfair Display', serif;
 }
 
-/* MENU */
 .menu-toggle{
   font-size: 32px;
   color: #6d28d9;
@@ -122,7 +117,6 @@ header{
   background: rgba(139,92,246,0.12);
 }
 
-/* PAGE */
 .perfil-page{
   padding: 140px 40px 60px;
 
@@ -131,7 +125,6 @@ header{
   margin: auto;
 }
 
-/* TITLES */
 .mini-title{
   letter-spacing: 4px;
 
@@ -170,7 +163,6 @@ header{
   margin-bottom: 50px;
 }
 
-/* CARD */
 .perfil-card{
   background: rgba(255,255,255,0.72);
 
@@ -187,7 +179,6 @@ header{
   margin-bottom: 35px;
 }
 
-/* TOP */
 .perfil-top{
   display: flex;
   align-items: center;
@@ -229,7 +220,6 @@ header{
   color: #6b5a8e;
 }
 
-/* GRID */
 .input-grid{
   display: grid;
 
@@ -240,7 +230,6 @@ header{
   margin-bottom: 30px;
 }
 
-/* INPUT */
 .input-box{
   display: flex;
   flex-direction: column;
@@ -282,7 +271,6 @@ header{
   box-shadow: 0 0 0 4px rgba(139,92,246,0.15);
 }
 
-/* BUTTON */
 .save-btn{
   width: 100%;
 
@@ -317,7 +305,6 @@ header{
   box-shadow: 0 14px 30px rgba(109,40,217,0.35);
 }
 
-/* STATUS */
 .status-grid{
   display: grid;
 
@@ -326,7 +313,6 @@ header{
   gap: 24px;
 }
 
-/* STATUS CARD */
 .status-card{
   background: rgba(255,255,255,0.72);
 
@@ -378,7 +364,6 @@ header{
   font-size: 18px;
 }
 
-/* RESPONSIVO */
 @media(max-width: 700px){
 
   .perfil-page{
@@ -455,14 +440,10 @@ header{
   background: #dc3545;
   color: white;
 }
-/* ÁREA DA ASSINATURA */
 
 .area-assinatura {
   margin-top: 12px;
 }
-
-
-/* TEXTO DE STATUS */
 
 .assinatura-status {
   margin-bottom: 10px;
@@ -472,9 +453,6 @@ header{
   font-size: 14px;
   font-weight: 600;
 }
-
-
-/* BOTÃO CANCELAR ASSINATURA */
 
 .cancelar-assinatura {
   padding: 10px 18px;

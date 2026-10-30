@@ -47,7 +47,6 @@ async function carregarUsuarios() {
 
         }
 
-
         usuarios =
             await resposta.json();
 
@@ -270,8 +269,6 @@ function mostrarUsuarios(lista) {
 
 }
 
-
-
 document
     .getElementById(
         "pesquisarUsuario"
@@ -390,7 +387,6 @@ async function alterarPlano(
     }
 
 }
-
 
 function verUsuario(id) {
 

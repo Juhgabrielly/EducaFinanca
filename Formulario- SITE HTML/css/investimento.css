@@ -4,9 +4,6 @@
   box-sizing: border-box;
 }
 
-
-/* BODY */
-
 body {
   min-height: 100vh;
   color: #2d1457;
@@ -20,9 +17,6 @@ body {
 
   font-family: "Poppins", sans-serif;
 }
-
-
-/* HEADER */
 
 header {
   position: fixed;
@@ -49,9 +43,6 @@ header {
   transform: translateX(-50%);
 }
 
-
-/* LOGO */
-
 .logo {
   display: flex;
   align-items: center;
@@ -69,9 +60,6 @@ header {
   font-family: "Playfair Display", serif;
   font-size: 22px;
 }
-
-
-/* MENU */
 
 .menu-toggle {
   border: none;
@@ -144,9 +132,6 @@ header {
   }
 }
 
-
-/* PÁGINA */
-
 .invest-page {
   width: 100%;
   max-width: 1450px;
@@ -154,9 +139,6 @@ header {
   margin: 0 auto;
   padding: 135px 5% 70px;
 }
-
-
-/* CABEÇALHO */
 
 .invest-header {
   max-width: 900px;
@@ -198,9 +180,6 @@ header {
   font-size: 18px;
   line-height: 1.7;
 }
-
-
-/* BOTÕES DO TOPO */
 
 .invest-actions {
   display: flex;
@@ -248,9 +227,6 @@ header {
   color: #1d4ed8;
   background: #dbeafe;
 }
-
-
-/* RESUMO */
 
 .resume-grid {
   display: grid;
@@ -346,9 +322,6 @@ header {
   color: #16a34a !important;
 }
 
-
-/* SEÇÕES */
-
 .invest-section,
 .goal-section {
   margin-bottom: 48px;
@@ -399,9 +372,6 @@ header {
   line-height: 1.6;
 }
 
-
-/* GRADE DE INVESTIMENTOS */
-
 .invest-grid {
   display: grid;
 
@@ -409,9 +379,6 @@ header {
 
   gap: 24px;
 }
-
-
-/* CARD DE INVESTIMENTO */
 
 .invest-card {
   padding: 28px;
@@ -500,9 +467,6 @@ header {
   line-height: 1.7;
 }
 
-
-/* VALORES DO INVESTIMENTO */
-
 .invest-values {
   display: grid;
 
@@ -536,9 +500,6 @@ header {
   font-size: 18px;
 }
 
-
-/* RENDIMENTO */
-
 .invest-return {
   margin-bottom: 20px;
   padding: 12px 14px;
@@ -558,17 +519,11 @@ header {
   background: #dcfce7;
 }
 
-
-/* AÇÕES */
-
 .invest-card-actions {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-
-
-/* BOTÕES DE EDITAR E EXCLUIR */
 
 .invest-card-actions button,
 .edit-btn,
@@ -592,9 +547,6 @@ header {
   cursor: pointer;
   transition: 0.25s;
 }
-
-
-/* EDITAR */
 
 .edit-btn {
   color: #6d28d9;

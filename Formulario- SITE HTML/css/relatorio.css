@@ -1,11 +1,9 @@
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* BODY */
 body {
     min-height: 100vh;
     color: #2d1457;
@@ -13,7 +11,6 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-/* HEADER */
 header {
     position: fixed;
     top: 10px;
@@ -33,7 +30,6 @@ header {
     transform: translateX(-50%);
 }
 
-/* LOGO */
 .logo {
     display: flex;
     align-items: center;
@@ -52,7 +48,6 @@ header {
     font-size: 22px;
 }
 
-/* BOTÃO DO MENU */
 .menu-toggle {
     display: flex;
     align-items: center;
@@ -77,7 +72,6 @@ header {
     transform: scale(1.05);
 }
 
-/* MENU FECHADO */
 header .menu {
     position: absolute;
     top: 85px;
@@ -95,7 +89,6 @@ header .menu {
     box-shadow: 0 15px 35px rgba(109, 40, 217, 0.18);
 }
 
-/* MENU ABERTO */
 header .menu.active {
     display: flex;
     animation: abrirMenu 0.25s ease;
@@ -128,7 +121,6 @@ header .menu a.ativo {
     }
 }
 
-/* PÁGINA */
 .reports-page {
     width: 100%;
     max-width: 1450px;
@@ -136,7 +128,6 @@ header .menu a.ativo {
     padding: 135px 5% 70px;
 }
 
-/* CABEÇALHO DO RELATÓRIO */
 .reports-header {
     max-width: 900px;
     margin-bottom: 35px;
@@ -170,7 +161,6 @@ header .menu a.ativo {
     line-height: 1.7;
 }
 
-/* BOTÕES FINANCEIROS */
 .acoes-financeiras {
     display: flex;
     flex-wrap: wrap;
@@ -213,7 +203,6 @@ header .menu a.ativo {
     background: #ede9fe;
 }
 
-/* CARDS FINANCEIROS */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -280,7 +269,6 @@ header .menu a.ativo {
     font-weight: 500;
 }
 
-/* CAMPOS DE RECEITA E DESPESA */
 .stat-content input {
     display: block;
     width: 100%;
@@ -328,7 +316,6 @@ header .menu a.ativo {
     line-height: 1.5;
 }
 
-/* SALDO */
 .saldo-valor {
     display: block;
     margin: 0 0 6px;
@@ -346,7 +333,6 @@ header .menu a.ativo {
     color: #dc2626;
 }
 
-/* CARDS DAS TABELAS */
 .table-card {
     margin-bottom: 35px;
     padding: 32px;
@@ -380,7 +366,6 @@ header .menu a.ativo {
     font-size: 34px;
 }
 
-/* FILTROS */
 .table-filters {
     display: flex;
     align-items: flex-end;
@@ -418,7 +403,6 @@ header .menu a.ativo {
     box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
 }
 
-/* TABELAS */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
@@ -472,7 +456,6 @@ tbody tr:hover {
     font-weight: 500;
 }
 
-/* AÇÕES DA TABELA */
 .acoes-tabela {
     display: flex;
     align-items: center;
@@ -505,7 +488,6 @@ tbody tr:hover {
     transform: translateY(-2px);
 }
 
-/* BOTÕES DE MOVIMENTAÇÕES */
 .acoes-relatorio {
     display: flex;
     flex-wrap: wrap;
@@ -543,7 +525,6 @@ tbody tr:hover {
     border: 1px solid #d8c7ff;
 }
 
-/* FORMULÁRIO DE MOVIMENTAÇÕES */
 .form-movimentacao {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -609,14 +590,12 @@ tbody tr:hover {
     background: #fff6f5;
 }
 
-/* TABLET */
 @media (max-width: 1150px) {
     .stats-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-/* TABLET MENOR */
 @media (max-width: 800px) {
     .reports-page {
         padding: 125px 20px 50px;
@@ -640,7 +619,6 @@ tbody tr:hover {
     }
 }
 
-/* CELULAR */
 @media (max-width: 650px) {
     .reports-page h1 {
         font-size: 44px;
@@ -692,7 +670,6 @@ tbody tr:hover {
     }
 }
 
-/* CELULAR PEQUENO */
 @media (max-width: 500px) {
     header {
         width: 94%;

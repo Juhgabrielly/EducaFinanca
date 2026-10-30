@@ -27,11 +27,6 @@ body {
     min-height: 100vh;
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
 header {
     width: 100%;
     min-height: 80px;
@@ -111,11 +106,6 @@ header {
     cursor: pointer;
 }
 
-
-/* =========================
-   PÁGINA
-========================= */
-
 .planos-page {
     width: 90%;
     max-width: 1100px;
@@ -124,11 +114,6 @@ header {
 
     padding: 70px 0;
 }
-
-
-/* =========================
-   INTRODUÇÃO
-========================= */
 
 .planos-intro {
     text-align: center;
@@ -174,11 +159,6 @@ header {
     line-height: 1.7;
 }
 
-
-/* =========================
-   CARDS
-========================= */
-
 .planos-container {
     display: grid;
 
@@ -219,11 +199,6 @@ header {
         0 20px 50px rgba(66, 44, 92, 0.14);
 }
 
-
-/* =========================
-   PREMIUM
-========================= */
-
 .plano-card.premium {
     border: 2px solid var(--primary);
 
@@ -257,11 +232,6 @@ header {
 
     white-space: nowrap;
 }
-
-
-/* =========================
-   INFORMAÇÕES DO PLANO
-========================= */
 
 .tipo-plano {
     color: var(--primary);
@@ -321,11 +291,6 @@ header {
     min-height: 52px;
 }
 
-
-/* =========================
-   RECURSOS
-========================= */
-
 .recursos {
     margin: 30px 0;
 
@@ -351,11 +316,6 @@ header {
 .recursos .bloqueado {
     color: #aaa4ae;
 }
-
-
-/* =========================
-   BOTÕES
-========================= */
 
 .btn-free,
 .btn-premium {
@@ -409,11 +369,6 @@ header {
     transform: none;
 }
 
-
-/* =========================
-   SEGURANÇA
-========================= */
-
 .seguranca {
     max-width: 650px;
 
@@ -445,11 +400,6 @@ header {
 
     line-height: 1.6;
 }
-
-
-/* =========================
-   RESPONSIVO
-========================= */
 
 @media (max-width: 800px) {
 
