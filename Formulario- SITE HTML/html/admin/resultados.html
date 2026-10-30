@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resultados - Educa Finança</title>
+
+    <link rel="stylesheet" href="../../css/admin.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>Educa Finança</h2>
+            <span>PAINEL ADMINISTRATIVO</span>
+        </div>
+
+        <nav>
+
+            <a href="admin.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </a>
+
+            <a href="usuarios.html">
+                <i class="fa-solid fa-users"></i>
+                Usuários
+            </a>
+
+            <a href="curso.html">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Cursos
+            </a>
+
+            <a href="resultados.html" class="ativo">
+                <i class="fa-solid fa-square-poll-vertical"></i>
+                Resultados
+            </a>
+
+            <button id="sair" type="button">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sair
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <main class="main">
+
+        <header class="topo">
+
+            <div>
+                <p>Painel Administrativo</p>
+                <h1>Resultados</h1>
+            </div>
+
+            <div class="admin-info">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span id="nomeAdmin">Administrador</span>
+            </div>
+
+        </header>
+
+        <section class="painel">
+
+            <div class="cabecalho-tabela">
+
+                <div>
+                    <h2>Resultados dos quizzes</h2>
+
+                    <p class="subtitulo">
+                        Desempenho registrado pelos usuários.
+                    </p>
+                </div>
+
+                <input
+                    class="pesquisa"
+                    type="search"
+                    id="pesquisarResultado"
+                    placeholder="Pesquisar por usuário ou quiz..."
+                >
+
+            </div>
+
+            <!-- Tabela de resultados -->
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuário</th>
+                            <th>Quiz</th>
+                            <th>Pontuação</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelaResultados">
+
+                        <tr>
+                            <td colspan="5" class="vazio">
+                                Carregando resultados...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <div
+            id="mensagemAdmin"
+            class="mensagem"
+            aria-live="polite"
+        ></div>
+
+    </main>
+
+    <!-- Integração com backend -->
+    <script src="../../js/api.js"></script>
+    <script src="../../js/admin-resultado.js"></script>
+
+</body>
+
+</html>

@@ -1,113 +1,123 @@
-const usuarioAdmin = obterUsuario();
+document.addEventListener("DOMContentLoaded", () => {
 
-if (!usuarioAdmin) {
-    window.location.href = "../login.html";
-}
+    const usuarioAdmin = obterUsuario();
 
-async function carregarDashboard() {
-    try {
-        const [usuarios, cursos] = await Promise.all([
-            requisicaoAPI("/usuarios/listar"),
-            requisicaoAPI("/cursos/listar")
-        ]);
+    // Verificar se existe uma sessão de administrador
+    if (!obterToken() || !usuarioAdmin || usuarioAdmin.tipo !== "ADMIN") {
+        window.location.href = "../login.html";
+        return;
+    }
 
-        const listaUsuarios = Array.isArray(usuarios)
-            ? usuarios
-            : usuarios.usuarios || [];
+    document.getElementById("nomeAdmin").textContent =
+        usuarioAdmin.nome || "Administrador";
 
-        const listaCursos = Array.isArray(cursos)
-            ? cursos
-            : cursos.cursos || [];
-
-        // Total de usuários
-        document.getElementById("totalUsuarios").textContent =
-            listaUsuarios.length;
-
-        // Total de usuários Premium
-        const premium = listaUsuarios.filter(
-            item => item.plano === "PREMIUM"
-        );
-
-        document.getElementById("totalPremium").textContent =
-            premium.length;
-
-        // Total de cursos
-        document.getElementById("totalCursos").textContent =
-            listaCursos.length;
-
-        // Nome do administrador
-        document.getElementById("nomeAdmin").textContent =
-            usuarioAdmin.nome || "Administrador";
-
-        // Usuários  recentes
-        const recentes = [...listaUsuarios].sort((a, b) => {
-            return new Date(b.criado_em) - new Date(a.criado_em);
-        }).slice(0, 5);
-
+    async function carregarDashboard() {
+        const totalUsuarios = document.getElementById("totalUsuarios");
+        const totalPremium = document.getElementById("totalPremium");
+        const totalCursos = document.getElementById("totalCursos");
+        const totalConcluidos = document.getElementById("totalConcluidos");
         const tabela = document.getElementById("tabelaUsuarios");
 
-        tabela.innerHTML = "";
-
-        recentes.forEach(item => {
-            const linha = document.createElement("tr");
-
-            const nome = document.createElement("td");
-            nome.textContent = item.nome;
-
-            const email = document.createElement("td");
-            email.textContent = item.email;
-
-            const plano = document.createElement("td");
-            plano.textContent = item.plano;
-
-            const tipo = document.createElement("td");
-            tipo.textContent = item.tipo;
-
-            linha.append(nome, email, plano, tipo);
-
-            tabela.appendChild(linha);
-        });
-
-        // Cursos concluídos
         try {
-            const progressos = await requisicaoAPI(
-                "/progressoCursos/listar"
-            );
+            const [respostaUsuarios, respostaCursos, respostaProgressos] =
+                await Promise.all([
+                    EducaAPI.get("/usuarios/listar"),
+                    EducaAPI.get("/cursos/listar"),
+                    EducaAPI.get("/progressoCursos/listar")
+                ]);
 
-            const listaProgressos = Array.isArray(progressos)
-                ? progressos
-                : progressos.progressos || [];
+            const usuarios = Array.isArray(respostaUsuarios)
+                ? respostaUsuarios
+                : respostaUsuarios.usuarios || [];
 
-            const concluidos = listaProgressos.filter(item =>
-                item.concluido === true ||
-                Number(item.concluido) === 1 ||
-                Number(item.progresso) >= 100
-            );
+            const cursos = Array.isArray(respostaCursos)
+                ? respostaCursos
+                : respostaCursos.cursos || [];
 
-            document.getElementById("totalConcluidos").textContent =
-                concluidos.length;
+            const progressos = Array.isArray(respostaProgressos)
+                ? respostaProgressos
+                : respostaProgressos.progressos || [];
+
+            // Total de usuários
+            totalUsuarios.textContent = usuarios.length;
+
+            // Total de usuários Premium
+            totalPremium.textContent = usuarios.filter(
+                usuario => usuario.plano === "PREMIUM"
+            ).length;
+
+            // Total de cursos
+            totalCursos.textContent = cursos.length;
+
+            // Total de cursos concluídos
+            totalConcluidos.textContent = progressos.filter(
+                progresso =>
+                    progresso.concluido === true ||
+                    Number(progresso.concluido) === 1 ||
+                    Number(progresso.progresso) >= 100
+            ).length;
+
+            // Mostrar os cinco usuários mais recentes
+            const recentes = [...usuarios]
+                .sort((a, b) =>
+                    new Date(b.criado_em || 0) - new Date(a.criado_em || 0)
+                )
+                .slice(0, 5);
+
+            tabela.innerHTML = "";
+
+            if (recentes.length === 0) {
+                tabela.innerHTML = `
+                    <tr>
+                        <td colspan="4">Nenhum usuário cadastrado.</td>
+                    </tr>
+                `;
+                return;
+            }
+
+            recentes.forEach(usuario => {
+                const linha = document.createElement("tr");
+
+                const nome = document.createElement("td");
+                nome.textContent = usuario.nome || "—";
+
+                const email = document.createElement("td");
+                email.textContent = usuario.email || "—";
+
+                const plano = document.createElement("td");
+                plano.textContent = usuario.plano || "FREE";
+
+                const tipo = document.createElement("td");
+                tipo.textContent = usuario.tipo || "USUARIO";
+
+                linha.append(nome, email, plano, tipo);
+                tabela.appendChild(linha);
+            });
 
         } catch (erro) {
-            console.warn(
-                "Não foi possível carregar os cursos concluídos:",
-                erro.message
-            );
+            console.error("Erro ao carregar Dashboard:", erro);
 
-            document.getElementById("totalConcluidos").textContent = "—";
+            totalUsuarios.textContent = "—";
+            totalPremium.textContent = "—";
+            totalCursos.textContent = "—";
+            totalConcluidos.textContent = "—";
+
+            tabela.innerHTML = `
+                <tr>
+                    <td colspan="4">
+                        Não foi possível carregar os dados.
+                    </td>
+                </tr>
+            `;
         }
-
-    } catch (erro) {
-        console.error("Erro ao carregar dashboard:", erro);
-
-        alert("Erro ao carregar os dados: " + erro.message);
     }
-}
 
-if (usuarioAdmin) {
     carregarDashboard();
-}
 
-document.getElementById("sair").addEventListener("click", () => {
-    encerrarSessao();
-    window.location.href = "../login.html";
+    // Encerrar sessão
+    document.getElementById("sair").addEventListener("click", () => {
+        encerrarSessao();
+        window.location.href = "../login.html";
+    });
+
 });

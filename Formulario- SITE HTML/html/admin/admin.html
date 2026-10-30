@@ -1,187 +1,162 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Admin - Educa Finança</title>
+    <title>Admin - Educa Finança</title>
 
-  <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/admin.css">
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-  >
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    >
 </head>
 
 <body>
 
-  <aside class="sidebar">
+    <aside class="sidebar">
 
-    <div class="logo">
-      <h2>Educa Finança</h2>
-      <span>ADMIN</span>
-    </div>
-
-    <nav>
-
-      <a href="admin.html" class="ativo">
-        <i class="fa-solid fa-chart-line"></i>
-        Dashboard
-      </a>
-
-      <a href="usuarios.html">
-        <i class="fa-solid fa-users"></i>
-        Usuários
-      </a>
-
-      <a href="admin/curso.html">
-        <i class="fa-solid fa-graduation-cap"></i>
-        Cursos
-      </a>
-
-      <a href="admin/resultados.html">
-        <i class="fa-solid fa-square-poll-vertical"></i>
-        Resultados
-      </a>
-
-      <button id="sair">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        Sair
-      </button>
-
-    </nav>
-
-  </aside>
-
-  <main>
-
-    <header class="topo">
-
-      <div>
-        <p>Painel Administrativo</p>
-        <h1>Dashboard</h1>
-      </div>
-
-      <div class="admin-info">
-        <span id="nomeAdmin">Administrador</span>
-      </div>
-
-    </header>
-
-    <section class="cards">
-
-      <div class="card">
-
-        <div class="card-icon">
-          <i class="fa-solid fa-users"></i>
+        <div class="logo">
+            <h2>Educa Finança</h2>
+            <span>ADMIN</span>
         </div>
 
-        <div>
-          <span>Usuários</span>
-          <h2 id="totalUsuarios">0</h2>
-        </div>
+        <nav>
 
-      </div>
+            <a href="admin.html" class="ativo">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </a>
 
-      <div class="card">
+            <a href="usuarios.html">
+                <i class="fa-solid fa-users"></i>
+                Usuários
+            </a>
 
-        <div class="card-icon">
-          <i class="fa-solid fa-crown"></i>
-        </div>
+            <a href="curso.html">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Cursos
+            </a>
 
-        <div>
-          <span>Premium</span>
-          <h2 id="totalPremium">0</h2>
-        </div>
+            <a href="resultados.html">
+                <i class="fa-solid fa-square-poll-vertical"></i>
+                Resultados
+            </a>
 
-      </div>
+            <button id="sair" type="button">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sair
+            </button>
 
-      <div class="card">
+        </nav>
 
-        <div class="card-icon">
-          <i class="fa-solid fa-book"></i>
-        </div>
+    </aside>
 
-        <div>
-          <span>Cursos</span>
-          <h2 id="totalCursos">0</h2>
-        </div>
+    <main>
 
-      </div>
+        <header class="topo">
 
-      <div class="card">
+            <div>
+                <p>Painel Administrativo</p>
+                <h1>Dashboard</h1>
+            </div>
 
-        <div class="card-icon">
-          <i class="fa-solid fa-check"></i>
-        </div>
+            <div class="admin-info">
+                <span id="nomeAdmin">Administrador</span>
+            </div>
 
-        <div>
-          <span>Cursos concluídos</span>
-          <h2 id="totalConcluidos">0</h2>
-        </div>
+        </header>
 
-      </div>
+        <section class="cards">
 
-    </section>
+            <div class="card">
 
-    <section class="painel">
+                <div class="card-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
 
-      <h2>Usuários recentes</h2>
+                <div>
+                    <span>Usuários</span>
+                    <h2 id="totalUsuarios">0</h2>
+                </div>
 
-      <table>
+            </div>
 
-        <thead>
+            <div class="card">
 
-          <tr>
-            <th>Nome</th>
-            <th>E-mail</th>
-            <th>Plano</th>
-            <th>Tipo</th>
-          </tr>
+                <div class="card-icon">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
 
-        </thead>
+                <div>
+                    <span>Premium</span>
+                    <h2 id="totalPremium">0</h2>
+                </div>
 
-        <tbody id="tabelaUsuarios">
-        </tbody>
+            </div>
 
-      </table>
+            <div class="card">
 
-    </section>
+                <div class="card-icon">
+                    <i class="fa-solid fa-book"></i>
+                </div>
 
-  </main>
+                <div>
+                    <span>Cursos</span>
+                    <h2 id="totalCursos">0</h2>
+                </div>
 
-  <script>
-    const usuario = JSON.parse(
-      localStorage.getItem("usuario")
-    );
+            </div>
 
-    if (!usuario) {
+            <div class="card">
 
-      alert("Faça login primeiro.");
+                <div class="card-icon">
+                    <i class="fa-solid fa-check"></i>
+                </div>
 
-      window.location.href = "../login.html";
+                <div>
+                    <span>Cursos concluídos</span>
+                    <h2 id="totalConcluidos">0</h2>
+                </div>
 
-    } else if (![
-      "juliagonzaga@email.com",
-      "sayuryaraujo@email.com",
-      "mire@email.com"
-    ].includes(usuario.email)) {
+            </div>
 
-      alert("Você não tem permissão para acessar o painel administrativo.");
+        </section>
 
-      window.location.href = "../home.html";
+        <section class="painel">
 
-    }
-  </script>
+            <h2>Usuários recentes</h2>
 
-  <!-- Conexão com o backend -->
-  <script src="../../js/api.js"></script>
-  <script src="../../js/integracao-api.js"></script>
+            <table>
 
-  <!-- Dashboard administrativo -->
-  <script src="../../js/admin.js"></script>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Plano</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tabelaUsuarios">
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+    <!-- Conexão com backend -->
+    <script src="../../js/api.js"></script>
+    <script src="../../js/integracao-api.js"></script>
+
+    <!-- Dashboard administrativo -->
+    <script src="../../js/admin.js"></script>
 
 </body>
 

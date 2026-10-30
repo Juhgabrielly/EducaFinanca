@@ -5,424 +5,200 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Curso - Educa Finança</title>
+    <title>Cursos - Educa Finança</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../../css/curso.css?v=2">
-    <link rel="stylesheet" href="../../css/chat.css">
-
-    <!-- Fonte -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    >
-
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 
 <body>
 
-    <!-- CABEÇALHO -->
-
-    <header>
+    <aside class="sidebar">
 
         <div class="logo">
-
-            <img
-                src="../../educa.png"
-                alt="Logo do Educa Finança"
-                class="logo-img"
-            >
-
             <h2>Educa Finança</h2>
-
+            <span>PAINEL ADMINISTRATIVO</span>
         </div>
 
-        <button
-            type="button"
-            class="menu-toggle"
-            id="menu-toggle"
-        >
-            <i class="fa-solid fa-bars"></i>
-        </button>
+        <nav>
 
-        <nav class="menu" id="menu">
+            <a href="admin.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </a>
 
-            <a href="../home.html">Home</a>
+            <a href="usuarios.html">
+                <i class="fa-solid fa-users"></i>
+                Usuários
+            </a>
 
-            <a href="../cursos.html" class="ativo">Cursos</a>
+            <a href="curso.html" class="ativo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Cursos
+            </a>
 
-            <a href="../relatório.html">Relatórios</a>
+            <a href="resultados.html">
+                <i class="fa-solid fa-square-poll-vertical"></i>
+                Resultados
+            </a>
 
-            <a href="../investimento.html">Investimentos</a>
-
-            <a href="../usuario.html">Perfil</a>
-
-            <a href="../plano.html">Planos</a>
-
-            <a href="admin/admin.html" id="painelAdmin" style="display: none;">Painel Admin</a>
+            <button id="sair" type="button">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sair
+            </button>
 
         </nav>
 
-    </header>
+    </aside>
 
-    <main>
+    <main class="main">
 
-        <section class="curso-container" id="cursoContainer">
+        <header class="topo">
 
-            <div id="carregando" class="carregando">
-
-                <i class="fa-solid fa-spinner fa-spin"></i>
-
-                <p>Carregando curso...</p>
-
+            <div>
+                <p>Painel Administrativo</p>
+                <h1>Cursos</h1>
             </div>
 
-            <div id="erro" class="erro" style="display: none;">
-
-                <i class="fa-solid fa-triangle-exclamation"></i>
-
-                <h2>Não foi possível carregar o curso</h2>
-
-                <p>
-                    Verifique se o curso existe ou se o servidor está funcionando.
-                </p>
-
-                <a href="../cursos.html" class="btn-voltar">
-                    Voltar para cursos
-                </a>
-
+            <div class="admin-info">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span id="nomeAdmin">Administrador</span>
             </div>
 
-            <div id="conteudoCurso" style="display: none;">
+        </header>
 
-                <div class="curso-cabecalho">
+        <section class="painel">
 
-                    <span id="cursoNivel" class="nivel-curso">
-                        Iniciante
-                    </span>
+            <div class="cabecalho-tabela">
 
-                    <div
-                        id="cursoPremium"
-                        class="premium-badge"
-                        style="display: none;"
-                    >
-                        ⭐ Premium
-                    </div>
-
-                    <h1 id="cursoNome">Nome do curso</h1>
-
-                    <p id="cursoDescricao">Descrição do curso</p>
-
-                </div>
-
-                <div class="curso-info">
-
-                    <div class="info-card">
-
-                        <i class="fa-regular fa-clock"></i>
-
-                        <div>
-                            <span>Duração</span>
-                            <strong id="cursoDuracao">-</strong>
-                        </div>
-
-                    </div>
-
-
-                    <div class="info-card">
-
-                        <i class="fa-solid fa-video"></i>
-
-                        <div>
-                            <span>Videoaulas</span>
-                            <strong id="cursoVideoaulas">-</strong>
-                        </div>
-
-                    </div>
-
-
-                    <div class="info-card">
-
-                        <i class="fa-solid fa-graduation-cap"></i>
-
-                        <div>
-                            <span>Nível</span>
-                            <strong id="cursoNivelInfo">-</strong>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <section class="conteudo-curso">
-
-                    <h2>Sobre este curso</h2>
-
-                    <div id="conteudoTexto" class="texto-curso"></div>
-
-                </section>
-
-
-                <!-- VIDEOAULA -->
-
-                <section
-                    id="areaVideo"
-                    class="area-video"
-                    style="display: none;"
-                >
-
-                    <h2>
-                        <i class="fa-solid fa-play"></i>
-                        Videoaula
-                    </h2>
-
-                    <div class="video-container">
-
-                        <iframe
-                            id="videoCurso"
-                            src=""
-                            title="Videoaula do curso"
-                            allowfullscreen
-                        ></iframe>
-
-                    </div>
-
-                </section>
-
-
-                <!-- QUIZ -->
-
-                <section id="areaQuiz" class="area-quiz">
-
-                    <h2>Teste seus conhecimentos</h2>
-
-                    <p>
-                        Depois de estudar o conteúdo, faça o quiz para verificar o que você aprendeu.
+                <div>
+                    <h2>Cursos cadastrados</h2>
+                    <p class="subtitulo">
+                        Cadastre, edite ou remova cursos disponíveis no site.
                     </p>
-
-                    <button
-                        type="button"
-                        id="btnQuiz"
-                        class="btn-quiz"
-                    >
-
-                        <i class="fa-solid fa-circle-question"></i>
-
-                        Fazer quiz
-
-                    </button>
-
-                </section>
-
-
-                <!-- VOLTAR -->
-
-                <div class="acoes-curso">
-
-                    <a href="../cursos.html" class="btn-voltar">
-
-                        <i class="fa-solid fa-arrow-left"></i>
-
-                        Voltar para cursos
-
-                    </a>
-
                 </div>
+
+                <button class="btn" id="novoCurso" type="button">
+                    <i class="fa-solid fa-plus"></i>
+                    Novo curso
+                </button>
+
+            </div>
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Descrição</th>
+                            <th>Acesso</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelaCursos">
+                        <tr>
+                            <td colspan="5" class="vazio">
+                                Carregando...
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
 
             </div>
 
         </section>
 
+        <div class="modal" id="modalCurso">
+
+            <div class="modal-conteudo">
+
+                <div class="modal-topo">
+                    <h2 id="tituloModalCurso">Novo curso</h2>
+
+                    <button id="fecharModalCurso" type="button">
+                        ×
+                    </button>
+                </div>
+
+                <form id="formCurso">
+
+                    <input type="hidden" id="cursoId">
+
+                    <div class="form-grid">
+
+                        <div class="campo largo">
+                            <label for="tituloCurso">Título</label>
+                            <input
+                                type="text"
+                                id="tituloCurso"
+                                required
+                                maxlength="150"
+                            >
+                        </div>
+
+                        <div class="campo largo">
+                            <label for="descricaoCurso">Descrição</label>
+                            <textarea
+                                id="descricaoCurso"
+                                rows="3"
+                            ></textarea>
+                        </div>
+
+                        <div class="campo largo">
+                            <label for="conteudoCurso">
+                                Conteúdo / link / texto
+                            </label>
+
+                            <textarea
+                                id="conteudoCurso"
+                                rows="6"
+                            ></textarea>
+                        </div>
+
+                        <div class="campo">
+                            <label for="exclusivoCurso">Acesso</label>
+
+                            <select id="exclusivoCurso">
+                                <option value="false">Gratuito</option>
+                                <option value="true">Premium</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-acoes">
+
+                        <button
+                            class="btn btn-sec"
+                            type="button"
+                            id="cancelarCurso"
+                        >
+                            Cancelar
+                        </button>
+
+                        <button class="btn" type="submit">
+                            Salvar curso
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="mensagemAdmin" class="mensagem"></div>
+
     </main>
 
     <script src="../../js/api.js"></script>
-    <script src="../../js/integracao-api.js"></script>
-    <script src="../../js/chat.js"></script>
-
-
-    <script>
-
-        const toggle = document.getElementById("menu-toggle");
-        const menu = document.getElementById("menu");
-
-        toggle.addEventListener("click", () => {
-            menu.classList.toggle("active");
-        });
-
-        document.addEventListener("click", (event) => {
-
-            const clicouMenu = menu.contains(event.target);
-            const clicouBotao = toggle.contains(event.target);
-
-            if (!clicouMenu && !clicouBotao) {
-                menu.classList.remove("active");
-            }
-
-        });
-
-        const parametros = new URLSearchParams(
-            window.location.search
-        );
-
-        const cursoId = parametros.get("id");
-
-        const carregando = document.getElementById("carregando");
-        const erro = document.getElementById("erro");
-        const conteudoCurso = document.getElementById("conteudoCurso");
-
-        const cursoNome = document.getElementById("cursoNome");
-        const cursoDescricao = document.getElementById("cursoDescricao");
-
-        const cursoNivel = document.getElementById("cursoNivel");
-        const cursoNivelInfo = document.getElementById("cursoNivelInfo");
-
-        const cursoDuracao = document.getElementById("cursoDuracao");
-        const cursoVideoaulas = document.getElementById("cursoVideoaulas");
-
-        const cursoPremium = document.getElementById("cursoPremium");
-
-        const conteudoTexto = document.getElementById("conteudoTexto");
-
-        const areaVideo = document.getElementById("areaVideo");
-        const videoCurso = document.getElementById("videoCurso");
-
-        const btnQuiz = document.getElementById("btnQuiz");
-
-        if (!cursoId) {
-
-            mostrarErro();
-
-        } else {
-
-            carregarCurso();
-
-        }
-        async function carregarCurso() {
-
-            try {
-
-                const cursoRecebido = await EducaAPI.get(
-                    `/cursos/buscar/${cursoId}`
-                );
-
-                const curso = cursoRecebido.curso || cursoRecebido;
-
-                console.log("Curso recebido:", curso);
-
-                const exclusivo =
-                    curso.exclusivo === true ||
-                    curso.premium === true;
-
-                if (exclusivo) {
-
-                    const usuario = JSON.parse(
-                        localStorage.getItem("usuario")
-                    );
-
-                    if (!usuario || usuario.plano !== "PREMIUM") {
-
-                        alert(
-                            "⭐ Este curso é exclusivo do EducaFinança+."
-                        );
-
-                        window.location.href = "../plano.html";
-
-                        return;
-
-                    }
-
-                }
-
-                cursoNome.textContent =
-                    curso.titulo ||
-                    curso.nome ||
-                    "Curso";
-
-                cursoDescricao.textContent =
-                    curso.descricao ||
-                    "Sem descrição disponível.";
-
-                cursoNivel.textContent =
-                    curso.nivel ||
-                    "Iniciante";
-
-                cursoNivelInfo.textContent =
-                    curso.nivel ||
-                    "Iniciante";
-
-                cursoDuracao.textContent =
-                    curso.duracao ||
-                    "2 semanas";
-
-                cursoVideoaulas.textContent =
-                    curso.videoaulas ||
-                    1;
-
-                if (exclusivo) {
-
-                    cursoPremium.style.display = "inline-flex";
-
-                } else {
-
-                    cursoPremium.style.display = "none";
-
-                }
-
-                conteudoTexto.textContent =
-                    curso.conteudo ||
-                    curso.descricao ||
-                    "Conteúdo ainda não disponível.";
-
-                if (curso.videoUrl) {
-
-                    areaVideo.style.display = "block";
-
-                    videoCurso.src = curso.videoUrl;
-
-                }
-
-                btnQuiz.onclick = () => {
-
-                    window.location.href =
-                        `quiz.html?cursoId=${curso.id}`;
-
-                };
-
-                carregando.style.display = "none";
-
-                conteudoCurso.style.display = "block";
-
-
-            } catch (erroCarregamento) {
-
-                console.error(
-                    "Erro ao carregar curso:",
-                    erroCarregamento
-                );
-
-                mostrarErro();
-
-            }
-
-        }
-
-        function mostrarErro() {
-
-            carregando.style.display = "none";
-
-            conteudoCurso.style.display = "none";
-
-            erro.style.display = "block";
-
-        }
-
-    </script>
+    <script src="../../js/admin-cursos.js"></script>
 
 </body>
 </html>
